@@ -51,10 +51,10 @@
     <ClInclude Include="Tile.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
+    <ClInclude Include="XMLHandler.h">
       <Filter>Commons</Filter>
     </ClInclude>
-    <ClInclude Include="XMLHandler.h">
+    <ClInclude Include="Texture2D.h">
       <Filter>Commons</Filter>
     </ClInclude>
   </ItemGroup>
@@ -86,10 +86,10 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
+    <ClCompile Include="XMLHandler.cpp">
       <Filter>Commons</Filter>
     </ClCompile>
-    <ClCompile Include="XMLHandler.cpp">
+    <ClCompile Include="Texture2D.cpp">
       <Filter>Commons</Filter>
     </ClCompile>
   </ItemGroup>

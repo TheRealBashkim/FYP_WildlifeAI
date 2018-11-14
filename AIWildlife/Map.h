@@ -2,7 +2,7 @@
 #define MAP_H
 #include <SDL.h>
 #include <iostream>
-#include "TextureManager.h"
+#include "Texture2D.h"
 #include "Tile.h"
 #include "TinyXML/tinyxml.h"
 #include <vector>

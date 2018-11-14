@@ -2,7 +2,7 @@
 
 
 
-Tile::Tile(SDL_Texture * Texture,int ID)
+Tile::Tile(Texture2D * Texture,int ID)
 {
 	this->mTexture = Texture;
 	this->mID = ID;

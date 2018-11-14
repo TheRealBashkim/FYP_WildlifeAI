@@ -33,8 +33,9 @@ Map::~Map()
 
 void Map::AddTile(std::string path, int ID)
 {
-	SDL_Texture * mTexture = TextureManager::LoadImage(path.c_str(), mRenderer);
-	Tile * tile = new Tile(mTexture,ID);
+	Texture2D * tempTexture = new Texture2D(mRenderer);
+	tempTexture->LoadFromFile(path);
+	Tile * tile = new Tile(tempTexture,ID);
 	mTiles->push_back(tile);
 }
 
@@ -52,7 +53,8 @@ void Map::DrawMap()
 			{
 				if (ID == mTiles->at(i)->GetID())
 				{
-					TextureManager::Draw(mTiles->at(i)->GetTexture(), mRenderer, mSrc, mDest);
+					mTiles->at(i)->GetTexture()->Render(mSrc, mDest);
+					//TextureManager::Draw(mTiles->at(i)->GetTexture(), mRenderer, mSrc, mDest);
 				}
 			}
 		}

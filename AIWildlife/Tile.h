@@ -1,17 +1,18 @@
 #ifndef TILE_H
 #define TILE_H
 #include "SDL.h"
+#include "Texture2D.h"
 
 class Tile
 {
 public:
-	Tile(SDL_Texture * texture,int ID);
-	inline SDL_Texture * GetTexture() { return this->mTexture; }
+	Tile(Texture2D * texture,int ID);
+	inline Texture2D * GetTexture() { return this->mTexture; }
 	inline int GetID() { return this->mID; }
 	~Tile();
 
 private:
-	SDL_Texture * mTexture = nullptr;
+	Texture2D * mTexture = nullptr;
 	int mID = 0;
 };
 #endif
