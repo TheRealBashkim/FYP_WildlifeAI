@@ -13,5 +13,94 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="MainSource">
+      <UniqueIdentifier>{9da18cd1-3fc2-4d74-8657-3ae1dcd7e747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TinyXML">
+      <UniqueIdentifier>{c5174c53-73f3-4e02-aa52-0c72ccd0b1c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commons">
+      <UniqueIdentifier>{325e4012-0960-4d73-9307-6b091b764ba8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{36857db6-cace-4b26-a31c-9ce91a9d6feb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SourceWindowForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TinyXML\tinyxml.h">
+      <Filter>TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="TinyXML\tinystr.h">
+      <Filter>TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Source.h">
+      <Filter>MainSource</Filter>
+    </ClInclude>
+    <ClInclude Include="Commons.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLHandler.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SourceWindowForm.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinystr.cpp">
+      <Filter>TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxml.cpp">
+      <Filter>TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxmlerror.cpp">
+      <Filter>TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxmlparser.cpp">
+      <Filter>TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>MainSource</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Commons</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Commons</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLHandler.cpp">
+      <Filter>Commons</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SourceWindowForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Map1.xml">
+      <Filter>Graphics</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
