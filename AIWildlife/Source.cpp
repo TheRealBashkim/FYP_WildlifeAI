@@ -19,6 +19,10 @@ int Main(array<String^>^ args)
 #pragma endregion 
 
 
+/**
+ * Map Size is 875 * 875
+ */
+
 Source::Source(int handler)
 {
 	Initialize();
@@ -31,7 +35,10 @@ Source::Source(int handler)
 	mMap->SetMap(XMLHandler::LoadMapFromXML("Map1.xml"));
 	mAgent = new TestAI(mRenderer);
 	mAgent->LoadTexture("Characters/Wolf.bmp");
-	mAgent->SetPosition(Vector2D(50, 30));
+	float tempx, tempy;
+	tempx = rand() % 875;
+	tempy = rand() % 875;
+	mAgent->SetPosition(Vector2D(tempx,tempy));
 	mOldTime = SDL_GetTicks();
 	while(true)
 	{
