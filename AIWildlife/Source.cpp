@@ -4,6 +4,7 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
+#pragma region appmain
 
 [STAThreadAttribute]
 int Main(array<String^>^ args)
@@ -14,6 +15,8 @@ int Main(array<String^>^ args)
 	Application::Run(%form);
 	return 0;
 }
+
+#pragma endregion 
 
 
 Source::Source(int handler)
@@ -26,7 +29,15 @@ Source::Source(int handler)
 	mMap = new Map(mRenderer);
 	mMap->AddTile("Tiles/GrassTile.bmp", 0);
 	mMap->SetMap(XMLHandler::LoadMapFromXML("Map1.xml"));
-	Update();
+	mAgent = new TestAI(mRenderer);
+	mAgent->LoadTexture("Characters/Wolf.bmp");
+	mAgent->SetPosition(Vector2D(50, 30));
+	mOldTime = SDL_GetTicks();
+	while(true)
+	{
+		Update();
+		Render();
+	}
 }
 
 Source::~Source()
@@ -35,28 +46,25 @@ Source::~Source()
 
 void Source::Update()
 {
-	int quit = false;
-	bool gridlines = false;
+	Uint32 newTime = SDL_GetTicks();
+	float dt;
+	dt = ((float)(newTime - mOldTime) / 1000.0f);
 	SDL_Event e;
-	while (!quit)
+	while (SDL_PollEvent(&e) != 0)
 	{
-		while(SDL_PollEvent(&e) != 0)
-		{
-			if (InputHandler::IsKeyDown(_Keys::G))
-			{
-				if (!gridlines)
-				{
-					gridlines = true;
-				}
-				else
-				{
-					gridlines = false;
-				}
-			}
-		}
-		mMap->DrawMap();
-		SDL_RenderPresent(mRenderer);
+		
 	}
+	mAgent->Update(dt, e);
+
+	mOldTime = newTime;
+}
+
+void Source::Render()
+{
+	SDL_RenderClear(mRenderer);
+	mMap->DrawMap();
+	mAgent->Render();
+	SDL_RenderPresent(mRenderer);
 }
 
 bool Source::Initialize()

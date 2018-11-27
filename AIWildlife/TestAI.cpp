@@ -26,9 +26,13 @@ void TestAI::Update(float dt, SDL_Event e)
 
 void TestAI::Render()
 {
-	
 	BaseAgent::Render();
 	DrawFeelers();
+}
+
+void TestAI::LoadTexture(std::string path)
+{
+	BaseAgent::LoadTexture(path);
 }
 
 void TestAI::DrawFeelers()

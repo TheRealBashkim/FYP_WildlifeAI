@@ -64,7 +64,7 @@
       <Filter>AI Agents</Filter>
     </ClInclude>
     <ClInclude Include="TestAI.h">
-      <Filter>Header Files</Filter>
+      <Filter>AI Agents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -105,7 +105,7 @@
       <Filter>AI Agents</Filter>
     </ClCompile>
     <ClCompile Include="TestAI.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>AI Agents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

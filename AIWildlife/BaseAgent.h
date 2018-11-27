@@ -10,14 +10,15 @@ class BaseAgent
 public:
 	BaseAgent(SDL_Renderer * Renderer);
 	~BaseAgent();
-	virtual void Update(float dt);
-	virtual void Update(float dt, SDL_Event e);
+	 void Update(float dt);
+	 void Update(float dt, SDL_Event e);
 	void LoadTexture(std::string path);
 	void Render();
 protected:
 	Vector2D GetCenter();
 	void DebugCircle(Vector2D centerPoint, double rad, int r, int g, int b);
 	void DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, int b);
+	void SetPosition(Vector2D position) { this->mPosition = position; }
 
 	SDL_Renderer * mRenderer;
 	Texture2D * mTexture = nullptr;
