@@ -37,7 +37,8 @@ void TestAI::LoadTexture(std::string path)
 
 void TestAI::DrawFeelers()
 {
-	DebugLine(GetCenter(), GetCenter() + mHeading * 5, 255, 0, 0);
+	DebugLine(GetCenter(), GetCenter() + mVelocity, 255, 0, 0);
+	DebugCircle(GetCenter() + mHeading * 70, 25, 255, 0, 0);
 }
 
 Vector2D TestAI::Seek(Vector2D TargetPosition)
