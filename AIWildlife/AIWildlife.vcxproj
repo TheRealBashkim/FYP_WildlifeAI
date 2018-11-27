@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BaseAgent.h" />
     <ClInclude Include="Commons.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Map.h" />
@@ -135,6 +136,7 @@
     <ClInclude Include="SourceWindowForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="TestAI.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
@@ -142,10 +144,12 @@
     <ClInclude Include="XMLHandler.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseAgent.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SourceWindowForm.cpp" />
+    <ClCompile Include="TestAI.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TinyXML\tinystr.cpp" />

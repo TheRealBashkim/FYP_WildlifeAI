@@ -25,6 +25,9 @@
     <Filter Include="Graphics">
       <UniqueIdentifier>{36857db6-cace-4b26-a31c-9ce91a9d6feb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AI Agents">
+      <UniqueIdentifier>{497f4e23-3ce0-49a3-b8a2-59bbac7977c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceWindowForm.h">
@@ -56,6 +59,12 @@
     </ClInclude>
     <ClInclude Include="Texture2D.h">
       <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseAgent.h">
+      <Filter>AI Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="TestAI.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +100,12 @@
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
       <Filter>Commons</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseAgent.cpp">
+      <Filter>AI Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="TestAI.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

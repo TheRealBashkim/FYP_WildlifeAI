@@ -20,6 +20,8 @@ const double   TwoPi = Pi * 2;
 const double   HalfPi = Pi / 2;
 const double   QuarterPi = Pi / 4;
 
+inline double DegsToRads(double degrees) { return TwoPi * (degrees / 360.0f); }
+inline double RadsToDegs(double radians) { return radians * (180.0f / Pi); }
 
 inline bool isEqual(float a, float b)
 {
