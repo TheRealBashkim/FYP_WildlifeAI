@@ -5,7 +5,7 @@
 
 const int MapRow = 25;
 const int MapColumn = 25;
-const int TileSize = 64;
+const int TileSize = 35;
 
 
 const int     MaxInt = (std::numeric_limits<int>::max)();

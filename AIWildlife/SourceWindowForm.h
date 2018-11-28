@@ -58,7 +58,7 @@ namespace AIWildlife {
 			// 
 			this->SDLWindow->Location = System::Drawing::Point(12, 12);
 			this->SDLWindow->Name = L"SDLWindow";
-			this->SDLWindow->Size = System::Drawing::Size(957, 777);
+			this->SDLWindow->Size = System::Drawing::Size(875, 875);
 			this->SDLWindow->TabIndex = 0;
 			this->SDLWindow->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &SourceWindowForm::SDLWindow_Paint);
 			// 

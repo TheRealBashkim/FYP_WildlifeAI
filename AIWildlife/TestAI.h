@@ -12,6 +12,8 @@ public:
 	void DrawFeelers();
 	void SetPosition(Vector2D position) { BaseAgent::SetPosition(position); }
 	Vector2D Seek(Vector2D TargetPosition);
+private:
+	void ObsticleAvoidance();
 
 
 };

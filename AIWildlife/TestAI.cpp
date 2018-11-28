@@ -21,6 +21,7 @@ void TestAI::Update(float dt, SDL_Event e)
 		temp = Vector2D(x, y);
 		mForce += Seek(temp);
 	}
+	ObsticleAvoidance();
 	BaseAgent::Update(dt);
 }
 
@@ -45,4 +46,28 @@ Vector2D TestAI::Seek(Vector2D TargetPosition)
 {
 	Vector2D DesiredVelocity = Vec2DNormalize(TargetPosition - GetCenter()) * mMaxSpeed;
 	return (DesiredVelocity - mVelocity);
+}
+
+void TestAI::ObsticleAvoidance()
+{
+	if (mPosition.x > 874)
+	{
+		Vector2D temp(0, mPosition.y);
+		mForce += Seek(temp);
+	}
+	else if (mPosition.x < 0)
+	{
+		Vector2D temp(875, mPosition.y);
+		mForce += Seek(temp);
+	}
+	else if (mPosition.y > 874)
+	{
+		Vector2D temp(mPosition.x, 0);
+		mForce += Seek(temp);
+	}
+	else if (mPosition.y < 0)
+	{
+		Vector2D temp(mPosition.x, 875);
+		mForce += Seek(temp);
+	}
 }
