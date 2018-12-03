@@ -13,14 +13,14 @@ TestAI::~TestAI()
 
 void TestAI::Update(float dt, SDL_Event e)
 {
-	Vector2D temp = Vector2D();
 	int x, y;
 	if(SDL_GetMouseState(NULL,NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
 	{
 		SDL_GetMouseState(&x, &y);
 		temp = Vector2D(x, y);
-		mForce += Seek(temp);
+		
 	}
+	mForce += Arrive(temp);
 	BaseAgent::Update(dt);
 }
 
@@ -41,8 +41,35 @@ void TestAI::DrawFeelers()
 	DebugCircle(GetCenter() + mHeading * 70, 25, 255, 0, 0);
 }
 
+Vector2D TestAI::GetPosition()
+{
+	Vector2D temp(BaseAgent::GetPosition());
+	return temp;
+}
+
 Vector2D TestAI::Seek(Vector2D TargetPosition)
 {
 	Vector2D DesiredVelocity = Vec2DNormalize(TargetPosition - GetCenter()) * mMaxSpeed;
 	return (DesiredVelocity - mVelocity);
+}
+
+Vector2D TestAI::Flee(Vector2D TargetPosition)
+{
+	Vector2D DesiredVelocity = Vec2DNormalize(GetCenter() - TargetPosition) * mMaxSpeed;
+	return (DesiredVelocity - mVelocity);
+}
+
+Vector2D TestAI::Arrive(Vector2D TargetPosition)
+{
+	Vector2D ToTarget = TargetPosition - GetCenter();
+	double distance = ToTarget.Length();
+	if(distance > 0)
+	{
+		const double DecTweaker = 5.0;
+		double speed = distance / ((double)0.2 * DecTweaker);
+		speed = std::min(speed, mMaxSpeed);
+		Vector2D DesiredVel = ToTarget * speed / distance;
+		return (DesiredVel - mVelocity);
+	}
+	return GetPosition();
 }

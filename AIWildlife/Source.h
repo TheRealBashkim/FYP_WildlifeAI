@@ -7,8 +7,11 @@
 #include "Map.h"
 #include "BaseAgent.h"
 #include "TestAI.h"
+#include "Messaging.h"
 
-class Source
+using namespace System;
+using namespace System::Windows::Forms;
+ref class Source
 {
 public:
 	Source(int handler);
@@ -23,6 +26,7 @@ private:
 	bool InitWindow(int handler);
 	TestAI * mAgent;
 	Uint32 mOldTime;
+	Messaging ^ mMessage;
 
 };
 

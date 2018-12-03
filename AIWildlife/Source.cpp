@@ -24,7 +24,8 @@ int Main(array<String^>^ args)
  */
 
 Source::Source(int handler)
-{
+{	
+	mMessage = Messaging::Initialize();
 	Initialize();
 	if(!InitWindow(handler))
 	{
@@ -63,6 +64,8 @@ void Source::Update()
 	}
 	mAgent->Update(dt, e);
 
+	std::string Position = "X: " + std::to_string(mAgent->GetPosition().x) + "  Y:  " + std::to_string(mAgent->GetPosition().y);
+	mMessage->SendMessage(Position);
 	mOldTime = newTime;
 }
 
@@ -85,6 +88,7 @@ bool Source::Initialize()
 	{
 		std::cout << "Warning: Linear Texture filtering not enabled!" << std::endl;
 	}
+	mMessage->SendMessage("Init Complete");
 	return true;
 }
 

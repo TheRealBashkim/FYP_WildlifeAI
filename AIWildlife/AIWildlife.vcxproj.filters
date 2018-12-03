@@ -66,6 +66,9 @@
     <ClInclude Include="TestAI.h">
       <Filter>AI Agents</Filter>
     </ClInclude>
+    <ClInclude Include="Messaging.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceWindowForm.cpp">
@@ -106,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="TestAI.cpp">
       <Filter>AI Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="Messaging.cpp">
+      <Filter>Commons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
