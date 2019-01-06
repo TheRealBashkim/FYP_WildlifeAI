@@ -1,5 +1,5 @@
 #include "TestAI.h"
-
+#include <ctime>
 
 
 TestAI::TestAI(SDL_Renderer * Renderer) : BaseAgent(Renderer)
@@ -18,9 +18,11 @@ void TestAI::Update(float dt, SDL_Event e)
 	{
 		SDL_GetMouseState(&x, &y);
 		temp = Vector2D(x, y);
+		mForce += Seek(temp);
 		
 	}
-	mForce += Arrive(temp);
+	//mForce += Arrive(temp);
+	mForce = Wander();
 	BaseAgent::Update(dt);
 }
 
@@ -39,6 +41,7 @@ void TestAI::DrawFeelers()
 {
 	DebugLine(GetCenter(), GetCenter() + mVelocity, 255, 0, 0);
 	DebugCircle(GetCenter() + mHeading * 70, 25, 255, 0, 0);
+	DebugCircle(GetCenter() + mHeading * 70, 5, 255, 0, 0);
 }
 
 Vector2D TestAI::GetPosition()
@@ -72,4 +75,32 @@ Vector2D TestAI::Arrive(Vector2D TargetPosition)
 		return (DesiredVel - mVelocity);
 	}
 	return GetPosition();
+}
+
+Vector2D TestAI::Wander()
+{
+
+	float x, y;
+	x = FindRandRange(875);
+	y = FindRandRange(875);
+	Vector2D tempVector;
+	if(x < mPosition.x)
+	{
+		tempVector.x = mPosition.x - 0.5f;
+	}
+	else if(x  > mPosition.x)
+	{
+		tempVector.x = mPosition.x + 0.5f;
+	}
+	if(y < mPosition.y)
+	{
+		tempVector.y = mPosition.y - 0.5f;
+	}
+	else if(y > mPosition.y)
+	{
+		tempVector.y = mPosition.y + 0.5f;
+	}
+	return tempVector;
+	
+	
 }

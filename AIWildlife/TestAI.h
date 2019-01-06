@@ -16,6 +16,8 @@ public:
 	Vector2D Seek(Vector2D TargetPosition);
 	Vector2D Flee(Vector2D TargetPosition);
 	Vector2D Arrive(Vector2D TargetPosition);
+	Vector2D Wander();
+
 private:
 	Vector2D temp = GetPosition();
 

@@ -71,11 +71,11 @@ namespace AIWildlife {
 			// ConsoleWindow
 			// 
 			this->ConsoleWindow->ImeMode = System::Windows::Forms::ImeMode::NoControl;
-			this->ConsoleWindow->Location = System::Drawing::Point(12, 819);
+			this->ConsoleWindow->Location = System::Drawing::Point(893, 28);
 			this->ConsoleWindow->Name = L"ConsoleWindow";
 			this->ConsoleWindow->ReadOnly = true;
 			this->ConsoleWindow->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::ForcedVertical;
-			this->ConsoleWindow->Size = System::Drawing::Size(957, 210);
+			this->ConsoleWindow->Size = System::Drawing::Size(400, 410);
 			this->ConsoleWindow->TabIndex = 1;
 			this->ConsoleWindow->Text = L"";
 			this->ConsoleWindow->TextChanged += gcnew System::EventHandler(this, &SourceWindowForm::ConsoleWindow_TextChanged);
@@ -83,7 +83,7 @@ namespace AIWildlife {
 			// Console
 			// 
 			this->Console->AutoSize = true;
-			this->Console->Location = System::Drawing::Point(12, 803);
+			this->Console->Location = System::Drawing::Point(890, 12);
 			this->Console->Name = L"Console";
 			this->Console->Size = System::Drawing::Size(45, 13);
 			this->Console->TabIndex = 2;

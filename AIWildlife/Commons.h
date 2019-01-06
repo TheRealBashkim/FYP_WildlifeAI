@@ -39,6 +39,14 @@ inline bool isEqual(double a, double b)
 	return false;
 }
 
+inline float FindRandRange(float a)
+{
+	float result;
+	result = rand() % (int)a;
+	return result;
+}
+
+
 struct Vector2D
 {
 	double x;
