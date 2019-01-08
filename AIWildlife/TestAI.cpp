@@ -18,11 +18,13 @@ void TestAI::Update(float dt, SDL_Event e)
 	{
 		SDL_GetMouseState(&x, &y);
 		temp = Vector2D(x, y);
-		mForce += Seek(temp);
+		
 		
 	}
+	//mForce += Seek(temp);
+	mForce += WallAvoidance(mHeading * 70);
 	//mForce += Arrive(temp);
-	mForce = Wander();
+	mForce += Wander();
 	BaseAgent::Update(dt);
 }
 
@@ -79,28 +81,41 @@ Vector2D TestAI::Arrive(Vector2D TargetPosition)
 
 Vector2D TestAI::Wander()
 {
+	Vector2D mForwardHeading = mHeading * 70;
 
-	float x, y;
-	x = FindRandRange(875);
-	y = FindRandRange(875);
-	Vector2D tempVector;
-	if(x < mPosition.x)
-	{
-		tempVector.x = mPosition.x - 0.5f;
-	}
-	else if(x  > mPosition.x)
-	{
-		tempVector.x = mPosition.x + 0.5f;
-	}
-	if(y < mPosition.y)
-	{
-		tempVector.y = mPosition.y - 0.5f;
-	}
-	else if(y > mPosition.y)
-	{
-		tempVector.y = mPosition.y + 0.5f;
-	}
+	float minx, miny, maxx, maxy;
+	miny = mForwardHeading.y - 5000;
+	maxy = mForwardHeading.y + 5000;
+	maxx = mForwardHeading.x + 5000;
+	minx = mForwardHeading.x - 5000;
+
+	float rangex = rand()%(int)(maxx - minx + 1) + minx;
+	float rangey = rand()% (int)(maxy - miny + 1) + miny;
+	Vector2D tempVector(rangex,rangey);
 	return tempVector;
 	
 	
+}
+
+Vector2D TestAI::WallAvoidance(Vector2D HeadingPoint)
+{
+	Vector2D mHeadingPoint = HeadingPoint;
+	if(mHeadingPoint.x < 0)
+	{
+		mHeadingPoint.x += 100;
+	}
+	if(mHeadingPoint.x > 875)
+	{
+		mHeadingPoint.x -= 100;
+	}
+	if (mHeadingPoint.y < 0)
+	{
+		mHeadingPoint.y += 100;
+	}
+	if(mHeadingPoint.y > 875)
+	{
+		mHeadingPoint.y -= 100;
+	}
+
+	return mHeadingPoint;
 }

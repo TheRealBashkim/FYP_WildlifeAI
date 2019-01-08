@@ -17,6 +17,7 @@ public:
 	Vector2D Flee(Vector2D TargetPosition);
 	Vector2D Arrive(Vector2D TargetPosition);
 	Vector2D Wander();
+	Vector2D WallAvoidance(Vector2D HeadingPoint);
 
 private:
 	Vector2D temp = GetPosition();
