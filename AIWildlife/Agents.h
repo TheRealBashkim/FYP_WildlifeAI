@@ -1,12 +1,12 @@
-#ifndef TESTAI_H
-#define TESTAI_H
+#ifndef AGENTS_H
+#define AGENTS_H
 #include "BaseAgent.h"
 #include <algorithm>
-class TestAI : BaseAgent
+class Agents : BaseAgent
 {
 public:
-	TestAI(SDL_Renderer * Renderer);
-	~TestAI();
+	Agents(SDL_Renderer * Renderer);
+	~Agents();
 	void Update(float dt, SDL_Event e);
 	void Render();
 	void LoadTexture(std::string path);
@@ -16,11 +16,12 @@ public:
 	Vector2D Seek(Vector2D TargetPosition);
 	Vector2D Flee(Vector2D TargetPosition);
 	Vector2D Arrive(Vector2D TargetPosition);
-	Vector2D Wander();
-	Vector2D WallAvoidance(Vector2D HeadingPoint);
+	Vector2D Wander(float dt);
+	Vector2D WallAvoidance();
 
 private:
 	Vector2D temp = GetPosition();
+	float counter = 0;
 
 
 };

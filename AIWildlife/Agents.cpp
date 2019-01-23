@@ -1,18 +1,21 @@
-#include "TestAI.h"
+#include "Agents.h"
 #include <ctime>
 
 
-TestAI::TestAI(SDL_Renderer * Renderer) : BaseAgent(Renderer)
+Agents::Agents(SDL_Renderer * Renderer) : BaseAgent(Renderer)
 {
+	
 }
 
 
-TestAI::~TestAI()
+Agents::~Agents()
 {
 }
 
-void TestAI::Update(float dt, SDL_Event e)
+void Agents::Update(float dt, SDL_Event e)
 {
+	
+	counter++;
 	int x, y;
 	if(SDL_GetMouseState(NULL,NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
 	{
@@ -21,50 +24,51 @@ void TestAI::Update(float dt, SDL_Event e)
 		
 		
 	}
-	//mForce += Seek(temp);
-	mForce += WallAvoidance(mHeading * 70);
-	//mForce += Arrive(temp);
-	mForce += Wander();
+	if (counter > 4)
+	{
+		mForce += Wander(dt);
+		counter = 0;
+	}
+	mForce += WallAvoidance();
 	BaseAgent::Update(dt);
 }
 
-void TestAI::Render()
+void Agents::Render()
 {
 	BaseAgent::Render();
 	DrawFeelers();
 }
 
-void TestAI::LoadTexture(std::string path)
+void Agents::LoadTexture(std::string path)
 {
 	BaseAgent::LoadTexture(path);
 }
 
-void TestAI::DrawFeelers()
+void Agents::DrawFeelers()
 {
 	DebugLine(GetCenter(), GetCenter() + mVelocity, 255, 0, 0);
 	DebugCircle(GetCenter() + mHeading * 70, 25, 255, 0, 0);
-	DebugCircle(GetCenter() + mHeading * 70, 5, 255, 0, 0);
 }
 
-Vector2D TestAI::GetPosition()
+Vector2D Agents::GetPosition()
 {
 	Vector2D temp(BaseAgent::GetPosition());
 	return temp;
 }
 
-Vector2D TestAI::Seek(Vector2D TargetPosition)
+Vector2D Agents::Seek(Vector2D TargetPosition)
 {
 	Vector2D DesiredVelocity = Vec2DNormalize(TargetPosition - GetCenter()) * mMaxSpeed;
 	return (DesiredVelocity - mVelocity);
 }
 
-Vector2D TestAI::Flee(Vector2D TargetPosition)
+Vector2D Agents::Flee(Vector2D TargetPosition)
 {
 	Vector2D DesiredVelocity = Vec2DNormalize(GetCenter() - TargetPosition) * mMaxSpeed;
 	return (DesiredVelocity - mVelocity);
 }
 
-Vector2D TestAI::Arrive(Vector2D TargetPosition)
+Vector2D Agents::Arrive(Vector2D TargetPosition)
 {
 	Vector2D ToTarget = TargetPosition - GetCenter();
 	double distance = ToTarget.Length();
@@ -79,15 +83,16 @@ Vector2D TestAI::Arrive(Vector2D TargetPosition)
 	return GetPosition();
 }
 
-Vector2D TestAI::Wander()
+Vector2D Agents::Wander(float dt)
 {
+	//counter++;
 	Vector2D mForwardHeading = mHeading * 70;
 
 	float minx, miny, maxx, maxy;
-	miny = mForwardHeading.y - 5000;
-	maxy = mForwardHeading.y + 5000;
-	maxx = mForwardHeading.x + 5000;
-	minx = mForwardHeading.x - 5000;
+	miny = mForwardHeading.y - 2000;
+	maxy = mForwardHeading.y + 2000;
+	maxx = mForwardHeading.x + 2000;
+	minx = mForwardHeading.x - 2000;
 
 	float rangex = rand()%(int)(maxx - minx + 1) + minx;
 	float rangey = rand()% (int)(maxy - miny + 1) + miny;
@@ -97,25 +102,26 @@ Vector2D TestAI::Wander()
 	
 }
 
-Vector2D TestAI::WallAvoidance(Vector2D HeadingPoint)
+Vector2D Agents::WallAvoidance()
 {
-	Vector2D mHeadingPoint = HeadingPoint;
+	Vector2D mHeadingPoint = mPosition;
+	Vector2D OppositeForce;
 	if(mHeadingPoint.x < 0)
 	{
-		mHeadingPoint.x += 100;
+		OppositeForce.x = mForce.GetReverse().x + 300;
 	}
-	if(mHeadingPoint.x > 875)
+	else if(mHeadingPoint.x > 840)
 	{
-		mHeadingPoint.x -= 100;
+		OppositeForce.x = mForce.GetReverse().x -300;
 	}
 	if (mHeadingPoint.y < 0)
 	{
-		mHeadingPoint.y += 100;
+		OppositeForce.y = mForce.GetReverse().y + 300;
 	}
-	if(mHeadingPoint.y > 875)
+	else if(mHeadingPoint.y > 840)
 	{
-		mHeadingPoint.y -= 100;
+		OppositeForce.y = mForce.GetReverse().y - 300;
 	}
 
-	return mHeadingPoint;
+	return OppositeForce;
 }

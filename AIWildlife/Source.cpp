@@ -34,12 +34,29 @@ Source::Source(int handler)
 	mMap = new Map(mRenderer);
 	mMap->AddTile("Tiles/GrassTile.bmp", 0);
 	mMap->SetMap(XMLHandler::LoadMapFromXML("Map1.xml"));
-	mAgent = new TestAI(mRenderer);
-	mAgent->LoadTexture("Characters/Wolf.bmp");
-	float tempx, tempy;
+	for (int i = 0; i < 15; i++)
+	{
+		Agents * temp = new Agents(mRenderer);
+		temp->LoadTexture("Characters/Herbivore.bmp");
+		
+		float tempx, tempy;
 	tempx = rand() % 875;
 	tempy = rand() % 875;
-	mAgent->SetPosition(Vector2D(tempx,tempy));
+	temp->SetPosition(Vector2D(tempx,tempy));
+	mAgent->push_back(temp);
+	}
+	for (int i = 0; i < 15; i++)
+	{
+		Agents * temp = new Agents(mRenderer);
+		temp->LoadTexture("Characters/Character.bmp");
+		float tempx, tempy;
+		tempx = rand() % 875;
+		tempy = rand() % 875;
+		temp->SetPosition(Vector2D(tempx, tempy));
+		mAgent->push_back(temp);
+	}
+	
+	
 	mOldTime = SDL_GetTicks();
 	while(true)
 	{
@@ -60,12 +77,15 @@ void Source::Update()
 	SDL_Event e;
 	while (SDL_PollEvent(&e) != 0)
 	{
-		
 	}
-	mAgent->Update(dt, e);
+	for (int i = 0; i < mAgent->size(); i++)
+	{
+		mAgent->at(i)->Update(dt, e);
+	}
+	
 
-	std::string Position = "X: " + std::to_string(mAgent->GetPosition().x) + "  Y:  " + std::to_string(mAgent->GetPosition().y);
-	mMessage->SendMessage(Position);
+	//std::string Position = "X: " + std::to_string(mAgent->GetPosition().x) + "  Y:  " + std::to_string(mAgent->GetPosition().y);
+	//mMessage->SendMessage(Position);
 	mOldTime = newTime;
 }
 
@@ -73,7 +93,10 @@ void Source::Render()
 {
 	SDL_RenderClear(mRenderer);
 	mMap->DrawMap();
-	mAgent->Render();
+	for (int i = 0; i < mAgent->size(); i++)
+	{
+		mAgent->at(i)->Render();
+	}
 	SDL_RenderPresent(mRenderer);
 }
 

@@ -6,8 +6,9 @@
 #include "InputHandler.h"
 #include "Map.h"
 #include "BaseAgent.h"
-#include "TestAI.h"
+#include "Agents.h"
 #include "Messaging.h"
+#include <vector>
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -24,7 +25,7 @@ private:
 	Map * mMap;
 	bool Initialize();
 	bool InitWindow(int handler);
-	TestAI * mAgent;
+	std::vector<Agents*> * mAgent = new std::vector<Agents*>();
 	Uint32 mOldTime;
 	Messaging ^ mMessage;
 
