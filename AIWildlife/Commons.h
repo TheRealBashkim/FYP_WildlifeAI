@@ -5,7 +5,7 @@
 
 const int MapRow = 25;
 const int MapColumn = 25;
-const int TileSize = 64;
+const int TileSize = 35;
 
 
 const int     MaxInt = (std::numeric_limits<int>::max)();
@@ -38,6 +38,14 @@ inline bool isEqual(double a, double b)
 
 	return false;
 }
+
+inline float FindRandRange(float a)
+{
+	float result;
+	result = rand() % (int)a;
+	return result;
+}
+
 
 struct Vector2D
 {

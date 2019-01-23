@@ -13,6 +13,7 @@ public:
 	 void Update(float dt);
 	 void Update(float dt, SDL_Event e);
 	void LoadTexture(std::string path);
+	Vector2D GetPosition() { return mPosition; }
 	void Render();
 protected:
 	Vector2D GetCenter();

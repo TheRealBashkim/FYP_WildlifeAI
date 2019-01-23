@@ -63,7 +63,10 @@
     <ClInclude Include="BaseAgent.h">
       <Filter>AI Agents</Filter>
     </ClInclude>
-    <ClInclude Include="TestAI.h">
+    <ClInclude Include="Messaging.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="Agents.h">
       <Filter>AI Agents</Filter>
     </ClInclude>
   </ItemGroup>
@@ -104,7 +107,10 @@
     <ClCompile Include="BaseAgent.cpp">
       <Filter>AI Agents</Filter>
     </ClCompile>
-    <ClCompile Include="TestAI.cpp">
+    <ClCompile Include="Messaging.cpp">
+      <Filter>Commons</Filter>
+    </ClCompile>
+    <ClCompile Include="Agents.cpp">
       <Filter>AI Agents</Filter>
     </ClCompile>
   </ItemGroup>
