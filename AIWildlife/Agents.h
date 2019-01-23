@@ -21,6 +21,7 @@ public:
 	float GetWidth() { return mWidth; }
 	float GetHeight() { return mHeight; }
 	std::string GetName() { return mName; }
+	float GetStamina() { return mStamina; }
 private:
 	Vector2D temp = GetPosition();
 	float counter = 0;

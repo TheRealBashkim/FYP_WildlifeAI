@@ -59,6 +59,10 @@ Source::Source(int handler)
 	
 	
 	mOldTime = SDL_GetTicks();
+	Thread^ GameplayThread;
+	Thread^ UIThread;
+
+	//GameplayThread = gcnew Thread(gcnew ThreadStart());
 	while(true)
 	{
 		Update();

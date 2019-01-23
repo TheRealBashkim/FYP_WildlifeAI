@@ -49,6 +49,8 @@ namespace AIWildlife {
 	private: System::Windows::Forms::Label^  xSize;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  x;
+	private: System::Windows::Forms::Label^  staminaSize;
+	private: System::Windows::Forms::Label^  label2;
 
 
 	protected:
@@ -70,12 +72,14 @@ namespace AIWildlife {
 			this->ConsoleWindow = (gcnew System::Windows::Forms::RichTextBox());
 			this->Console = (gcnew System::Windows::Forms::Label());
 			this->StatBox = (gcnew System::Windows::Forms::GroupBox());
-			this->groupLabel = (gcnew System::Windows::Forms::Label());
-			this->NameL = (gcnew System::Windows::Forms::Label());
-			this->x = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->xSize = (gcnew System::Windows::Forms::Label());
 			this->ySize = (gcnew System::Windows::Forms::Label());
+			this->xSize = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->x = (gcnew System::Windows::Forms::Label());
+			this->NameL = (gcnew System::Windows::Forms::Label());
+			this->groupLabel = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->staminaSize = (gcnew System::Windows::Forms::Label());
 			this->StatBox->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -110,6 +114,8 @@ namespace AIWildlife {
 			// 
 			// StatBox
 			// 
+			this->StatBox->Controls->Add(this->staminaSize);
+			this->StatBox->Controls->Add(this->label2);
 			this->StatBox->Controls->Add(this->ySize);
 			this->StatBox->Controls->Add(this->xSize);
 			this->StatBox->Controls->Add(this->label1);
@@ -123,31 +129,21 @@ namespace AIWildlife {
 			this->StatBox->TabStop = false;
 			this->StatBox->Enter += gcnew System::EventHandler(this, &SourceWindowForm::StatBox_Enter);
 			// 
-			// groupLabel
+			// ySize
 			// 
-			this->groupLabel->AutoSize = true;
-			this->groupLabel->Location = System::Drawing::Point(7, 20);
-			this->groupLabel->Name = L"groupLabel";
-			this->groupLabel->Size = System::Drawing::Size(35, 13);
-			this->groupLabel->TabIndex = 0;
-			this->groupLabel->Text = L"Name";
+			this->ySize->AutoSize = true;
+			this->ySize->Location = System::Drawing::Point(68, 82);
+			this->ySize->Name = L"ySize";
+			this->ySize->Size = System::Drawing::Size(0, 13);
+			this->ySize->TabIndex = 5;
 			// 
-			// NameL
+			// xSize
 			// 
-			this->NameL->AutoSize = true;
-			this->NameL->Location = System::Drawing::Point(68, 20);
-			this->NameL->Name = L"NameL";
-			this->NameL->Size = System::Drawing::Size(0, 13);
-			this->NameL->TabIndex = 1;
-			// 
-			// x
-			// 
-			this->x->AutoSize = true;
-			this->x->Location = System::Drawing::Point(10, 51);
-			this->x->Name = L"x";
-			this->x->Size = System::Drawing::Size(14, 13);
-			this->x->TabIndex = 2;
-			this->x->Text = L"X";
+			this->xSize->AutoSize = true;
+			this->xSize->Location = System::Drawing::Point(68, 51);
+			this->xSize->Name = L"xSize";
+			this->xSize->Size = System::Drawing::Size(0, 13);
+			this->xSize->TabIndex = 4;
 			// 
 			// label1
 			// 
@@ -158,21 +154,48 @@ namespace AIWildlife {
 			this->label1->TabIndex = 3;
 			this->label1->Text = L"Y";
 			// 
-			// xSize
+			// x
 			// 
-			this->xSize->AutoSize = true;
-			this->xSize->Location = System::Drawing::Point(68, 51);
-			this->xSize->Name = L"xSize";
-			this->xSize->Size = System::Drawing::Size(0, 13);
-			this->xSize->TabIndex = 4;
+			this->x->AutoSize = true;
+			this->x->Location = System::Drawing::Point(10, 51);
+			this->x->Name = L"x";
+			this->x->Size = System::Drawing::Size(14, 13);
+			this->x->TabIndex = 2;
+			this->x->Text = L"X";
 			// 
-			// ySize
+			// NameL
 			// 
-			this->ySize->AutoSize = true;
-			this->ySize->Location = System::Drawing::Point(68, 82);
-			this->ySize->Name = L"ySize";
-			this->ySize->Size = System::Drawing::Size(0, 13);
-			this->ySize->TabIndex = 5;
+			this->NameL->AutoSize = true;
+			this->NameL->Location = System::Drawing::Point(68, 20);
+			this->NameL->Name = L"NameL";
+			this->NameL->Size = System::Drawing::Size(0, 13);
+			this->NameL->TabIndex = 1;
+			// 
+			// groupLabel
+			// 
+			this->groupLabel->AutoSize = true;
+			this->groupLabel->Location = System::Drawing::Point(7, 20);
+			this->groupLabel->Name = L"groupLabel";
+			this->groupLabel->Size = System::Drawing::Size(35, 13);
+			this->groupLabel->TabIndex = 0;
+			this->groupLabel->Text = L"Name";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(10, 114);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(45, 13);
+			this->label2->TabIndex = 6;
+			this->label2->Text = L"Stamina";
+			// 
+			// staminaSize
+			// 
+			this->staminaSize->AutoSize = true;
+			this->staminaSize->Location = System::Drawing::Point(68, 114);
+			this->staminaSize->Name = L"staminaSize";
+			this->staminaSize->Size = System::Drawing::Size(0, 13);
+			this->staminaSize->TabIndex = 7;
 			// 
 			// SourceWindowForm
 			// 
@@ -201,7 +224,7 @@ namespace AIWildlife {
 		mMessaging = Messaging::Initialize();
 		mStatWindow = StatWindow::Initialize();
 		mMessaging->SetMessageBox(ConsoleWindow);
-		mStatWindow->SetButtons(NameL, xSize, ySize);
+		mStatWindow->SetButtons(NameL, xSize, ySize,staminaSize);
 
 		int handler = (int)SDLWindow->Handle.ToPointer();
 		Source ^ _Source = gcnew Source(handler);

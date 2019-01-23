@@ -16,14 +16,18 @@ BaseAgent::~BaseAgent()
 
 void BaseAgent::Update(float dt)
 {
+	if(mStamina <= 0.0f)
+	{
+		return;
+	}
 	mVelocity += mForce * dt;
 	mVelocity.Truncate(mMaxSpeed);
 	mPosition += mVelocity * dt;
 	mHeading.x = mVelocity.x * 5;
 	mHeading.y = mVelocity.y * 5;
 	mHeading.Normalize();
-
 	mSide = mHeading.Perp();
+	mStamina = mStamina - 0.01f;
 }
 
 void BaseAgent::LoadTexture(std::string path)
