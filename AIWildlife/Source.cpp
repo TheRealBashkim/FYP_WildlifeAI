@@ -129,6 +129,7 @@ void Source::UILoop()
 		}
 		else
 		{
+			mAgent->at(id)->SetSelected(true);
 			mStatWindow->SetAgent(mAgent->at(id));
 		}
 

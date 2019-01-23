@@ -22,10 +22,13 @@ public:
 	float GetHeight() { return mHeight; }
 	std::string GetName() { return mName; }
 	float GetStamina() { return mStamina; }
+	bool GetSelected() { return mSelected;}
+	void SetSelected(bool selected) { mSelected = selected; }
 private:
 	Vector2D temp = GetPosition();
 	float counter = 0;
 	std::string mName;
+	bool mSelected = false;
 
 
 };
