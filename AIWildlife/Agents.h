@@ -5,7 +5,7 @@
 class Agents : BaseAgent
 {
 public:
-	Agents(SDL_Renderer * Renderer);
+	Agents(std::string name,SDL_Renderer * Renderer);
 	~Agents();
 	void Update(float dt, SDL_Event e);
 	void Render();
@@ -18,10 +18,13 @@ public:
 	Vector2D Arrive(Vector2D TargetPosition);
 	Vector2D Wander(float dt);
 	Vector2D WallAvoidance();
-
+	float GetWidth() { return mWidth; }
+	float GetHeight() { return mHeight; }
+	std::string GetName() { return mName; }
 private:
 	Vector2D temp = GetPosition();
 	float counter = 0;
+	std::string mName;
 
 
 };

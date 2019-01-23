@@ -24,6 +24,9 @@ protected:
 	SDL_Renderer * mRenderer;
 	Texture2D * mTexture = nullptr;
 
+	float mWidth = 0;
+	float mHeight = 0;
+
 	//Vehicle Model
 	Vector2D mForce;
 	Vector2D mVelocity;

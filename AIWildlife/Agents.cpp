@@ -2,9 +2,9 @@
 #include <ctime>
 
 
-Agents::Agents(SDL_Renderer * Renderer) : BaseAgent(Renderer)
+Agents::Agents(std::string name,SDL_Renderer * Renderer) : BaseAgent(Renderer)
 {
-	
+	mName = name;
 }
 
 
@@ -85,7 +85,6 @@ Vector2D Agents::Arrive(Vector2D TargetPosition)
 
 Vector2D Agents::Wander(float dt)
 {
-	//counter++;
 	Vector2D mForwardHeading = mHeading * 70;
 
 	float minx, miny, maxx, maxy;
@@ -98,8 +97,6 @@ Vector2D Agents::Wander(float dt)
 	float rangey = rand()% (int)(maxy - miny + 1) + miny;
 	Vector2D tempVector(rangex,rangey);
 	return tempVector;
-	
-	
 }
 
 Vector2D Agents::WallAvoidance()

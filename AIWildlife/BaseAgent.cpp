@@ -29,6 +29,8 @@ void BaseAgent::Update(float dt)
 void BaseAgent::LoadTexture(std::string path)
 {
 	mTexture->LoadFromFile(path);
+	mWidth = mTexture->GetWidth();
+	mHeight = mTexture->GetHeight();
 }
 
 void BaseAgent::Render()

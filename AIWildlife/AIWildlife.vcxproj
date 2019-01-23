@@ -138,6 +138,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Agents.h" />
+    <ClInclude Include="StatWindow.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
@@ -152,6 +153,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SourceWindowForm.cpp" />
     <ClCompile Include="Agents.cpp" />
+    <ClCompile Include="StatWindow.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TinyXML\tinystr.cpp" />

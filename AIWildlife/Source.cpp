@@ -26,6 +26,7 @@ int Main(array<String^>^ args)
 Source::Source(int handler)
 {	
 	mMessage = Messaging::Initialize();
+	mStatWindow = StatWindow::Initialize();
 	Initialize();
 	if(!InitWindow(handler))
 	{
@@ -36,7 +37,7 @@ Source::Source(int handler)
 	mMap->SetMap(XMLHandler::LoadMapFromXML("Map1.xml"));
 	for (int i = 0; i < 15; i++)
 	{
-		Agents * temp = new Agents(mRenderer);
+		Agents * temp = new Agents("Herbivore",mRenderer);
 		temp->LoadTexture("Characters/Herbivore.bmp");
 		
 		float tempx, tempy;
@@ -47,7 +48,7 @@ Source::Source(int handler)
 	}
 	for (int i = 0; i < 15; i++)
 	{
-		Agents * temp = new Agents(mRenderer);
+		Agents * temp = new Agents("Carnivore",mRenderer);
 		temp->LoadTexture("Characters/Character.bmp");
 		float tempx, tempy;
 		tempx = rand() % 875;
@@ -77,6 +78,7 @@ void Source::Update()
 	SDL_Event e;
 	while (SDL_PollEvent(&e) != 0)
 	{
+		CheckMousePolling();
 	}
 	for (int i = 0; i < mAgent->size(); i++)
 	{
@@ -98,6 +100,23 @@ void Source::Render()
 		mAgent->at(i)->Render();
 	}
 	SDL_RenderPresent(mRenderer);
+}
+
+void Source::CheckMousePolling()
+{
+	if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
+	{
+		int x, y;
+		SDL_GetMouseState(&x, &y);
+		Vector2D mouse(x, y);
+		for(int i = 0; i < mAgent->size();i++)
+		{
+			if(PointInBoxCollision(mouse,mAgent->at(i)->GetPosition(),mAgent->at(i)->GetWidth(),mAgent->at(i)->GetHeight()))
+			{
+				mStatWindow->SetAgent(mAgent->at(i));
+			}
+		}
+	}
 }
 
 bool Source::Initialize()

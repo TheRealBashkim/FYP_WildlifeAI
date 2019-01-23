@@ -9,9 +9,11 @@
 #include "Agents.h"
 #include "Messaging.h"
 #include <vector>
+#include "StatWindow.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
+using namespace System::Threading;
 ref class Source
 {
 public:
@@ -20,6 +22,7 @@ public:
 	void Update();
 	void Render();
 private:
+	void CheckMousePolling();
 	SDL_Window * mWindow;
 	SDL_Renderer * mRenderer;
 	Map * mMap;
@@ -28,6 +31,8 @@ private:
 	std::vector<Agents*> * mAgent = new std::vector<Agents*>();
 	Uint32 mOldTime;
 	Messaging ^ mMessage;
+	StatWindow ^ mStatWindow;
+	Thread^ StatThread;
 
 };
 
