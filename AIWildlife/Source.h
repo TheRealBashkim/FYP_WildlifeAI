@@ -19,19 +19,21 @@ ref class Source
 public:
 	Source(int handler);
 	~Source();
-	void Update();
-	void Render();
+	static void UpdateGame();
+	static void RenderGame();
+	static void GameLoop();
+	static void UILoop();
 private:
-	void CheckMousePolling();
+	static int CheckMousePolling();
 	SDL_Window * mWindow;
-	SDL_Renderer * mRenderer;
-	Map * mMap;
+	static SDL_Renderer * mRenderer;
+	static Map * mMap;
 	bool Initialize();
 	bool InitWindow(int handler);
-	std::vector<Agents*> * mAgent = new std::vector<Agents*>();
-	Uint32 mOldTime;
+	static std::vector<Agents*> * mAgent = new std::vector<Agents*>();
+	static Uint32 mOldTime;
 	Messaging ^ mMessage;
-	StatWindow ^ mStatWindow;
+	static StatWindow ^ mStatWindow;
 	Thread^ StatThread;
 
 };
