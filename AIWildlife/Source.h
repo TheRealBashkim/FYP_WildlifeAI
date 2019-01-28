@@ -23,6 +23,7 @@ public:
 	static void RenderGame();
 	static void GameLoop();
 	static void UILoop();
+	static void Flock(float dt);
 private:
 	static int CheckMousePolling();
 	SDL_Window * mWindow;

@@ -82,9 +82,13 @@ void Source::UpdateGame()
 	while (SDL_PollEvent(&e) != 0)
 	{
 	}
+	Flock(dt);
 	for (int i = 0; i < mAgent->size(); i++)
 	{
-		mAgent->at(i)->Update(dt, e);
+		if(mAgent->at(i)->GetName() == "Carnivore")
+		{
+			mAgent->at(i)->Update(dt, e);
+		}
 	}
 	mOldTime = newTime;
 }
@@ -132,9 +136,30 @@ void Source::UILoop()
 			mAgent->at(id)->SetSelected(true);
 			mStatWindow->SetAgent(mAgent->at(id));
 		}
-
 	}
 }
+
+void Source::Flock(float dt)
+{
+	Vector2D Average;
+	for(int i = 0; i < mAgent->size(); i++)
+	{
+		if(mAgent->at(i)->GetName() == "Herbivore")
+		{
+			Average += mAgent->at(i)->Wander(dt);
+		}
+	}
+	Average = Average / mAgent->size();
+	for (int j = 0; j < mAgent->size(); j++)
+	{
+		if(mAgent->at(j)->GetName() == "Herbivore")
+		{
+			mAgent->at(j)->GetForce() += mAgent->at(j)->Seek(Average);
+			mAgent->at(j)->Update(dt);
+		}
+	}
+}
+
 int Source::CheckMousePolling()
 {
 	int id = 500;

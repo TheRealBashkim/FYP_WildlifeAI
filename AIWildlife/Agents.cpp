@@ -33,6 +33,12 @@ void Agents::Update(float dt, SDL_Event e)
 	BaseAgent::Update(dt);
 }
 
+void Agents::Update(float dt)
+{
+	mForce += WallAvoidance();
+	BaseAgent::Update(dt);
+}
+
 void Agents::Render()
 {
 	BaseAgent::Render();

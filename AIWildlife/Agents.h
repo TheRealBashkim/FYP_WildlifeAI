@@ -8,6 +8,7 @@ public:
 	Agents(std::string name,SDL_Renderer * Renderer);
 	~Agents();
 	void Update(float dt, SDL_Event e);
+	void Update(float dt);
 	void Render();
 	void LoadTexture(std::string path);
 	void DrawFeelers();
@@ -18,6 +19,7 @@ public:
 	Vector2D Arrive(Vector2D TargetPosition);
 	Vector2D Wander(float dt);
 	Vector2D WallAvoidance();
+	Vector2D GetForce() { return mForce; }
 	float GetWidth() { return mWidth; }
 	float GetHeight() { return mHeight; }
 	std::string GetName() { return mName; }
