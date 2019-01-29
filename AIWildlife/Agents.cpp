@@ -14,16 +14,7 @@ Agents::~Agents()
 
 void Agents::Update(float dt, SDL_Event e)
 {
-	
 	counter++;
-	int x, y;
-	if(SDL_GetMouseState(NULL,NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
-	{
-		SDL_GetMouseState(&x, &y);
-		temp = Vector2D(x, y);
-		
-		
-	}
 	if (counter > 4)
 	{
 		mForce += Wander(dt);

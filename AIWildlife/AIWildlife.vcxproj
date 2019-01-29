@@ -133,6 +133,7 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Messaging.h" />
+    <ClInclude Include="Plant.h" />
     <ClInclude Include="Source.h" />
     <ClInclude Include="SourceWindowForm.h">
       <FileType>CppForm</FileType>
@@ -150,6 +151,7 @@
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Messaging.cpp" />
+    <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SourceWindowForm.cpp" />
     <ClCompile Include="Agents.cpp" />

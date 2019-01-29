@@ -10,7 +10,7 @@
 #include "Messaging.h"
 #include <vector>
 #include "StatWindow.h"
-
+#include "Plant.h"
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace System::Threading;
@@ -24,6 +24,7 @@ public:
 	static void GameLoop();
 	static void UILoop();
 	static void Flock(float dt);
+	static void LoadMapTiles();
 private:
 	static int CheckMousePolling();
 	SDL_Window * mWindow;
@@ -32,6 +33,7 @@ private:
 	bool Initialize();
 	bool InitWindow(int handler);
 	static std::vector<Agents*> * mAgent = new std::vector<Agents*>();
+	static std::vector<Plant*>* mPlants = new std::vector<Plant*>();
 	static Uint32 mOldTime;
 	Messaging ^ mMessage;
 	static StatWindow ^ mStatWindow;

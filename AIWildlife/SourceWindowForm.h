@@ -51,6 +51,8 @@ namespace AIWildlife {
 	private: System::Windows::Forms::Label^  x;
 	private: System::Windows::Forms::Label^  staminaSize;
 	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Label^  healthSize;
+	private: System::Windows::Forms::Label^  label3;
 
 
 	protected:
@@ -72,14 +74,16 @@ namespace AIWildlife {
 			this->ConsoleWindow = (gcnew System::Windows::Forms::RichTextBox());
 			this->Console = (gcnew System::Windows::Forms::Label());
 			this->StatBox = (gcnew System::Windows::Forms::GroupBox());
+			this->staminaSize = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->ySize = (gcnew System::Windows::Forms::Label());
 			this->xSize = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->x = (gcnew System::Windows::Forms::Label());
 			this->NameL = (gcnew System::Windows::Forms::Label());
 			this->groupLabel = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->staminaSize = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->healthSize = (gcnew System::Windows::Forms::Label());
 			this->StatBox->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -114,6 +118,8 @@ namespace AIWildlife {
 			// 
 			// StatBox
 			// 
+			this->StatBox->Controls->Add(this->healthSize);
+			this->StatBox->Controls->Add(this->label3);
 			this->StatBox->Controls->Add(this->staminaSize);
 			this->StatBox->Controls->Add(this->label2);
 			this->StatBox->Controls->Add(this->ySize);
@@ -128,6 +134,23 @@ namespace AIWildlife {
 			this->StatBox->TabIndex = 3;
 			this->StatBox->TabStop = false;
 			this->StatBox->Enter += gcnew System::EventHandler(this, &SourceWindowForm::StatBox_Enter);
+			// 
+			// staminaSize
+			// 
+			this->staminaSize->AutoSize = true;
+			this->staminaSize->Location = System::Drawing::Point(68, 114);
+			this->staminaSize->Name = L"staminaSize";
+			this->staminaSize->Size = System::Drawing::Size(0, 13);
+			this->staminaSize->TabIndex = 7;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(10, 114);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(45, 13);
+			this->label2->TabIndex = 6;
+			this->label2->Text = L"Stamina";
 			// 
 			// ySize
 			// 
@@ -180,22 +203,22 @@ namespace AIWildlife {
 			this->groupLabel->TabIndex = 0;
 			this->groupLabel->Text = L"Name";
 			// 
-			// label2
+			// label3
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(10, 114);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(45, 13);
-			this->label2->TabIndex = 6;
-			this->label2->Text = L"Stamina";
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(10, 146);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(38, 13);
+			this->label3->TabIndex = 8;
+			this->label3->Text = L"Health";
 			// 
-			// staminaSize
+			// healthSize
 			// 
-			this->staminaSize->AutoSize = true;
-			this->staminaSize->Location = System::Drawing::Point(68, 114);
-			this->staminaSize->Name = L"staminaSize";
-			this->staminaSize->Size = System::Drawing::Size(0, 13);
-			this->staminaSize->TabIndex = 7;
+			this->healthSize->AutoSize = true;
+			this->healthSize->Location = System::Drawing::Point(68, 146);
+			this->healthSize->Name = L"healthSize";
+			this->healthSize->Size = System::Drawing::Size(0, 13);
+			this->healthSize->TabIndex = 9;
 			// 
 			// SourceWindowForm
 			// 
@@ -224,7 +247,7 @@ namespace AIWildlife {
 		mMessaging = Messaging::Initialize();
 		mStatWindow = StatWindow::Initialize();
 		mMessaging->SetMessageBox(ConsoleWindow);
-		mStatWindow->SetButtons(NameL, xSize, ySize,staminaSize);
+		mStatWindow->SetButtons(NameL, xSize, ySize,staminaSize,healthSize);
 
 		int handler = (int)SDLWindow->Handle.ToPointer();
 		Source ^ _Source = gcnew Source(handler);

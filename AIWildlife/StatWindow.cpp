@@ -16,14 +16,17 @@ void StatWindow::SetAgent(Agents* mAgent)
 	mX->Text = mAgent->GetPosition().x.ToString();
 	mY->Text = mAgent->GetPosition().y.ToString();
 	mStamina->Text = mAgent->GetStamina().ToString();
+	mHealth->Text = mAgent->GetHealth().ToString();
 }
 
-void StatWindow::SetButtons(Label^ Name, Label^ X, Label^ Y,Label ^ Stamina)
+void StatWindow::SetButtons(Label^ Name, Label^ X, Label^ Y,Label ^ Stamina, Label ^ Health)
 {
 	mName = Name;
 	mX = X;
 	mY = Y;
 	mStamina = Stamina;
+	mHealth = Health;
+	
 }
 
 

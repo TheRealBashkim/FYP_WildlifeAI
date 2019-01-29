@@ -32,9 +32,7 @@ Source::Source(int handler)
 	{
 		return;
 	}
-	mMap = new Map(mRenderer);
-	mMap->AddTile("Tiles/GrassTile.bmp", 0);
-	mMap->SetMap(XMLHandler::LoadMapFromXML("Map1.xml"));
+	LoadMapTiles();
 	for (int i = 0; i < 15; i++)
 	{
 		Agents * temp = new Agents("Herbivore",mRenderer);
@@ -55,6 +53,14 @@ Source::Source(int handler)
 		tempy = rand() % 875;
 		temp->SetPosition(Vector2D(tempx, tempy));
 		mAgent->push_back(temp);
+	}
+	for(int i = 0; i < 10;i++)
+	{
+		Plant * mPlant = new Plant(mRenderer);
+		mPlant->LoadTexture("Tiles/FoodTile.bmp");
+		mPlant->GeneratePosition();
+		mPlant->SetStatIncrease(10.0f);
+		mPlants->push_back(mPlant);
 	}
 	
 	
@@ -97,6 +103,10 @@ void Source::RenderGame()
 {
 	SDL_RenderClear(mRenderer);
 	mMap->DrawMap();
+	for(int i = 0; i < mPlants->size(); i++)
+	{
+		mPlants->at(i)->Draw();
+	}
 	for (int i = 0; i < mAgent->size(); i++)
 	{
 		mAgent->at(i)->Render();
@@ -160,6 +170,15 @@ void Source::Flock(float dt)
 	}
 }
 
+void Source::LoadMapTiles()
+{
+	mMap = new Map(mRenderer);
+	mMap->AddTile("Tiles/GrassTile.bmp", 0);
+//	mMap->AddTile("Tiles/FoodTile.bmp", 1);
+	mMap->SetMap(XMLHandler::LoadMapFromXML("Map1.xml"));
+
+}
+
 int Source::CheckMousePolling()
 {
 	int id = 500;
@@ -208,7 +227,7 @@ bool Source::InitWindow(int handler)
 			mWindow = NULL;
 			return false;
 		}
-		SDL_SetRenderDrawColor(mRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+		SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
 	}
 	return true;
 }

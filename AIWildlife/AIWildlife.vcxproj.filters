@@ -31,6 +31,9 @@
     <Filter Include="UI">
       <UniqueIdentifier>{e19f0c22-dea6-498f-bbd7-1716be9eb001}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Items">
+      <UniqueIdentifier>{0c1522c1-4245-48e5-bf54-ecbd6286f2c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceWindowForm.h">
@@ -74,6 +77,9 @@
     </ClInclude>
     <ClInclude Include="Messaging.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Plant.h">
+      <Filter>Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="Messaging.cpp">
       <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Plant.cpp">
+      <Filter>Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

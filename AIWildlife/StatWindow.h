@@ -10,7 +10,7 @@ public ref class StatWindow
 public:
 	static StatWindow  ^ Initialize();
 	void SetAgent(Agents * mAgent);
-	void SetButtons(Label ^ Name, Label ^ X, Label ^ Y,Label ^ Stamina);
+	void SetButtons(Label ^ Name, Label ^ X, Label ^ Y,Label ^ Stamina,Label ^ mHealth);
 	
 
 private:
@@ -21,6 +21,7 @@ private:
 	Label ^ mX;
 	Label ^ mY;
 	Label ^ mStamina;
+	Label ^ mHealth;
 
 	
 
