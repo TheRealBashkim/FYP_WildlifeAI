@@ -14,6 +14,9 @@ public:
 	void Draw();
 	void SetStatIncrease(float stat) { this->mStamIncrease = stat; }
 	float GetStatIncrease() { return mStamIncrease; }
+	Vector2D * GetPosition() { return mPosition; }
+	float GetWidth() { return mTexture->GetWidth(); }
+	float GetHeight() { return mTexture->GetHeight(); }
 
 private:
 	SDL_Renderer * mRenderer;

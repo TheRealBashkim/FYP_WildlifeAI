@@ -81,6 +81,9 @@
     <ClInclude Include="Plant.h">
       <Filter>Items</Filter>
     </ClInclude>
+    <ClInclude Include="PlantManager.h">
+      <Filter>Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceWindowForm.cpp">
@@ -129,6 +132,9 @@
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Plant.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantManager.cpp">
       <Filter>Items</Filter>
     </ClCompile>
   </ItemGroup>

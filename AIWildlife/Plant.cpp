@@ -8,6 +8,10 @@ Plant::Plant(SDL_Renderer * renderer)
 	mTexture = new Texture2D(mRenderer);
 }
 
+Plant::~Plant()
+{
+}
+
 void Plant::LoadTexture(std::string path)
 {
 	mTexture->LoadFromFile(path);

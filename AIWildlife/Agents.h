@@ -24,6 +24,7 @@ public:
 	float GetHeight() { return mHeight; }
 	std::string GetName() { return mName; }
 	float GetStamina() { return mStamina; }
+	void SetStamina(float stamina) { mStamina = stamina; }
 	float GetHealth() { return mHealth; }
 	bool GetSelected() { return mSelected;}
 	void SetSelected(bool selected) { mSelected = selected; }

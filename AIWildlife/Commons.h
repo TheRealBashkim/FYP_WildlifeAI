@@ -450,6 +450,20 @@ inline bool PointInBoxCollision(Vector2D point, Vector2D charpos, float width, f
 	return false;
 }
 
+inline bool BoxToBox(Vector2D Pos1,float width1,float height1,Vector2D Pos2,float width2,float height2)
+{
+	if (Pos1.x > (Pos2.x + width2))
+		return false;
+	else if ((Pos1.x + width1) < Pos2.x)
+		return false;
+	else if (Pos1.y > (Pos2.y + height2))
+		return false;
+	else if ((Pos1.y + height1) < Pos2.y)
+		return false;
+
+	return true;
+}
+
 
 
 #endif

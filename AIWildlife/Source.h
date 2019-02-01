@@ -10,7 +10,7 @@
 #include "Messaging.h"
 #include <vector>
 #include "StatWindow.h"
-#include "Plant.h"
+#include "PlantManager.h"
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace System::Threading;
@@ -33,7 +33,7 @@ private:
 	bool Initialize();
 	bool InitWindow(int handler);
 	static std::vector<Agents*> * mAgent = new std::vector<Agents*>();
-	static std::vector<Plant*>* mPlants = new std::vector<Plant*>();
+	static PlantManager * mPlantManger;
 	static Uint32 mOldTime;
 	Messaging ^ mMessage;
 	static StatWindow ^ mStatWindow;

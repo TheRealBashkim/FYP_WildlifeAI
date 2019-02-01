@@ -54,16 +54,7 @@ Source::Source(int handler)
 		temp->SetPosition(Vector2D(tempx, tempy));
 		mAgent->push_back(temp);
 	}
-	for(int i = 0; i < 10;i++)
-	{
-		Plant * mPlant = new Plant(mRenderer);
-		mPlant->LoadTexture("Tiles/FoodTile.bmp");
-		mPlant->GeneratePosition();
-		mPlant->SetStatIncrease(10.0f);
-		mPlants->push_back(mPlant);
-	}
-	
-	
+	mPlantManger = new PlantManager(mRenderer);
 	mOldTime = SDL_GetTicks();
 	ThreadStart ^ operation = gcnew ThreadStart(GameLoop);
 	Thread^ GameplayThread = gcnew Thread(operation);
@@ -88,14 +79,13 @@ void Source::UpdateGame()
 	while (SDL_PollEvent(&e) != 0)
 	{
 	}
-	Flock(dt);
+	//Flock(dt);
 	for (int i = 0; i < mAgent->size(); i++)
 	{
-		if(mAgent->at(i)->GetName() == "Carnivore")
-		{
 			mAgent->at(i)->Update(dt, e);
-		}
 	}
+	mPlantManger->Update(mAgent);
+		
 	mOldTime = newTime;
 }
 
@@ -103,10 +93,7 @@ void Source::RenderGame()
 {
 	SDL_RenderClear(mRenderer);
 	mMap->DrawMap();
-	for(int i = 0; i < mPlants->size(); i++)
-	{
-		mPlants->at(i)->Draw();
-	}
+	mPlantManger->Draw();
 	for (int i = 0; i < mAgent->size(); i++)
 	{
 		mAgent->at(i)->Render();
