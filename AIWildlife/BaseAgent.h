@@ -16,6 +16,14 @@ public:
 	Vector2D GetPosition() { return mPosition; }
 	void Render();
 protected:
+
+	/**
+	 * Character Attributes
+	 */
+	float mHealth = 100.0f;
+	float mStamina = 1000.0f;
+
+
 	Vector2D GetCenter();
 	void DebugCircle(Vector2D centerPoint, double rad, int r, int g, int b);
 	void DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, int b);
@@ -23,6 +31,9 @@ protected:
 
 	SDL_Renderer * mRenderer;
 	Texture2D * mTexture = nullptr;
+
+	float mWidth = 0;
+	float mHeight = 0;
 
 	//Vehicle Model
 	Vector2D mForce;

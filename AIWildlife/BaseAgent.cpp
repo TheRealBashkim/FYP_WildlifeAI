@@ -16,19 +16,29 @@ BaseAgent::~BaseAgent()
 
 void BaseAgent::Update(float dt)
 {
+	if (mStamina <= 0.0f)
+	{
+		return;
+	}
+	if (!mForce.isZero())
+	{
+		mStamina = mStamina - 0.01f;
+	}
 	mVelocity += mForce * dt;
 	mVelocity.Truncate(mMaxSpeed);
 	mPosition += mVelocity * dt;
 	mHeading.x = mVelocity.x * 5;
 	mHeading.y = mVelocity.y * 5;
 	mHeading.Normalize();
-
 	mSide = mHeading.Perp();
 }
+	
 
 void BaseAgent::LoadTexture(std::string path)
 {
 	mTexture->LoadFromFile(path);
+	mWidth = mTexture->GetWidth();
+	mHeight = mTexture->GetHeight();
 }
 
 void BaseAgent::Render()

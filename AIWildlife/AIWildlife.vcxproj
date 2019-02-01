@@ -133,11 +133,13 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Messaging.h" />
+    <ClInclude Include="Plant.h" />
     <ClInclude Include="Source.h" />
     <ClInclude Include="SourceWindowForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Agents.h" />
+    <ClInclude Include="StatWindow.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
@@ -149,9 +151,11 @@
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Messaging.cpp" />
+    <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SourceWindowForm.cpp" />
     <ClCompile Include="Agents.cpp" />
+    <ClCompile Include="StatWindow.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TinyXML\tinystr.cpp" />

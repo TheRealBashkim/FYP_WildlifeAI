@@ -11,8 +11,8 @@ Map::Map(SDL_Renderer * renderer)
 		mMap[i] = new int[MapColumn];
 	}
 	mSrc.x = mSrc.y = 0;
-	mSrc.w = mDest.w = TileSize;
-	mSrc.h = mDest.h = TileSize;
+	mSrc.w = mDest.w = 35;
+	mSrc.h = mDest.h = 35;
 	mDest.x = mDest.y = 0;
 }
 

@@ -28,6 +28,12 @@
     <Filter Include="AI Agents">
       <UniqueIdentifier>{497f4e23-3ce0-49a3-b8a2-59bbac7977c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{e19f0c22-dea6-498f-bbd7-1716be9eb001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Items">
+      <UniqueIdentifier>{0c1522c1-4245-48e5-bf54-ecbd6286f2c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceWindowForm.h">
@@ -63,11 +69,17 @@
     <ClInclude Include="BaseAgent.h">
       <Filter>AI Agents</Filter>
     </ClInclude>
-    <ClInclude Include="Messaging.h">
-      <Filter>Commons</Filter>
-    </ClInclude>
     <ClInclude Include="Agents.h">
       <Filter>AI Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="StatWindow.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Messaging.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Plant.h">
+      <Filter>Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -107,11 +119,17 @@
     <ClCompile Include="BaseAgent.cpp">
       <Filter>AI Agents</Filter>
     </ClCompile>
-    <ClCompile Include="Messaging.cpp">
-      <Filter>Commons</Filter>
-    </ClCompile>
     <ClCompile Include="Agents.cpp">
       <Filter>AI Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="StatWindow.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Messaging.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Plant.cpp">
+      <Filter>Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

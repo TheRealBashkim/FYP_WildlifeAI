@@ -26,17 +26,16 @@ int Main(array<String^>^ args)
 Source::Source(int handler)
 {	
 	mMessage = Messaging::Initialize();
+	mStatWindow = StatWindow::Initialize();
 	Initialize();
 	if(!InitWindow(handler))
 	{
 		return;
 	}
-	mMap = new Map(mRenderer);
-	mMap->AddTile("Tiles/GrassTile.bmp", 0);
-	mMap->SetMap(XMLHandler::LoadMapFromXML("Map1.xml"));
+	LoadMapTiles();
 	for (int i = 0; i < 15; i++)
 	{
-		Agents * temp = new Agents(mRenderer);
+		Agents * temp = new Agents("Herbivore",mRenderer);
 		temp->LoadTexture("Characters/Herbivore.bmp");
 		
 		float tempx, tempy;
@@ -47,7 +46,7 @@ Source::Source(int handler)
 	}
 	for (int i = 0; i < 15; i++)
 	{
-		Agents * temp = new Agents(mRenderer);
+		Agents * temp = new Agents("Carnivore",mRenderer);
 		temp->LoadTexture("Characters/Character.bmp");
 		float tempx, tempy;
 		tempx = rand() % 875;
@@ -55,21 +54,32 @@ Source::Source(int handler)
 		temp->SetPosition(Vector2D(tempx, tempy));
 		mAgent->push_back(temp);
 	}
+	for(int i = 0; i < 10;i++)
+	{
+		Plant * mPlant = new Plant(mRenderer);
+		mPlant->LoadTexture("Tiles/FoodTile.bmp");
+		mPlant->GeneratePosition();
+		mPlant->SetStatIncrease(10.0f);
+		mPlants->push_back(mPlant);
+	}
 	
 	
 	mOldTime = SDL_GetTicks();
-	while(true)
-	{
-		Update();
-		Render();
-	}
+	ThreadStart ^ operation = gcnew ThreadStart(GameLoop);
+	Thread^ GameplayThread = gcnew Thread(operation);
+
+	GameplayThread->Start();
+	UILoop();
+
+
+
+	//GameplayThread = gcnew Thread(gcnew ThreadStart());
 }
 
 Source::~Source()
 {
 }
-
-void Source::Update()
+void Source::UpdateGame()
 {
 	Uint32 newTime = SDL_GetTicks();
 	float dt;
@@ -78,26 +88,114 @@ void Source::Update()
 	while (SDL_PollEvent(&e) != 0)
 	{
 	}
+	Flock(dt);
 	for (int i = 0; i < mAgent->size(); i++)
 	{
-		mAgent->at(i)->Update(dt, e);
+		if(mAgent->at(i)->GetName() == "Carnivore")
+		{
+			mAgent->at(i)->Update(dt, e);
+		}
 	}
-	
-
-	//std::string Position = "X: " + std::to_string(mAgent->GetPosition().x) + "  Y:  " + std::to_string(mAgent->GetPosition().y);
-	//mMessage->SendMessage(Position);
 	mOldTime = newTime;
 }
 
-void Source::Render()
+void Source::RenderGame()
 {
 	SDL_RenderClear(mRenderer);
 	mMap->DrawMap();
+	for(int i = 0; i < mPlants->size(); i++)
+	{
+		mPlants->at(i)->Draw();
+	}
 	for (int i = 0; i < mAgent->size(); i++)
 	{
 		mAgent->at(i)->Render();
 	}
 	SDL_RenderPresent(mRenderer);
+}
+
+void Source::GameLoop()
+{
+	while (true)
+	{
+		UpdateGame();
+		RenderGame();
+	}
+
+}
+
+void Source::UILoop()
+{
+	int id = 500;
+	while(true)
+	{
+		SDL_Event e;
+		while (SDL_PollEvent(&e) != 0)
+		{
+			if(SDL_GetMouseState(NULL,NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
+			{
+				id = CheckMousePolling();
+			}
+		}
+		if(id > mAgent->size())
+		{
+		
+		}
+		else
+		{
+			mAgent->at(id)->SetSelected(true);
+			mStatWindow->SetAgent(mAgent->at(id));
+		}
+	}
+}
+
+void Source::Flock(float dt)
+{
+	Vector2D Average;
+	for(int i = 0; i < mAgent->size(); i++)
+	{
+		if(mAgent->at(i)->GetName() == "Herbivore")
+		{
+			Average += mAgent->at(i)->Wander(dt);
+		}
+	}
+	Average = Average / mAgent->size();
+	for (int j = 0; j < mAgent->size(); j++)
+	{
+		if(mAgent->at(j)->GetName() == "Herbivore")
+		{
+			mAgent->at(j)->GetForce() += mAgent->at(j)->Seek(Average);
+			mAgent->at(j)->Update(dt);
+		}
+	}
+}
+
+void Source::LoadMapTiles()
+{
+	mMap = new Map(mRenderer);
+	mMap->AddTile("Tiles/GrassTile.bmp", 0);
+//	mMap->AddTile("Tiles/FoodTile.bmp", 1);
+	mMap->SetMap(XMLHandler::LoadMapFromXML("Map1.xml"));
+
+}
+
+int Source::CheckMousePolling()
+{
+	int id = 500;
+	if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
+	{
+		int x, y;
+		SDL_GetMouseState(&x, &y);
+		Vector2D mouse(x, y);
+		for(int i = 0; i < mAgent->size();i++)
+		{
+			if(PointInBoxCollision(mouse,mAgent->at(i)->GetPosition(),mAgent->at(i)->GetWidth(),mAgent->at(i)->GetHeight()))
+			{
+				id = i;
+			}
+		}
+	}
+	return id;
 }
 
 bool Source::Initialize()
@@ -129,7 +227,7 @@ bool Source::InitWindow(int handler)
 			mWindow = NULL;
 			return false;
 		}
-		SDL_SetRenderDrawColor(mRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+		SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
 	}
 	return true;
 }

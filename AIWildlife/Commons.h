@@ -46,7 +46,6 @@ inline float FindRandRange(float a)
 	return result;
 }
 
-
 struct Vector2D
 {
 	double x;
@@ -440,6 +439,17 @@ inline bool isSecondInFOVOfFirst(Vector2D posFirst,
 
 	return facingFirst.Dot(toTarget) >= cos(fov / 2.0);
 }
+
+inline bool PointInBoxCollision(Vector2D point, Vector2D charpos, float width, float height)
+{
+	//Checks if point is inside a 2D box.
+	if(point.x > charpos.x && point.x < (charpos.x + width) && point.y > charpos.y && point.y < (charpos.y + height))
+	{
+		return true;
+	}
+	return false;
+}
+
 
 
 #endif
