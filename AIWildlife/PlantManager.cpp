@@ -19,7 +19,7 @@ PlantManager::~PlantManager()
 {
 }
 
-void PlantManager::Update(std::vector<Agents*>* agents)
+void PlantManager::Update(std::vector<BaseAgent*>* agents)
 {
 	/**
 	 * Checks for collision with agents and plants.

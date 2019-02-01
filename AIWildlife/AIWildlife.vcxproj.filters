@@ -69,9 +69,6 @@
     <ClInclude Include="BaseAgent.h">
       <Filter>AI Agents</Filter>
     </ClInclude>
-    <ClInclude Include="Agents.h">
-      <Filter>AI Agents</Filter>
-    </ClInclude>
     <ClInclude Include="StatWindow.h">
       <Filter>UI</Filter>
     </ClInclude>
@@ -83,6 +80,15 @@
     </ClInclude>
     <ClInclude Include="PlantManager.h">
       <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="AgentManager.h">
+      <Filter>AI Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="HerbivoreAgent.h">
+      <Filter>AI Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="CarnivoreAgent.h">
+      <Filter>AI Agents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,9 +128,6 @@
     <ClCompile Include="BaseAgent.cpp">
       <Filter>AI Agents</Filter>
     </ClCompile>
-    <ClCompile Include="Agents.cpp">
-      <Filter>AI Agents</Filter>
-    </ClCompile>
     <ClCompile Include="StatWindow.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -136,6 +139,15 @@
     </ClCompile>
     <ClCompile Include="PlantManager.cpp">
       <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="AgentManager.cpp">
+      <Filter>AI Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="HerbivoreAgent.cpp">
+      <Filter>AI Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="CarnivoreAgent.cpp">
+      <Filter>AI Agents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

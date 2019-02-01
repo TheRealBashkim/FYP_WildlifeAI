@@ -128,8 +128,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AgentManager.h" />
     <ClInclude Include="BaseAgent.h" />
+    <ClInclude Include="CarnivoreAgent.h" />
     <ClInclude Include="Commons.h" />
+    <ClInclude Include="HerbivoreAgent.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Messaging.h" />
@@ -139,7 +142,6 @@
     <ClInclude Include="SourceWindowForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Agents.h" />
     <ClInclude Include="StatWindow.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Tile.h" />
@@ -148,7 +150,10 @@
     <ClInclude Include="XMLHandler.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AgentManager.cpp" />
     <ClCompile Include="BaseAgent.cpp" />
+    <ClCompile Include="CarnivoreAgent.cpp" />
+    <ClCompile Include="HerbivoreAgent.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Messaging.cpp" />
@@ -156,7 +161,6 @@
     <ClCompile Include="PlantManager.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SourceWindowForm.cpp" />
-    <ClCompile Include="Agents.cpp" />
     <ClCompile Include="StatWindow.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Tile.cpp" />

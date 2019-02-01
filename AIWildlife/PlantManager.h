@@ -3,13 +3,13 @@
 #include <vector>
 #include "SDL.h"
 #include "Plant.h"
-#include "Agents.h"
+#include "BaseAgent.h"
 class PlantManager
 {
 public:
 	PlantManager(SDL_Renderer * _Renderer);
 	~PlantManager();
-	void Update(std::vector<Agents*>* Agents);
+	void Update(std::vector<BaseAgent*>* Agents);
 	void Draw();
 	void SpawnNewItem();
 

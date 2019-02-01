@@ -10,11 +10,18 @@ class BaseAgent
 public:
 	BaseAgent(SDL_Renderer * Renderer);
 	~BaseAgent();
-	 void Update(float dt);
-	 void Update(float dt, SDL_Event e);
+	virtual void Update(float dt);
 	void LoadTexture(std::string path);
 	Vector2D GetPosition() { return mPosition; }
-	void Render();
+	float GetWidth() { return mTexture->GetWidth(); }
+	float GetHeight() { return mTexture->GetHeight(); }
+	virtual void Render();
+	std::string GetName() { return mName; }
+	float GetStamina() { return mStamina; }
+	void SetStamina(float stamina) { mStamina = stamina; }
+	float GetHealth() { return mHealth; }
+	bool GetSelected() { return mSelected; }
+	void SetSelected(bool selected) { mSelected = selected; }
 protected:
 
 	/**
@@ -44,6 +51,9 @@ protected:
 	double mSpeed;
 	double mMaxSpeed;
 	double mMaxForce;
+	float counter = 0;
+	std::string mName;
+	bool mSelected = false;
 
 
 	

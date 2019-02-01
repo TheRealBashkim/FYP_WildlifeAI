@@ -33,7 +33,7 @@ Source::Source(int handler)
 		return;
 	}
 	LoadMapTiles();
-	for (int i = 0; i < 15; i++)
+	/*for (int i = 0; i < 15; i++)
 	{
 		Agents * temp = new Agents("Herbivore",mRenderer);
 		temp->LoadTexture("Characters/Herbivore.bmp");
@@ -53,7 +53,10 @@ Source::Source(int handler)
 		tempy = rand() % 875;
 		temp->SetPosition(Vector2D(tempx, tempy));
 		mAgent->push_back(temp);
-	}
+	}*/
+	mAgentManager = AgentManager::Instance();
+	mAgentManager->SetRenderer(mRenderer);
+	mAgentManager->GenerateBaseAgents();
 	mPlantManger = new PlantManager(mRenderer);
 	mOldTime = SDL_GetTicks();
 	ThreadStart ^ operation = gcnew ThreadStart(GameLoop);
@@ -80,11 +83,8 @@ void Source::UpdateGame()
 	{
 	}
 	//Flock(dt);
-	for (int i = 0; i < mAgent->size(); i++)
-	{
-			mAgent->at(i)->Update(dt, e);
-	}
-	mPlantManger->Update(mAgent);
+	mAgentManager->Update(dt);
+	mPlantManger->Update(mAgentManager->GetAgents());
 		
 	mOldTime = newTime;
 }
@@ -94,10 +94,7 @@ void Source::RenderGame()
 	SDL_RenderClear(mRenderer);
 	mMap->DrawMap();
 	mPlantManger->Draw();
-	for (int i = 0; i < mAgent->size(); i++)
-	{
-		mAgent->at(i)->Render();
-	}
+	mAgentManager->Draw();
 	SDL_RenderPresent(mRenderer);
 }
 
@@ -121,38 +118,24 @@ void Source::UILoop()
 		{
 			if(SDL_GetMouseState(NULL,NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
 			{
-				id = CheckMousePolling();
+				int x, y;
+				SDL_GetMouseState(&x, &y);
+				Vector2D Mouse(x, y);
+				id = mAgentManager->CheckMousePolling(Mouse);
+				//id = CheckMousePolling();
 			}
 		}
-		if(id > mAgent->size())
+		if(id > mAgentManager->GetAgents()->size())
 		{
 		
 		}
 		else
 		{
-			mAgent->at(id)->SetSelected(true);
-			mStatWindow->SetAgent(mAgent->at(id));
-		}
-	}
-}
-
-void Source::Flock(float dt)
-{
-	Vector2D Average;
-	for(int i = 0; i < mAgent->size(); i++)
-	{
-		if(mAgent->at(i)->GetName() == "Herbivore")
-		{
-			Average += mAgent->at(i)->Wander(dt);
-		}
-	}
-	Average = Average / mAgent->size();
-	for (int j = 0; j < mAgent->size(); j++)
-	{
-		if(mAgent->at(j)->GetName() == "Herbivore")
-		{
-			mAgent->at(j)->GetForce() += mAgent->at(j)->Seek(Average);
-			mAgent->at(j)->Update(dt);
+			mAgentManager->GetAgents()->at(id)->SetSelected(true);
+			mStatWindow->SetAgent(mAgentManager->GetAgents()->at(id));
+			//mAgent->at(id)->SetSelected(true);
+			//mStatWindow->SetAgent(mAgent->at(id));
+			//mStatWindow->SetAgent(mAgent->at(id));
 		}
 	}
 }
@@ -164,25 +147,6 @@ void Source::LoadMapTiles()
 //	mMap->AddTile("Tiles/FoodTile.bmp", 1);
 	mMap->SetMap(XMLHandler::LoadMapFromXML("Map1.xml"));
 
-}
-
-int Source::CheckMousePolling()
-{
-	int id = 500;
-	if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
-	{
-		int x, y;
-		SDL_GetMouseState(&x, &y);
-		Vector2D mouse(x, y);
-		for(int i = 0; i < mAgent->size();i++)
-		{
-			if(PointInBoxCollision(mouse,mAgent->at(i)->GetPosition(),mAgent->at(i)->GetWidth(),mAgent->at(i)->GetHeight()))
-			{
-				id = i;
-			}
-		}
-	}
-	return id;
 }
 
 bool Source::Initialize()

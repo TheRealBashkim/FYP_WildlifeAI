@@ -10,7 +10,7 @@ StatWindow^ StatWindow::Initialize()
 	return mInstance;
 }
 
-void StatWindow::SetAgent(Agents* mAgent)
+void StatWindow::SetAgent(BaseAgent * mAgent)
 {
 	mName->Text = msclr::interop::marshal_as<String^>(mAgent->GetName());
 	mX->Text = mAgent->GetPosition().x.ToString();
