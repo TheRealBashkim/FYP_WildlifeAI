@@ -33,27 +33,6 @@ Source::Source(int handler)
 		return;
 	}
 	LoadMapTiles();
-	/*for (int i = 0; i < 15; i++)
-	{
-		Agents * temp = new Agents("Herbivore",mRenderer);
-		temp->LoadTexture("Characters/Herbivore.bmp");
-		
-		float tempx, tempy;
-	tempx = rand() % 875;
-	tempy = rand() % 875;
-	temp->SetPosition(Vector2D(tempx,tempy));
-	mAgent->push_back(temp);
-	}
-	for (int i = 0; i < 15; i++)
-	{
-		Agents * temp = new Agents("Carnivore",mRenderer);
-		temp->LoadTexture("Characters/Character.bmp");
-		float tempx, tempy;
-		tempx = rand() % 875;
-		tempy = rand() % 875;
-		temp->SetPosition(Vector2D(tempx, tempy));
-		mAgent->push_back(temp);
-	}*/
 	mAgentManager = AgentManager::Instance();
 	mAgentManager->SetRenderer(mRenderer);
 	mAgentManager->GenerateBaseAgents();
@@ -64,10 +43,6 @@ Source::Source(int handler)
 
 	GameplayThread->Start();
 	UILoop();
-
-
-
-	//GameplayThread = gcnew Thread(gcnew ThreadStart());
 }
 
 Source::~Source()
@@ -82,10 +57,8 @@ void Source::UpdateGame()
 	while (SDL_PollEvent(&e) != 0)
 	{
 	}
-	//Flock(dt);
 	mAgentManager->Update(dt);
 	mPlantManger->Update(mAgentManager->GetAgents());
-		
 	mOldTime = newTime;
 }
 
@@ -122,7 +95,6 @@ void Source::UILoop()
 				SDL_GetMouseState(&x, &y);
 				Vector2D Mouse(x, y);
 				id = mAgentManager->CheckMousePolling(Mouse);
-				//id = CheckMousePolling();
 			}
 		}
 		if(id > mAgentManager->GetAgents()->size())
@@ -133,9 +105,6 @@ void Source::UILoop()
 		{
 			mAgentManager->GetAgents()->at(id)->SetSelected(true);
 			mStatWindow->SetAgent(mAgentManager->GetAgents()->at(id));
-			//mAgent->at(id)->SetSelected(true);
-			//mStatWindow->SetAgent(mAgent->at(id));
-			//mStatWindow->SetAgent(mAgent->at(id));
 		}
 	}
 }
@@ -144,7 +113,6 @@ void Source::LoadMapTiles()
 {
 	mMap = new Map(mRenderer);
 	mMap->AddTile("Tiles/GrassTile.bmp", 0);
-//	mMap->AddTile("Tiles/FoodTile.bmp", 1);
 	mMap->SetMap(XMLHandler::LoadMapFromXML("Map1.xml"));
 
 }
