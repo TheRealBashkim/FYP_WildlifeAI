@@ -5,12 +5,13 @@
 #include "BaseAgent.h"
 using namespace System;
 using namespace System::Windows::Forms;
+using namespace System::Globalization;
 public ref class StatWindow
 {
 public:
 	static StatWindow  ^ Initialize();
 	void SetAgent(BaseAgent * Agent);
-	void SetButtons(Label ^ Name, Label ^ X, Label ^ Y,Label ^ Stamina,Label ^ mHealth);
+	void SetButtons(Label ^ Name, Label ^ X, Label ^ Y,Label ^ Stamina,Label ^ mHealth, Label ^ Age);
 	
 
 private:
@@ -22,6 +23,7 @@ private:
 	Label ^ mY;
 	Label ^ mStamina;
 	Label ^ mHealth;
+	Label ^ mAge;
 
 	
 

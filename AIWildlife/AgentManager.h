@@ -22,7 +22,7 @@ private:
 	static AgentManager * mInstance;
 	SDL_Renderer * mRenderer;
 	std::vector<BaseAgent*>* mAgents = new std::vector<BaseAgent*>();
-
+	void KillAgents(int index);
 	AgentManager();
 	~AgentManager();
 

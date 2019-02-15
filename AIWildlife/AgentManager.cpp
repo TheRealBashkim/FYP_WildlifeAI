@@ -47,7 +47,16 @@ void AgentManager::Update(float dt)
 	
 	for(int i = 0; i < mAgents->size();i++)
 	{
-		mAgents->at(i)->Update(dt);
+		// kills agent relating to old age
+		if(mAgents->at(i)->GetAge() > 99)
+		{
+			KillAgents(i);
+		}
+		else
+		{
+			mAgents->at(i)->Update(dt);
+		}
+		
 	}
 }
 
@@ -73,6 +82,11 @@ int AgentManager::CheckMousePolling(Vector2D mousepos)
 
 }
 
+
+void AgentManager::KillAgents(int index)
+{
+	mAgents->erase(mAgents->begin() + index);
+}
 
 AgentManager::AgentManager()
 {

@@ -16,6 +16,8 @@ BaseAgent::~BaseAgent()
 
 void BaseAgent::Update(float dt)
 {
+	IncrementAge(dt);
+
 	if (mStamina <= 0.0f)
 	{
 		return;
@@ -72,4 +74,9 @@ void BaseAgent::DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, 
 {
 	SDL_SetRenderDrawColor(mRenderer, r, g, b, 255);
 	SDL_RenderDrawLine(mRenderer, (int)startPoint.x, (int)startPoint.y, (int)endPoint.x, (int)endPoint.y);
+}
+
+void BaseAgent::IncrementAge(float dt)
+{
+	mAge = mAge + 0.016f;
 }

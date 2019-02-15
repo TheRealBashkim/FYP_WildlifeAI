@@ -53,6 +53,8 @@ namespace AIWildlife {
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  healthSize;
 	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  ageBox;
+	private: System::Windows::Forms::Label^  Age;
 
 
 	protected:
@@ -74,6 +76,8 @@ namespace AIWildlife {
 			this->ConsoleWindow = (gcnew System::Windows::Forms::RichTextBox());
 			this->Console = (gcnew System::Windows::Forms::Label());
 			this->StatBox = (gcnew System::Windows::Forms::GroupBox());
+			this->healthSize = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->staminaSize = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->ySize = (gcnew System::Windows::Forms::Label());
@@ -82,8 +86,8 @@ namespace AIWildlife {
 			this->x = (gcnew System::Windows::Forms::Label());
 			this->NameL = (gcnew System::Windows::Forms::Label());
 			this->groupLabel = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->healthSize = (gcnew System::Windows::Forms::Label());
+			this->ageBox = (gcnew System::Windows::Forms::Label());
+			this->Age = (gcnew System::Windows::Forms::Label());
 			this->StatBox->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -118,6 +122,8 @@ namespace AIWildlife {
 			// 
 			// StatBox
 			// 
+			this->StatBox->Controls->Add(this->ageBox);
+			this->StatBox->Controls->Add(this->Age);
 			this->StatBox->Controls->Add(this->healthSize);
 			this->StatBox->Controls->Add(this->label3);
 			this->StatBox->Controls->Add(this->staminaSize);
@@ -134,6 +140,23 @@ namespace AIWildlife {
 			this->StatBox->TabIndex = 3;
 			this->StatBox->TabStop = false;
 			this->StatBox->Enter += gcnew System::EventHandler(this, &SourceWindowForm::StatBox_Enter);
+			// 
+			// healthSize
+			// 
+			this->healthSize->AutoSize = true;
+			this->healthSize->Location = System::Drawing::Point(68, 146);
+			this->healthSize->Name = L"healthSize";
+			this->healthSize->Size = System::Drawing::Size(0, 13);
+			this->healthSize->TabIndex = 9;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(10, 146);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(38, 13);
+			this->label3->TabIndex = 8;
+			this->label3->Text = L"Health";
 			// 
 			// staminaSize
 			// 
@@ -203,22 +226,22 @@ namespace AIWildlife {
 			this->groupLabel->TabIndex = 0;
 			this->groupLabel->Text = L"Name";
 			// 
-			// label3
+			// ageBox
 			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(10, 146);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(38, 13);
-			this->label3->TabIndex = 8;
-			this->label3->Text = L"Health";
+			this->ageBox->AutoSize = true;
+			this->ageBox->Location = System::Drawing::Point(68, 179);
+			this->ageBox->Name = L"ageBox";
+			this->ageBox->Size = System::Drawing::Size(0, 13);
+			this->ageBox->TabIndex = 11;
 			// 
-			// healthSize
+			// Age
 			// 
-			this->healthSize->AutoSize = true;
-			this->healthSize->Location = System::Drawing::Point(68, 146);
-			this->healthSize->Name = L"healthSize";
-			this->healthSize->Size = System::Drawing::Size(0, 13);
-			this->healthSize->TabIndex = 9;
+			this->Age->AutoSize = true;
+			this->Age->Location = System::Drawing::Point(10, 179);
+			this->Age->Name = L"Age";
+			this->Age->Size = System::Drawing::Size(26, 13);
+			this->Age->TabIndex = 10;
+			this->Age->Text = L"Age";
 			// 
 			// SourceWindowForm
 			// 
@@ -247,7 +270,7 @@ namespace AIWildlife {
 		mMessaging = Messaging::Initialize();
 		mStatWindow = StatWindow::Initialize();
 		mMessaging->SetMessageBox(ConsoleWindow);
-		mStatWindow->SetButtons(NameL, xSize, ySize,staminaSize,healthSize);
+		mStatWindow->SetButtons(NameL, xSize, ySize,staminaSize,healthSize,ageBox);
 
 		int handler = (int)SDLWindow->Handle.ToPointer();
 		Source ^ _Source = gcnew Source(handler);
