@@ -46,6 +46,35 @@ void BaseAgent::LoadTexture(std::string path)
 void BaseAgent::Render()
 {
 	mTexture->Render(mPosition);
+	DrawFeelers();
+}
+
+void BaseAgent::DrawFeelers()
+{
+	DebugLine(GetCenter(), GetCenter() + mVelocity, 255, 0, 0);
+	if (mSelected)
+	{
+		Vector2D Reverse(GetPosition().x + mWidth, GetPosition().y + mHeight);
+		//top
+		DebugLine(GetPosition(), Vector2D(GetPosition().x + mWidth, GetPosition().y), 0, 0, 255);
+		//left
+		DebugLine(GetPosition(), Vector2D(GetPosition().x, GetPosition().y + mHeight), 0, 0, 255);
+		DebugLine(GetPosition(), Reverse, 0, 0, 255);
+		DebugLine(Vector2D(GetPosition().x, GetPosition().y + mHeight), Vector2D(Reverse.x, Reverse.y - mHeight), 0, 0, 255);
+		//right
+		DebugLine(Reverse, Vector2D(Reverse.x - mWidth, Reverse.y), 0, 0, 255);
+		//bottom
+		DebugLine(Reverse, Vector2D(Reverse.x, Reverse.y - mHeight), 0, 0, 255);
+
+		/*DebugLine(GetCenter(), GetCenter() + mSide * 70, 255, 0, 0);
+		DebugLine(GetCenter(), GetCenter() + mSide.GetReverse() * 70, 255, 0, 0);*/
+		Vector2D tempFOV = (GetCenter() + mSide * 70).Cross(GetCenter() + mVelocity);
+		DebugLine(GetCenter(), GetCenter() + tempFOV, 255, 0, 0);
+		DebugLine(GetCenter(), GetCenter() + tempFOV.GetReverse(), 255, 0, 0);
+
+
+		mSelected = false;
+	}
 }
 
 Vector2D BaseAgent::GetCenter()

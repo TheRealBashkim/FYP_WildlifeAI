@@ -13,6 +13,7 @@ public:
 	// Update and render functions
 	virtual void Update(float dt);
 	virtual void Render();
+	void DrawFeelers();
 
 	void LoadTexture(std::string path);
 	Vector2D GetPosition() { return mPosition; }
@@ -24,6 +25,7 @@ public:
 	float GetHealth() { return mHealth; }
 	bool GetSelected() { return mSelected; }
 	void SetSelected(bool selected) { mSelected = selected; }
+	Vector2D GetHeading() { return mHeading; }
 	float GetAge() { return mAge; }
 protected:
 

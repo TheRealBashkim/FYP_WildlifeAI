@@ -33,29 +33,6 @@ void HerbivoreAgent::LoadTexture(std::string path)
 {
 	BaseAgent::LoadTexture(path);
 }
-
-void HerbivoreAgent::DrawFeelers()
-{
-
-	DebugLine(GetCenter(), GetCenter() + mVelocity, 255, 0, 0);
-	DebugCircle(GetCenter() + mHeading * 70, 25, 255, 0, 0);
-	if (mSelected)
-	{
-		Vector2D Reverse(GetPosition().x + mWidth, GetPosition().y + mHeight);
-		//top
-		DebugLine(GetPosition(), Vector2D(GetPosition().x + mWidth, GetPosition().y), 0, 0, 255);
-		//left
-		DebugLine(GetPosition(), Vector2D(GetPosition().x, GetPosition().y + mHeight), 0, 0, 255);
-		DebugLine(GetPosition(), Reverse, 0, 0, 255);
-		DebugLine(Vector2D(GetPosition().x, GetPosition().y + mHeight), Vector2D(Reverse.x, Reverse.y - mHeight), 0, 0, 255);
-		//right
-		DebugLine(Reverse, Vector2D(Reverse.x - mWidth, Reverse.y), 0, 0, 255);
-		//bottom
-		DebugLine(Reverse, Vector2D(Reverse.x, Reverse.y - mHeight), 0, 0, 255);
-		mSelected = false;
-	}
-}
-
 Vector2D HerbivoreAgent::GetPosition()
 {
 	Vector2D temp(BaseAgent::GetPosition());

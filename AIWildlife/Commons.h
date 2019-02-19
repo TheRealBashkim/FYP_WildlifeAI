@@ -92,6 +92,9 @@ struct Vector2D
 	//returns the vector that is the reverse of this vector
 	inline Vector2D  GetReverse()const;
 
+
+	inline Vector2D Cross(const Vector2D& v2)const;
+
 	//we need some overloaded operators
 	const Vector2D& operator+=(const Vector2D &rhs)
 	{
@@ -294,6 +297,15 @@ inline void Vector2D::Normalize()
 		this->y /= vector_length;
 	}
 }
+
+inline Vector2D Vector2D::Cross(const Vector2D& v2) const
+{
+	Vector2D temp = Vector2D();
+	temp.x = this->x * v2.y;
+	temp.y = -y * v2.x;
+	return temp;
+}
+
 
 
 //------------------------------------------------------------------------non member functions

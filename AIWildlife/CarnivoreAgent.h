@@ -12,7 +12,6 @@ public:
 	void Update(float dt) override;
 	void Render() override;
 	void LoadTexture(std::string path);
-	void DrawFeelers();
 	void SetPosition(Vector2D position) { BaseAgent::SetPosition(position); }
 	Vector2D GetPosition();
 	Vector2D Seek(Vector2D TargetPosition);
