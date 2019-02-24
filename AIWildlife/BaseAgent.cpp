@@ -68,9 +68,13 @@ void BaseAgent::DrawFeelers()
 
 		/*DebugLine(GetCenter(), GetCenter() + mSide * 70, 255, 0, 0);
 		DebugLine(GetCenter(), GetCenter() + mSide.GetReverse() * 70, 255, 0, 0);*/
-		Vector2D tempFOV = (GetCenter() + mSide * 70).Cross(GetCenter() + mVelocity);
-		DebugLine(GetCenter(), GetCenter() + tempFOV, 255, 0, 0);
-		DebugLine(GetCenter(), GetCenter() + tempFOV.GetReverse(), 255, 0, 0);
+		Vector2D FrontLine = GetCenter() + mVelocity;
+		Vector2D LeftLine = GetCenter() + mSide;
+		Vector2D FinalLine = LeftLine.Cross(FrontLine);
+		DebugLine(GetCenter(), (GetCenter() + FinalLine) / 2, 255, 0, 0);
+		//DebugLine(GetCenter(), GetCenter() + FinalLine.GetReverse(), 255, 0, 0);
+		DebugLine(GetCenter(), Vector2D(-FinalLine.x,FinalLine.y), 255, 0, 0);
+
 
 
 		mSelected = false;
