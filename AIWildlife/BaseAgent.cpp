@@ -26,7 +26,8 @@ void BaseAgent::Update(float dt)
 	{
 		mStamina = mStamina - 0.01f;
 	}
-	mVelocity += mForce * dt;
+	const Vector2D acceleration = mForce / 1.0f;
+	mVelocity += acceleration * dt;
 	mVelocity.Truncate(mMaxSpeed);
 	mPosition += mVelocity * dt;
 	mHeading.x = mVelocity.x * 5;
@@ -66,19 +67,64 @@ void BaseAgent::DrawFeelers()
 		//bottom
 		DebugLine(Reverse, Vector2D(Reverse.x, Reverse.y - mHeight), 0, 0, 255);
 
-		/*DebugLine(GetCenter(), GetCenter() + mSide * 70, 255, 0, 0);
-		DebugLine(GetCenter(), GetCenter() + mSide.GetReverse() * 70, 255, 0, 0);*/
-		Vector2D FrontLine = GetCenter() + mVelocity;
-		Vector2D LeftLine = GetCenter() + mSide;
-		Vector2D FinalLine = LeftLine.Cross(FrontLine);
-		DebugLine(GetCenter(), (GetCenter() + FinalLine) / 2, 255, 0, 0);
-		//DebugLine(GetCenter(), GetCenter() + FinalLine.GetReverse(), 255, 0, 0);
-		DebugLine(GetCenter(), Vector2D(-FinalLine.x,FinalLine.y), 255, 0, 0);
+		//FOV Lines
+		Vector2D polarVec(0.0f, mFOVLength);
+		Vector2D normalized = Vec2DNormalize(mHeading);
+		Vector2D left;
+
+		//Create point rotated to the left of heading.
+		Vector2D leftPoint;
+		leftPoint.x = (normalized.x * cos(0.85)) - (normalized.y * sin(0.85));
+		leftPoint.y = (normalized.x * sin(0.85)) + (normalized.y * cos(0.85));
+
+		//Create point rotated to the right of heading.
+		Vector2D rightPoint;
+		rightPoint.x = (normalized.x * cos(-0.85)) - (normalized.y * sin(-0.85));
+		rightPoint.y = (normalized.x * sin(-0.85)) + (normalized.y * cos(-0.85));
+
+		//Move the left point out from the centre of the tank to the distance set by mFOVLengthLength.
+		Vector2D m_viewFrustumLeft;
+		m_viewFrustumLeft.x = GetCenter().x + (leftPoint.x*mFOVLength);
+		m_viewFrustumLeft.y = GetCenter().y + (leftPoint.y*mFOVLength);
+
+		//Move the right point out from the centre of the tank to the distance set by mFOVLengthLength.
+		Vector2D m_viewFrustumRight;
+		m_viewFrustumRight.x = GetCenter().x + (rightPoint.x*mFOVLength);
+		m_viewFrustumRight.y = GetCenter().y + (rightPoint.y*mFOVLength);
+
+		//Draw the field of view frustum
+		DebugLine(GetCenter(), m_viewFrustumRight, 255, 0, 0);
+		DebugLine(GetCenter(), m_viewFrustumLeft, 255, 0, 0);
+
+		
+
 
 
 
 		mSelected = false;
 	}
+}
+
+bool BaseAgent::RotateHeading(Vector2D target, float dt)
+{
+	Vector2D toTarget = Vec2DNormalize(GetCenter() - target);
+	// get angle between heading and target
+	double angle = acos(mHeading.Dot(toTarget));
+	if(angle != angle)
+	{
+		angle = 0.0f;
+	}
+	if(angle < 0.000001)
+	{
+		return true;
+	}
+	RotateRadian(angle, mHeading.Sign(toTarget), dt);
+	return true;
+}
+
+void BaseAgent::RotateRadian(double radian, int sign, float dt)
+{
+	
 }
 
 Vector2D BaseAgent::GetCenter()

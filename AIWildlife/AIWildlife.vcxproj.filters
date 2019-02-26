@@ -90,6 +90,9 @@
     <ClInclude Include="CarnivoreAgent.h">
       <Filter>AI Agents</Filter>
     </ClInclude>
+    <ClInclude Include="C2DMatrix.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceWindowForm.cpp">

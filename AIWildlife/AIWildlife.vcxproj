@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClInclude Include="AgentManager.h" />
     <ClInclude Include="BaseAgent.h" />
+    <ClInclude Include="C2DMatrix.h" />
     <ClInclude Include="CarnivoreAgent.h" />
     <ClInclude Include="Commons.h" />
     <ClInclude Include="HerbivoreAgent.h" />

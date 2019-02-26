@@ -3,6 +3,7 @@
 #include "SDL.h"
 #include "Commons.h"
 #include "Texture2D.h"
+#include "C2DMatrix.h"
 #include <iostream>
 
 class BaseAgent
@@ -27,6 +28,11 @@ public:
 	void SetSelected(bool selected) { mSelected = selected; }
 	Vector2D GetHeading() { return mHeading; }
 	float GetAge() { return mAge; }
+	bool RotateHeading(Vector2D target, float dt);
+	void RotateRadian(double radian, int sign, float dt);
+
+
+
 protected:
 
 	/**
@@ -60,6 +66,8 @@ protected:
 	std::string mName;
 	bool mSelected = false;
 	float mAge = 0;
+	float mFOVLength = 250;
+
 
 private:
 	void IncrementAge(float dt);
