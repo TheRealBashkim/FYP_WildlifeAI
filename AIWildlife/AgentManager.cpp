@@ -1,5 +1,6 @@
 #include "AgentManager.h"
 
+
 AgentManager * AgentManager::mInstance = nullptr;
 
 AgentManager * AgentManager::Instance()
@@ -16,31 +17,6 @@ void AgentManager::SetRenderer(SDL_Renderer* Renderer)
 	mRenderer = Renderer;
 }
 
-void AgentManager::GenerateBaseAgents()
-{
-	for(int i = 0; i< 15;i++)
-	{
-		HerbivoreAgent * temp = new HerbivoreAgent("Herbivore", mRenderer);
-		temp->LoadTexture("Characters/Herbivore.bmp");
-		float tempx, tempy;
-		tempx = rand() % 875;
-		tempy = rand() % 875;
-		temp->SetPosition(Vector2D(tempx, tempy));
-		BaseAgent * newTemp = (BaseAgent*)temp;
-		mAgents->push_back(newTemp);
-	}
-	for(int i = 0; i < 15;i++)
-	{
-		CarnivoreAgent * temp = new CarnivoreAgent("Carnivore", mRenderer);
-		temp->LoadTexture("Characters/Character.bmp");
-		float tempx, tempy;
-		tempx = rand() % 875;
-		tempy = rand() % 875;
-		temp->SetPosition(Vector2D(tempx, tempy));
-		BaseAgent * newTemp = (BaseAgent*)temp;
-		mAgents->push_back(newTemp);
-	}
-}
 
 void AgentManager::Update(float dt)
 {
@@ -80,6 +56,37 @@ int AgentManager::CheckMousePolling(Vector2D mousepos)
 	}
 	return id;
 
+}
+
+std::vector<BaseAgent*> AgentManager::GetVisibleAgents(BaseAgent* Looking)
+{
+	std::vector<BaseAgent*> VisibleAgents;
+
+	for (size_t i = 0; i < mAgents->size(); i++)
+	{
+		if (mAgents->at(i) != Looking)
+		{
+			Vector2D heading = Looking->GetHeading();
+			heading.Normalize();
+			Vector2D vectotarget = mAgents->at(i)->GetCenter() - Looking->GetCenter();
+			double totargetlength = vectotarget.Length();
+			if (totargetlength < mAgents->at(i)->GetFOVLength())
+			{
+				vectotarget.Normalize();
+				//cout << "Heading x = " << heading.x << " y = " << heading.y << endl;
+				double dotProduct = heading.Dot(vectotarget);
+				//cout << "dot = " << dotProduct << endl;
+				if (dotProduct > 0.85)
+				{
+					
+					//Tank is within fov, but is there a building in the way?
+					VisibleAgents.push_back(mAgents->at(i));
+				}
+			}
+		}
+	}
+
+return VisibleAgents;
 }
 
 

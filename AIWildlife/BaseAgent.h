@@ -4,7 +4,9 @@
 #include "Commons.h"
 #include "Texture2D.h"
 #include "C2DMatrix.h"
+#include "AgentManager.h"
 #include <iostream>
+
 
 class BaseAgent
 {
@@ -28,8 +30,8 @@ public:
 	void SetSelected(bool selected) { mSelected = selected; }
 	Vector2D GetHeading() { return mHeading; }
 	float GetAge() { return mAge; }
-	bool RotateHeading(Vector2D target, float dt);
-	void RotateRadian(double radian, int sign, float dt);
+	Vector2D GetCenter();
+	float GetFOVLength() { return mFOVLength; }
 
 
 
@@ -42,7 +44,6 @@ protected:
 	float mStamina = 1000.0f;
 
 
-	Vector2D GetCenter();
 	void DebugCircle(Vector2D centerPoint, double rad, int r, int g, int b);
 	void DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, int b);
 	void SetPosition(Vector2D position) { this->mPosition = position; }
@@ -67,7 +68,7 @@ protected:
 	bool mSelected = false;
 	float mAge = 0;
 	float mFOVLength = 250;
-
+	std::vector<BaseAgent*> mAgentsICanSee;
 
 private:
 	void IncrementAge(float dt);

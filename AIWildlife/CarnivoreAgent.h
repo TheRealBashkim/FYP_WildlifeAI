@@ -4,7 +4,7 @@
 #include <SDL.h>
 #include <algorithm>
 
-class CarnivoreAgent : BaseAgent
+class CarnivoreAgent : public BaseAgent
 {
 public:
 	CarnivoreAgent(std::string name,SDL_Renderer * Renderer);

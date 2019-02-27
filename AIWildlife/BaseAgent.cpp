@@ -16,6 +16,7 @@ BaseAgent::~BaseAgent()
 
 void BaseAgent::Update(float dt)
 {
+	mAgentsICanSee = AgentManager::Instance()->GetVisibleAgents(this);
 	IncrementAge(dt);
 
 	if (mStamina <= 0.0f)
@@ -96,35 +97,27 @@ void BaseAgent::DrawFeelers()
 		DebugLine(GetCenter(), m_viewFrustumRight, 255, 0, 0);
 		DebugLine(GetCenter(), m_viewFrustumLeft, 255, 0, 0);
 
-		
+		if(!mAgentsICanSee.empty())
+		{
+			for(size_t i = 0; i < mAgentsICanSee.size();i++)
+			{
+				Vector2D Reverse(mAgentsICanSee[i]->GetPosition().x + mAgentsICanSee[i]->GetWidth(), mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight());
+				
+				//top
+				DebugLine(mAgentsICanSee[i]->GetPosition(), Vector2D(mAgentsICanSee[i]->GetPosition().x + mAgentsICanSee[i]->GetWidth(), mAgentsICanSee[i]->GetPosition().y), 0, 0, 255);
+				//left
+				DebugLine(mAgentsICanSee[i]->GetPosition(), Vector2D(mAgentsICanSee[i]->GetPosition().x, mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight()), 0, 0, 255);
+				DebugLine(mAgentsICanSee[i]->GetPosition(), Reverse, 0, 0, 255);
+				DebugLine(Vector2D(mAgentsICanSee[i]->GetPosition().x, mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight()), Vector2D(Reverse.x, Reverse.y - mAgentsICanSee[i]->GetHeight()), 0, 0, 255);
+				//right
+				DebugLine(Reverse, Vector2D(Reverse.x - mAgentsICanSee[i]->GetWidth(), Reverse.y), 0, 0, 255);
+				//bottom
+				DebugLine(Reverse, Vector2D(Reverse.x, Reverse.y - mAgentsICanSee[i]->GetHeight()), 0, 0, 255);
 
-
-
-
+			}
+		}
 		mSelected = false;
 	}
-}
-
-bool BaseAgent::RotateHeading(Vector2D target, float dt)
-{
-	Vector2D toTarget = Vec2DNormalize(GetCenter() - target);
-	// get angle between heading and target
-	double angle = acos(mHeading.Dot(toTarget));
-	if(angle != angle)
-	{
-		angle = 0.0f;
-	}
-	if(angle < 0.000001)
-	{
-		return true;
-	}
-	RotateRadian(angle, mHeading.Sign(toTarget), dt);
-	return true;
-}
-
-void BaseAgent::RotateRadian(double radian, int sign, float dt)
-{
-	
 }
 
 Vector2D BaseAgent::GetCenter()

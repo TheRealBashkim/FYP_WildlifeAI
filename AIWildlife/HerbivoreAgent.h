@@ -3,7 +3,7 @@
 #include "BaseAgent.h"
 #include <SDL.h>
 #include <algorithm>
-class HerbivoreAgent : BaseAgent
+class HerbivoreAgent : public BaseAgent
 {
 public:
 	HerbivoreAgent(std::string name,SDL_Renderer * Renderer);

@@ -1,6 +1,8 @@
 #include "Source.h"
 #include "SourceWindowForm.h"
 #include "XMLHandler.h"
+#include "HerbivoreAgent.h"
+#include "CarnivoreAgent.h"
 using namespace System;
 using namespace System::Windows::Forms;
 
@@ -35,7 +37,29 @@ Source::Source(int handler)
 	LoadMapTiles();
 	mAgentManager = AgentManager::Instance();
 	mAgentManager->SetRenderer(mRenderer);
-	mAgentManager->GenerateBaseAgents();
+
+	for (int i = 0; i < 15; i++)
+	{
+		HerbivoreAgent * temp = new HerbivoreAgent("Herbivore", mRenderer);
+		temp->LoadTexture("Characters/Herbivore.bmp");
+		float tempx, tempy;
+		tempx = rand() % 875;
+		tempy = rand() % 875;
+		temp->SetPosition(Vector2D(tempx, tempy));
+		BaseAgent * newTemp = (BaseAgent*)temp;
+		mAgentManager->AddAgent(newTemp);
+	}
+	for (int i = 0; i < 15; i++)
+	{
+		CarnivoreAgent * temp = new CarnivoreAgent("Carnivore", mRenderer);
+		temp->LoadTexture("Characters/Character.bmp");
+		float tempx, tempy;
+		tempx = rand() % 875;
+		tempy = rand() % 875;
+		temp->SetPosition(Vector2D(tempx, tempy));
+		BaseAgent * newTemp = (BaseAgent*)temp;
+		mAgentManager->AddAgent(newTemp);
+	}
 	mPlantManger = new PlantManager(mRenderer);
 	mOldTime = SDL_GetTicks();
 	ThreadStart ^ operation = gcnew ThreadStart(GameLoop);
