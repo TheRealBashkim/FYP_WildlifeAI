@@ -34,6 +34,12 @@
     <Filter Include="Items">
       <UniqueIdentifier>{0c1522c1-4245-48e5-bf54-ecbd6286f2c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Chromosome">
+      <UniqueIdentifier>{20a9517b-fa8f-4eb5-adbe-3627267b0786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI Agents\States">
+      <UniqueIdentifier>{051571ec-e4ee-4313-a887-6d54185db72b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceWindowForm.h">
@@ -93,6 +99,9 @@
     <ClInclude Include="C2DMatrix.h">
       <Filter>Commons</Filter>
     </ClInclude>
+    <ClInclude Include="Chromosome.h">
+      <Filter>Chromosome</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceWindowForm.cpp">
@@ -151,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="CarnivoreAgent.cpp">
       <Filter>AI Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="Chromosome.cpp">
+      <Filter>Chromosome</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

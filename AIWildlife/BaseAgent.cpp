@@ -16,9 +16,12 @@ BaseAgent::~BaseAgent()
 
 void BaseAgent::Update(float dt)
 {
+	if(mAge >= mMaxAge)
+	{
+		return;
+	}
 	mAgentsICanSee = AgentManager::Instance()->GetVisibleAgents(this);
 	IncrementAge(dt);
-
 	if (mStamina <= 0.0f)
 	{
 		return;
@@ -101,18 +104,37 @@ void BaseAgent::DrawFeelers()
 		{
 			for(size_t i = 0; i < mAgentsICanSee.size();i++)
 			{
-				Vector2D Reverse(mAgentsICanSee[i]->GetPosition().x + mAgentsICanSee[i]->GetWidth(), mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight());
+				if(mAgentsICanSee[i]->GetName() == mName)
+				{
+					Vector2D Reverse(mAgentsICanSee[i]->GetPosition().x + mAgentsICanSee[i]->GetWidth(), mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight());
+
+					//top
+					DebugLine(mAgentsICanSee[i]->GetPosition(), Vector2D(mAgentsICanSee[i]->GetPosition().x + mAgentsICanSee[i]->GetWidth(), mAgentsICanSee[i]->GetPosition().y), 0, 255, 0);
+					//left
+					DebugLine(mAgentsICanSee[i]->GetPosition(), Vector2D(mAgentsICanSee[i]->GetPosition().x, mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight()), 0, 255, 0);
+					DebugLine(mAgentsICanSee[i]->GetPosition(), Reverse, 0, 0, 255);
+					DebugLine(Vector2D(mAgentsICanSee[i]->GetPosition().x, mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight()), Vector2D(Reverse.x, Reverse.y - mAgentsICanSee[i]->GetHeight()), 0, 255, 0);
+					//right
+					DebugLine(Reverse, Vector2D(Reverse.x - mAgentsICanSee[i]->GetWidth(), Reverse.y), 0, 255, 0);
+					//bottom
+					DebugLine(Reverse, Vector2D(Reverse.x, Reverse.y - mAgentsICanSee[i]->GetHeight()), 0, 255, 0);
+				}
+				else
+				{
+					Vector2D Reverse(mAgentsICanSee[i]->GetPosition().x + mAgentsICanSee[i]->GetWidth(), mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight());
+
+					//top
+					DebugLine(mAgentsICanSee[i]->GetPosition(), Vector2D(mAgentsICanSee[i]->GetPosition().x + mAgentsICanSee[i]->GetWidth(), mAgentsICanSee[i]->GetPosition().y), 255, 0, 0);
+					//left
+					DebugLine(mAgentsICanSee[i]->GetPosition(), Vector2D(mAgentsICanSee[i]->GetPosition().x, mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight()), 255, 0, 0);
+					DebugLine(mAgentsICanSee[i]->GetPosition(), Reverse, 255, 0, 0);
+					DebugLine(Vector2D(mAgentsICanSee[i]->GetPosition().x, mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight()), Vector2D(Reverse.x, Reverse.y - mAgentsICanSee[i]->GetHeight()), 255, 0, 0);
+					//right
+					DebugLine(Reverse, Vector2D(Reverse.x - mAgentsICanSee[i]->GetWidth(), Reverse.y), 255, 0, 0);
+					//bottom
+					DebugLine(Reverse, Vector2D(Reverse.x, Reverse.y - mAgentsICanSee[i]->GetHeight()), 255, 0, 0);
+				}
 				
-				//top
-				DebugLine(mAgentsICanSee[i]->GetPosition(), Vector2D(mAgentsICanSee[i]->GetPosition().x + mAgentsICanSee[i]->GetWidth(), mAgentsICanSee[i]->GetPosition().y), 0, 0, 255);
-				//left
-				DebugLine(mAgentsICanSee[i]->GetPosition(), Vector2D(mAgentsICanSee[i]->GetPosition().x, mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight()), 0, 0, 255);
-				DebugLine(mAgentsICanSee[i]->GetPosition(), Reverse, 0, 0, 255);
-				DebugLine(Vector2D(mAgentsICanSee[i]->GetPosition().x, mAgentsICanSee[i]->GetPosition().y + mAgentsICanSee[i]->GetHeight()), Vector2D(Reverse.x, Reverse.y - mAgentsICanSee[i]->GetHeight()), 0, 0, 255);
-				//right
-				DebugLine(Reverse, Vector2D(Reverse.x - mAgentsICanSee[i]->GetWidth(), Reverse.y), 0, 0, 255);
-				//bottom
-				DebugLine(Reverse, Vector2D(Reverse.x, Reverse.y - mAgentsICanSee[i]->GetHeight()), 0, 0, 255);
 
 			}
 		}

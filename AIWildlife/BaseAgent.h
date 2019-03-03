@@ -19,19 +19,32 @@ public:
 	void DrawFeelers();
 
 	void LoadTexture(std::string path);
+
 	Vector2D GetPosition() { return mPosition; }
 	float GetWidth() { return mTexture->GetWidth(); }
 	float GetHeight() { return mTexture->GetHeight(); }
+
 	std::string GetName() { return mName; }
+	
 	float GetStamina() { return mStamina; }
 	void SetStamina(float stamina) { mStamina = stamina; }
+	
 	float GetHealth() { return mHealth; }
+	
 	bool GetSelected() { return mSelected; }
 	void SetSelected(bool selected) { mSelected = selected; }
+	
 	Vector2D GetHeading() { return mHeading; }
+	
 	float GetAge() { return mAge; }
+	
 	Vector2D GetCenter();
+	
 	float GetFOVLength() { return mFOVLength; }
+
+	void SetMaxAge(float age) { this->mMaxAge = age; }
+	float GetMaxAge() { return this->mMaxAge; }
+
 
 
 
@@ -67,6 +80,8 @@ protected:
 	std::string mName;
 	bool mSelected = false;
 	float mAge = 0;
+	float mMaxAge = 100;
+
 	float mFOVLength = 250;
 	std::vector<BaseAgent*> mAgentsICanSee;
 

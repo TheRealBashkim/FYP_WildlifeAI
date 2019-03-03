@@ -132,6 +132,7 @@
     <ClInclude Include="BaseAgent.h" />
     <ClInclude Include="C2DMatrix.h" />
     <ClInclude Include="CarnivoreAgent.h" />
+    <ClInclude Include="Chromosome.h" />
     <ClInclude Include="Commons.h" />
     <ClInclude Include="HerbivoreAgent.h" />
     <ClInclude Include="InputHandler.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="AgentManager.cpp" />
     <ClCompile Include="BaseAgent.cpp" />
     <ClCompile Include="CarnivoreAgent.cpp" />
+    <ClCompile Include="Chromosome.cpp" />
     <ClCompile Include="HerbivoreAgent.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Map.cpp" />
