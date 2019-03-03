@@ -102,6 +102,9 @@
     <ClInclude Include="Chromosome.h">
       <Filter>Chromosome</Filter>
     </ClInclude>
+    <ClInclude Include="Structures.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceWindowForm.cpp">

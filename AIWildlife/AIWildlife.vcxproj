@@ -145,6 +145,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="StatWindow.h" />
+    <ClInclude Include="Structures.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
