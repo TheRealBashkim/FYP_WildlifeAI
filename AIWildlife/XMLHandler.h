@@ -6,14 +6,15 @@
 #include "Tile.h"
 #include "TinyXML/tinyxml.h"
 #include "Structures.h"
+#include "Chromosome.h"
 class XMLHandler
 {
 public:
 	static int ** LoadMapFromXML(std::string path);
 
 	//Genetic Algorithms 
-	static void StoreGenes(std::string path,std::vector<Gene*> genes);
-	std::vector<Gene*> LoadChromosome(std::string path);
+	static void StoreGenes(std::string path,std::vector<Chromosome*> genes);
+	std::vector<Chromosome*> LoadChromosome(std::string path);
 
 
 

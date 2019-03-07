@@ -13,6 +13,8 @@ public:
 	void Render() override;
 	void LoadTexture(std::string path);
 	void SetPosition(Vector2D position) { BaseAgent::SetPosition(position); }
+	void TargetEnemy(float dt);
+
 	Vector2D GetPosition();
 	Vector2D Seek(Vector2D TargetPosition);
 	Vector2D Flee(Vector2D TargetPosition);

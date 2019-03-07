@@ -8,10 +8,10 @@ class Chromosome
 public:
 	Chromosome();
 	~Chromosome();
-	std::vector<Gene*> GetChromosome() { return mChromosome;}
-	void SetChromosome(std::vector<Gene*> chromosome) { this->mChromosome = chromosome; }
+	Gene* GetGene() { return mGene; }
+	void SetGene(Gene* gene) { this->mGene = gene; }
 private:
-	std::vector<Gene*> mChromosome;
+	Gene * mGene;
 
 };
 #endif

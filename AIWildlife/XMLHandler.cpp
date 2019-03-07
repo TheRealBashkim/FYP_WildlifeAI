@@ -107,7 +107,7 @@ int** XMLHandler::LoadMapFromXML(std::string path)
 
 }
 
-void XMLHandler::StoreGenes(std::string path, std::vector<Gene*> genes)
+void XMLHandler::StoreGenes(std::string path, std::vector<Chromosome*> genes)
 {
 	TiXmlDocument * mDoc;
 	TiXmlNode * root(mDoc->InsertEndChild(TiXmlElement("Genes")));
@@ -116,13 +116,13 @@ void XMLHandler::StoreGenes(std::string path, std::vector<Gene*> genes)
 	{
 		TiXmlElement Gene("Gene");
 		TiXmlElement Health("Health");
-		Health.SetAttribute("Health", genes[i]->health);
+		Health.SetAttribute("Health", genes[i]->GetGene()->health);
 		TiXmlElement MaxStamina("Stamina");
-		MaxStamina.SetAttribute("Stamina", genes[i]->maxStamina);
+		MaxStamina.SetAttribute("Stamina", genes[i]->GetGene()->maxStamina);
 		TiXmlElement MaxAge("Age");
-		MaxAge.SetAttribute("Age", genes[i]->maxAge);
+		MaxAge.SetAttribute("Age", genes[i]->GetGene()->maxAge);
 		TiXmlElement MaxSpeed("Speed");
-		MaxSpeed.SetAttribute("Speed", genes[i]->maxSpeed);
+		MaxSpeed.SetAttribute("Speed", genes[i]->GetGene()->maxSpeed);
 		Gene.InsertEndChild(Health);
 		Gene.InsertEndChild(MaxStamina);
 		Gene.InsertEndChild(MaxAge);
@@ -132,19 +132,19 @@ void XMLHandler::StoreGenes(std::string path, std::vector<Gene*> genes)
 	mDoc->SaveFile(path);
 }
 
-std::vector<Gene*> XMLHandler::LoadChromosome(std::string path)
+std::vector<Chromosome*> XMLHandler::LoadChromosome(std::string path)
 {
-	std::vector<Gene*> Chromosome;
+	std::vector<Chromosome*> Chromosomes;
 	TiXmlDocument mDoc;
 	if(!mDoc.LoadFile(path))
 	{
-		return Chromosome;
+		return Chromosomes;
 	}
 	TiXmlElement * root = mDoc.FirstChildElement();
 	if(!root)
 	{
 		mDoc.Clear();
-		return Chromosome;
+		return Chromosomes;
 	}
 
 	for(TiXmlElement * _Gene = root->FirstChildElement("Gene"); _Gene != NULL; _Gene = _Gene->NextSiblingElement())
@@ -174,7 +174,9 @@ std::vector<Gene*> XMLHandler::LoadChromosome(std::string path)
 		{
 			_TempGene->maxStamina = ss1Stamina;
 		}
-		Chromosome.push_back(_TempGene);
+		Chromosome * Temp = new Chromosome();
+		Temp->SetGene(_TempGene);
+		Chromosomes.push_back(Temp);
 	}
-	return Chromosome;
+	return Chromosomes;
 }

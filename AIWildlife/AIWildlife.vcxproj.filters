@@ -99,11 +99,14 @@
     <ClInclude Include="C2DMatrix.h">
       <Filter>Commons</Filter>
     </ClInclude>
+    <ClInclude Include="Structures.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
     <ClInclude Include="Chromosome.h">
       <Filter>Chromosome</Filter>
     </ClInclude>
-    <ClInclude Include="Structures.h">
-      <Filter>Commons</Filter>
+    <ClInclude Include="ChromosomeManager.h">
+      <Filter>Chromosome</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +168,9 @@
       <Filter>AI Agents</Filter>
     </ClCompile>
     <ClCompile Include="Chromosome.cpp">
+      <Filter>Chromosome</Filter>
+    </ClCompile>
+    <ClCompile Include="ChromosomeManager.cpp">
       <Filter>Chromosome</Filter>
     </ClCompile>
   </ItemGroup>

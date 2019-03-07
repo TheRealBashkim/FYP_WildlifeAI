@@ -35,6 +35,10 @@ void CarnivoreAgent::LoadTexture(std::string path)
 {
 	BaseAgent::LoadTexture(path);
 }
+void CarnivoreAgent::TargetEnemy(float dt)
+{
+
+}
 Vector2D CarnivoreAgent::GetPosition()
 {
 	Vector2D temp(BaseAgent::GetPosition());
