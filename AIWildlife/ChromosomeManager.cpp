@@ -13,8 +13,7 @@ ChromosomeManager::~ChromosomeManager()
 
 void ChromosomeManager::GenerateChromosome()
 {
-	for (int i = 0; i <50; i++)
-	{
+	
 		Gene _TempGene;
 		
 		float RandMaxAge = rand() % 130;
@@ -29,6 +28,6 @@ void ChromosomeManager::GenerateChromosome()
 		Chromosome * tempChromo = new Chromosome();
 		tempChromo->SetGene(&_TempGene);
 		mChromosomes.push_back(tempChromo);
-	}
-	XMLHandler::StoreGenes()
+
+	XMLHandler::StoreGenes("Chromosome.xml", mChromosomes);
 }

@@ -141,6 +141,83 @@ void Source::LoadMapTiles()
 
 }
 
+void Source::GenerateBaseChromosome()
+{
+	std::vector<Chromosome*> mChromo = XMLHandler::LoadChromosome("Chromosome.xml");
+	if(mChromo.empty())
+	{
+		for(int i = 0; i < 15; i++)
+		{
+			HerbivoreAgent * temp = new HerbivoreAgent("Herbivore", mRenderer);
+			temp->LoadTexture("Characters/Herbivore.bmp");
+			float tempx, tempy;
+			tempx = rand() % 875;
+			tempy = rand() % 875;
+			temp->GetChromosome()->GenerateGene();
+			temp->SetPosition(Vector2D(tempx, tempy));
+			mChromo.push_back(temp->GetChromosome());
+			BaseAgent * newTemp = (BaseAgent*)temp;
+			mAgentManager->AddAgent(newTemp);
+		}
+		for (int i = 0; i < 15; i++)
+		{
+			CarnivoreAgent * temp = new CarnivoreAgent("Carnivore", mRenderer);
+			temp->LoadTexture("Characters/Character.bmp");
+			float tempx, tempy;
+			tempx = rand() % 875;
+			tempy = rand() % 875;
+			temp->SetPosition(Vector2D(tempx, tempy));
+			temp->GetChromosome()->GenerateGene();
+			mChromo.push_back(temp->GetChromosome());
+			BaseAgent * newTemp = (BaseAgent*)temp;
+			mAgentManager->AddAgent(newTemp);
+		}
+		XMLHandler::StoreGenes("Chromosome.xml",mChromo);
+	}
+	else
+	{
+		for(int i = 0; i < mChromo.size();i++)
+		{
+			for(int j = 0; j < 15; j++)
+			{
+				HerbivoreAgent * temp = new HerbivoreAgent("Herbivore", mRenderer);
+				temp->LoadTexture("Characters/Herbivore.bmp");
+				float tempx, tempy;
+				tempx = rand() % 875;
+				tempy = rand() % 875;
+				temp->SetChromosome(mChromo.at(i));
+				temp->SetPosition(Vector2D(tempx, tempy));
+				//mChromo.push_back(temp->GetChromosome());
+				BaseAgent * newTemp = (BaseAgent*)temp;
+				mAgentManager->AddAgent(newTemp);
+			}
+			for(int j = 0; j < 15; j++)
+			{
+				CarnivoreAgent * temp = new CarnivoreAgent("Carnivore", mRenderer);
+				temp->LoadTexture("Characters/Character.bmp");
+				float tempx, tempy;
+				tempx = rand() % 875;
+				tempy = rand() % 875;
+				temp->SetPosition(Vector2D(tempx, tempy));
+				temp->SetChromosome(mChromo.at(i));
+				//mChromo.push_back(temp->GetChromosome());
+				BaseAgent * newTemp = (BaseAgent*)temp;
+				mAgentManager->AddAgent(newTemp);
+
+
+			}
+
+
+		}
+
+
+
+	}
+
+
+
+}
+
 bool Source::Initialize()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)

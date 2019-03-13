@@ -6,6 +6,7 @@
 #include "C2DMatrix.h"
 #include "AgentManager.h"
 #include <iostream>
+#include "Chromosome.h"
 
 
 class BaseAgent
@@ -25,25 +26,28 @@ public:
 	float GetHeight() { return mTexture->GetHeight(); }
 
 	std::string GetName() { return mName; }
-	
+
 	float GetStamina() { return mStamina; }
 	void SetStamina(float stamina) { mStamina = stamina; }
-	
+
 	float GetHealth() { return mHealth; }
-	
+
 	bool GetSelected() { return mSelected; }
 	void SetSelected(bool selected) { mSelected = selected; }
-	
+
 	Vector2D GetHeading() { return mHeading; }
-	
+
 	float GetAge() { return mAge; }
-	
+
 	Vector2D GetCenter();
-	
+
 	float GetFOVLength() { return mFOVLength; }
 
 	void SetMaxAge(float age) { this->mMaxAge = age; }
 	float GetMaxAge() { return this->mMaxAge; }
+	void SetChromosome(Chromosome * Chromosome) { this->mChromosome = Chromosome; }
+	Chromosome * GetChromosome() { return this->mChromosome; }
+
 
 
 
@@ -55,6 +59,9 @@ protected:
 	 */
 	float mHealth = 100.0f;
 	float mStamina = 1000.0f;
+
+	Chromosome * mChromosome;
+
 
 
 	void DebugCircle(Vector2D centerPoint, double rad, int r, int g, int b);

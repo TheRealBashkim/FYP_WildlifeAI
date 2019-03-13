@@ -14,7 +14,7 @@ public:
 
 	//Genetic Algorithms 
 	static void StoreGenes(std::string path,std::vector<Chromosome*> genes);
-	std::vector<Chromosome*> LoadChromosome(std::string path);
+	static std::vector<Chromosome*> LoadChromosome(std::string path);
 
 
 

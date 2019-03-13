@@ -4,6 +4,7 @@ BaseAgent::BaseAgent(SDL_Renderer* Renderer)
 {
 	this->mRenderer = Renderer;
 	this->mTexture = new Texture2D(mRenderer);
+	mChromosome = new Chromosome();
 	mMaxSpeed = 100.0f;
 	mMaxForce = 10.0f;
 	mHeading = Vector2D(0.0f, -1.0f);

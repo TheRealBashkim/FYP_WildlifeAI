@@ -24,6 +24,10 @@ public:
 	static void GameLoop();
 	static void UILoop();
 	static void LoadMapTiles();
+	static void GenerateBaseChromosome();
+
+
+
 private:
 	SDL_Window * mWindow;
 	static SDL_Renderer * mRenderer;
