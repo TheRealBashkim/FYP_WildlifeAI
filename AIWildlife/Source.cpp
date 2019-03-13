@@ -154,6 +154,7 @@ void Source::GenerateBaseChromosome()
 			tempx = rand() % 875;
 			tempy = rand() % 875;
 			temp->GetChromosome()->GenerateGene();
+			temp->GetChromosome()->GetGene()->mName = temp->GetName();
 			temp->SetPosition(Vector2D(tempx, tempy));
 			mChromo.push_back(temp->GetChromosome());
 			BaseAgent * newTemp = (BaseAgent*)temp;
@@ -168,6 +169,7 @@ void Source::GenerateBaseChromosome()
 			tempy = rand() % 875;
 			temp->SetPosition(Vector2D(tempx, tempy));
 			temp->GetChromosome()->GenerateGene();
+			temp->GetChromosome()->GetGene()->mName = temp->GetName();
 			mChromo.push_back(temp->GetChromosome());
 			BaseAgent * newTemp = (BaseAgent*)temp;
 			mAgentManager->AddAgent(newTemp);
@@ -178,7 +180,7 @@ void Source::GenerateBaseChromosome()
 	{
 		for(int i = 0; i < mChromo.size();i++)
 		{
-			for(int j = 0; j < 15; j++)
+			if(mChromo[i]->GetGene()->mName == "Herbivore")
 			{
 				HerbivoreAgent * temp = new HerbivoreAgent("Herbivore", mRenderer);
 				temp->LoadTexture("Characters/Herbivore.bmp");
@@ -191,7 +193,7 @@ void Source::GenerateBaseChromosome()
 				BaseAgent * newTemp = (BaseAgent*)temp;
 				mAgentManager->AddAgent(newTemp);
 			}
-			for(int j = 0; j < 15; j++)
+			else if(mChromo[i]->GetGene()->mName == "Carnivore")
 			{
 				CarnivoreAgent * temp = new CarnivoreAgent("Carnivore", mRenderer);
 				temp->LoadTexture("Characters/Character.bmp");
@@ -203,19 +205,9 @@ void Source::GenerateBaseChromosome()
 				//mChromo.push_back(temp->GetChromosome());
 				BaseAgent * newTemp = (BaseAgent*)temp;
 				mAgentManager->AddAgent(newTemp);
-
-
 			}
-
-
 		}
-
-
-
 	}
-
-
-
 }
 
 bool Source::Initialize()
