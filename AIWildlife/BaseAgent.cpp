@@ -32,7 +32,7 @@ void BaseAgent::Update(float dt)
 
 	
 
-
+	CheckForNewAgents();
 
 	const Vector2D acceleration = mForce / 1.0f;
 	mVelocity += acceleration * dt;
@@ -185,6 +185,7 @@ void BaseAgent::CheckForNewAgents()
 			if(mAgentsICanSee[i]->GetAge() > 20)
 			{
 				mPicked = mAgentsICanSee[i];
+				mAgentsICanSee[i]->mGenerationMade = true;
 			}
 		}
 	}

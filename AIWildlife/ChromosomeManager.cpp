@@ -17,7 +17,7 @@ BaseAgent* ChromosomeManager::GenerateNewAgent(BaseAgent* m1, BaseAgent* m2)
 	if(m1->GetName() == "Carnivore")
 	{
 		CarnivoreAgent * temp = new CarnivoreAgent(m1->GetName(),m1->GetRenderer());
-		temp->LoadTexture("Character/Character.bmp");
+		temp->LoadTexture("Characters/Character.bmp");
 		float tempx, tempy;
 		tempx = rand() % 875;
 		tempy = rand() % 875;
@@ -27,10 +27,11 @@ BaseAgent* ChromosomeManager::GenerateNewAgent(BaseAgent* m1, BaseAgent* m2)
 		temp->SetChromosome(tempChromo);
 		temp->SetStats();
 		mAgent = (BaseAgent*)temp;
+		XMLHandler::AddGene("Chromosome.xml", tempChromo->GetGene());
 		return mAgent;
 	}
 		CarnivoreAgent * temp = new CarnivoreAgent(m1->GetName(), m1->GetRenderer());
-		temp->LoadTexture("Character/Herbivore.bmp");
+		temp->LoadTexture("Characters/Herbivore.bmp");
 		float tempx, tempy;
 		tempx = rand() % 875;
 		tempy = rand() % 875;
@@ -40,6 +41,7 @@ BaseAgent* ChromosomeManager::GenerateNewAgent(BaseAgent* m1, BaseAgent* m2)
 		temp->SetChromosome(tempChromo);
 		temp->SetStats();
 		mAgent = (BaseAgent*)temp;
+		XMLHandler::AddGene("Chromosome.xml", tempChromo->GetGene());
 		return mAgent;
 }
 
@@ -75,11 +77,13 @@ Gene* ChromosomeManager::Crossover(Gene* parent1, Gene* parent2)
 		temp->maxAge = parent2->maxAge;
 		temp->maxSpeed = parent1->maxSpeed;
 		temp->maxStamina = parent2->maxStamina;
+		break;
 	case 5:
 		temp->health = parent2->health;
 		temp->maxAge = parent1->maxAge;
 		temp->maxSpeed = parent2->maxSpeed;
 		temp->maxStamina = parent1->maxStamina;
+		break;
 	}
 	return temp;
 }

@@ -1,4 +1,5 @@
 #include "AgentManager.h"
+#include "XMLHandler.h"
 
 
 AgentManager * AgentManager::mInstance = nullptr;

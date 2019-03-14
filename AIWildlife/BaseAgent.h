@@ -48,6 +48,7 @@ public:
 	void SetChromosome(Chromosome * Chromosome) { this->mChromosome = Chromosome;}
 	Chromosome * GetChromosome() { return this->mChromosome;  }
 	void SetStats();
+	bool mGenerationMade = false;
 
 
 
@@ -65,7 +66,6 @@ protected:
 
 	float mNexGenerationWait = 2000;
 	float mNexGenerationCounter = 0;
-	bool mGenerationMade = false;
 
 
 	void CheckForNewAgents();

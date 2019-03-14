@@ -179,7 +179,18 @@ std::vector<Chromosome*> XMLHandler::LoadChromosome(std::string path)
 
 void XMLHandler::AddGene(std::string path, Gene* gene)
 {
-
+	TiXmlDocument  mDoc;
+	mDoc.LoadFile(path);
+	TiXmlNode * Root  = mDoc.FirstChildElement("Genes");
+	
+		TiXmlElement _Gene("Gene");
+		_Gene.SetAttribute("Name", gene->mName);
+		_Gene.SetAttribute("Health", gene->health);
+		_Gene.SetAttribute("Age", gene->maxAge);
+		_Gene.SetAttribute("Speed", gene->maxSpeed);
+		_Gene.SetAttribute("Stamina", gene->maxStamina);
+		Root->InsertEndChild(_Gene);
+	mDoc.SaveFile(path);
 
 
 }
