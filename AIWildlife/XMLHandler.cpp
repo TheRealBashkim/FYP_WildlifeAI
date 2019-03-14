@@ -176,3 +176,10 @@ std::vector<Chromosome*> XMLHandler::LoadChromosome(std::string path)
 	}
 	return Chromosomes;
 }
+
+void XMLHandler::AddGene(std::string path, Gene* gene)
+{
+
+
+
+}

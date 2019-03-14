@@ -163,7 +163,7 @@ void BaseAgent::SetStats()
 void BaseAgent::CheckForNewAgents()
 {
 
-	BaseAgent * mPicked;
+	BaseAgent * mPicked = nullptr;
 
 	if(mGenerationMade == true)
 	{
@@ -188,9 +188,13 @@ void BaseAgent::CheckForNewAgents()
 			}
 		}
 	}
-		
-
-
+	if(mPicked == nullptr)
+	{
+		return;
+	}
+	mGenerationMade = true;
+	BaseAgent * newAgent = ChromosomeManager::GenerateNewAgent(this, mPicked);
+	AgentManager::Instance()->AddAgent(newAgent);
 }
 
 void BaseAgent::DebugCircle(Vector2D centerPoint, double rad, int r, int g, int b)
