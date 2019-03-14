@@ -27,8 +27,8 @@ int Main(array<String^>^ args)
 
 Source::Source(int handler)
 {	
-	mMessage = Messaging::Initialize();
 	mStatWindow = StatWindow::Initialize();
+	mMessage = Messaging::Initialize();
 	Initialize();
 	if(!InitWindow(handler))
 	{
@@ -83,6 +83,12 @@ void Source::GameLoop()
 		RenderGame();
 	}
 
+}
+
+void Source::SetupMessaging()
+{
+	Messaging::Initialize();
+	
 }
 
 void Source::UILoop()

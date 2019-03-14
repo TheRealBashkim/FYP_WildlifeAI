@@ -1,5 +1,7 @@
 #include "BaseAgent.h"
 #include "ChromosomeManager.h"
+#include "StatWindow.h"
+#include "Messaging.h"
 
 BaseAgent::BaseAgent(SDL_Renderer* Renderer)
 {
@@ -29,11 +31,7 @@ void BaseAgent::Update(float dt)
 	{
 		mStamina = mStamina - 0.01f;
 	}
-
-	
-
 	CheckForNewAgents();
-
 	const Vector2D acceleration = mForce / 1.0f;
 	mVelocity += acceleration * dt;
 	mVelocity.Truncate(mMaxSpeed);
@@ -184,7 +182,12 @@ void BaseAgent::CheckForNewAgents()
 		{
 			if(mAgentsICanSee[i]->GetAge() > 20)
 			{
+				
 				mPicked = mAgentsICanSee[i];
+				if(mPicked->mGenerationMade == true)
+				{
+					return;
+				}
 				mAgentsICanSee[i]->mGenerationMade = true;
 			}
 		}
@@ -196,6 +199,7 @@ void BaseAgent::CheckForNewAgents()
 	mGenerationMade = true;
 	BaseAgent * newAgent = ChromosomeManager::GenerateNewAgent(this, mPicked);
 	AgentManager::Instance()->AddAgent(newAgent);
+	//Messaging::Initialize()->SendMessage("New Agent: " + newAgent->GetName());
 }
 
 void BaseAgent::DebugCircle(Vector2D centerPoint, double rad, int r, int g, int b)
@@ -222,5 +226,5 @@ void BaseAgent::DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, 
 
 void BaseAgent::IncrementAge(float dt)
 {
-	mAge = mAge + 0.016f;
+	mAge = mAge + 0.035f;
 }

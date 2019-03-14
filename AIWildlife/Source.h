@@ -22,6 +22,7 @@ public:
 	static void UpdateGame();
 	static void RenderGame();
 	static void GameLoop();
+	static void SetupMessaging();
 	static void UILoop();
 	static void LoadMapTiles();
 	static void GenerateBaseChromosome();

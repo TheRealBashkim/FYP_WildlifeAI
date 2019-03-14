@@ -18,10 +18,7 @@ BaseAgent* ChromosomeManager::GenerateNewAgent(BaseAgent* m1, BaseAgent* m2)
 	{
 		CarnivoreAgent * temp = new CarnivoreAgent(m1->GetName(),m1->GetRenderer());
 		temp->LoadTexture("Characters/Character.bmp");
-		float tempx, tempy;
-		tempx = rand() % 875;
-		tempy = rand() % 875;
-		temp->SetPosition(Vector2D(tempx, tempy));
+		temp->SetPosition(m1->GetPosition());
 		Chromosome * tempChromo = new Chromosome();
 		tempChromo->SetGene(Crossover(m1->GetChromosome()->GetGene(), m2->GetChromosome()->GetGene()));
 		temp->SetChromosome(tempChromo);
@@ -32,10 +29,7 @@ BaseAgent* ChromosomeManager::GenerateNewAgent(BaseAgent* m1, BaseAgent* m2)
 	}
 		CarnivoreAgent * temp = new CarnivoreAgent(m1->GetName(), m1->GetRenderer());
 		temp->LoadTexture("Characters/Herbivore.bmp");
-		float tempx, tempy;
-		tempx = rand() % 875;
-		tempy = rand() % 875;
-		temp->SetPosition(Vector2D(tempx, tempy));
+		temp->SetPosition(m1->GetPosition());
 		Chromosome * tempChromo = new Chromosome();
 		tempChromo->SetGene(Crossover(m1->GetChromosome()->GetGene(), m2->GetChromosome()->GetGene()));
 		temp->SetChromosome(tempChromo);
