@@ -40,7 +40,7 @@ public:
 	float GetAge() { return mAge; }
 
 	Vector2D GetCenter();
-
+	SDL_Renderer * GetRenderer() { return mRenderer; }
 	float GetFOVLength() { return mFOVLength; }
 
 	void SetMaxAge(float age) { this->mMaxAge = age; }
