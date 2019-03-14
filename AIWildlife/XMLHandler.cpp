@@ -109,30 +109,21 @@ int** XMLHandler::LoadMapFromXML(std::string path)
 
 void XMLHandler::StoreGenes(std::string path, std::vector<Chromosome*> genes)
 {
-	TiXmlDocument * mDoc;
-	TiXmlNode * root(mDoc->InsertEndChild(TiXmlElement("Genes")));
+	TiXmlDocument  mDoc;
+	TiXmlNode * Root(mDoc.InsertEndChild(TiXmlElement("Genes")));
+	
 	
 	for(int i = 0; i < genes.size(); i++)
 	{
-		TiXmlElement Gene("Gene");
-		TiXmlElement Name("Name");
-		Name.SetAttribute("Name", genes[i]->GetGene()->mName);
-		TiXmlElement Health("Health");
-		Health.SetAttribute("Health", genes[i]->GetGene()->health);
-		TiXmlElement MaxStamina("Stamina");
-		MaxStamina.SetAttribute("Stamina", genes[i]->GetGene()->maxStamina);
-		TiXmlElement MaxAge("Age");
-		MaxAge.SetAttribute("Age", genes[i]->GetGene()->maxAge);
-		TiXmlElement MaxSpeed("Speed");
-		MaxSpeed.SetAttribute("Speed", genes[i]->GetGene()->maxSpeed);
-		Gene.InsertEndChild(Name);
-		Gene.InsertEndChild(Health);
-		Gene.InsertEndChild(MaxStamina);
-		Gene.InsertEndChild(MaxAge);
-		Gene.InsertEndChild(MaxSpeed);
-		root->InsertEndChild(Gene);
+		TiXmlElement _Gene("Gene");
+		_Gene.SetAttribute("Name", genes[i]->GetGene()->mName);
+		_Gene.SetAttribute("Health", genes[i]->GetGene()->health);
+		_Gene.SetAttribute("Age", genes[i]->GetGene()->maxAge);
+		_Gene.SetAttribute("Speed", genes[i]->GetGene()->maxSpeed);
+		_Gene.SetAttribute("Stamina", genes[i]->GetGene()->maxStamina);
+		Root->InsertEndChild(_Gene);
 	}
-	mDoc->SaveFile(path);
+	mDoc.SaveFile(path);
 }
 
 std::vector<Chromosome*> XMLHandler::LoadChromosome(std::string path)

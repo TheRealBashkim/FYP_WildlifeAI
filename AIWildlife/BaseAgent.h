@@ -45,8 +45,9 @@ public:
 
 	void SetMaxAge(float age) { this->mMaxAge = age; }
 	float GetMaxAge() { return this->mMaxAge; }
-	void SetChromosome(Chromosome * Chromosome) { this->mChromosome = Chromosome; }
-	Chromosome * GetChromosome() { return this->mChromosome; }
+	void SetChromosome(Chromosome * Chromosome) { this->mChromosome = Chromosome; SetStats(); }
+	Chromosome * GetChromosome() { return this->mChromosome;  }
+	void SetStats();
 
 
 

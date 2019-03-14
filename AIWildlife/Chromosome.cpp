@@ -4,6 +4,7 @@
 
 Chromosome::Chromosome()
 {
+	mGene = new Gene();
 }
 
 

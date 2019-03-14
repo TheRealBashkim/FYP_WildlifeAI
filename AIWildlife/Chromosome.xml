@@ -1,0 +1,32 @@
+<Genes>
+    <Gene Name="Herbivore" Health="139" Age="94" Speed="224" Stamina="500" />
+    <Gene Name="Herbivore" Health="115" Age="52" Speed="345" Stamina="464" />
+    <Gene Name="Herbivore" Health="165" Age="81" Speed="342" Stamina="491" />
+    <Gene Name="Herbivore" Health="112" Age="21" Speed="253" Stamina="604" />
+    <Gene Name="Herbivore" Health="88" Age="1" Speed="195" Stamina="716" />
+    <Gene Name="Herbivore" Health="119" Age="81" Speed="212" Stamina="538" />
+    <Gene Name="Herbivore" Health="73" Age="5" Speed="211" Stamina="894" />
+    <Gene Name="Herbivore" Health="71" Age="123" Speed="311" Stamina="664" />
+    <Gene Name="Herbivore" Health="72" Age="67" Speed="157" Stamina="644" />
+    <Gene Name="Herbivore" Health="99" Age="13" Speed="278" Stamina="741" />
+    <Gene Name="Herbivore" Health="98" Age="90" Speed="206" Stamina="842" />
+    <Gene Name="Herbivore" Health="136" Age="24" Speed="205" Stamina="648" />
+    <Gene Name="Herbivore" Health="56" Age="60" Speed="301" Stamina="350" />
+    <Gene Name="Herbivore" Health="134" Age="129" Speed="254" Stamina="623" />
+    <Gene Name="Herbivore" Health="61" Age="26" Speed="308" Stamina="376" />
+    <Gene Name="Carnivore" Health="67" Age="56" Speed="338" Stamina="323" />
+    <Gene Name="Carnivore" Health="83" Age="49" Speed="315" Stamina="541" />
+    <Gene Name="Carnivore" Health="107" Age="84" Speed="306" Stamina="930" />
+    <Gene Name="Carnivore" Health="94" Age="81" Speed="272" Stamina="745" />
+    <Gene Name="Carnivore" Health="107" Age="127" Speed="112" Stamina="573" />
+    <Gene Name="Carnivore" Health="85" Age="61" Speed="267" Stamina="636" />
+    <Gene Name="Carnivore" Health="160" Age="1" Speed="350" Stamina="52" />
+    <Gene Name="Carnivore" Health="77" Age="56" Speed="291" Stamina="430" />
+    <Gene Name="Carnivore" Health="83" Age="117" Speed="283" Stamina="287" />
+    <Gene Name="Carnivore" Health="151" Age="99" Speed="388" Stamina="758" />
+    <Gene Name="Carnivore" Health="143" Age="76" Speed="168" Stamina="30" />
+    <Gene Name="Carnivore" Health="60" Age="42" Speed="159" Stamina="655" />
+    <Gene Name="Carnivore" Health="165" Age="98" Speed="241" Stamina="483" />
+    <Gene Name="Carnivore" Health="64" Age="21" Speed="320" Stamina="836" />
+    <Gene Name="Carnivore" Health="158" Age="48" Speed="284" Stamina="199" />
+</Genes>

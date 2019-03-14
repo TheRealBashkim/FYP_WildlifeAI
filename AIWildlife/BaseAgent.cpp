@@ -149,6 +149,14 @@ Vector2D BaseAgent::GetCenter()
 	return temp;
 }
 
+void BaseAgent::SetStats()
+{
+	mHealth = mChromosome->GetGene()->health;
+	mMaxAge = mChromosome->GetGene()->maxAge;
+	mMaxSpeed = mChromosome->GetGene()->maxSpeed;
+	mStamina = mChromosome->GetGene()->maxStamina;
+}
+
 void BaseAgent::DebugCircle(Vector2D centerPoint, double rad, int r, int g, int b)
 {
 	Vector2D Vec(0.0f, rad);
