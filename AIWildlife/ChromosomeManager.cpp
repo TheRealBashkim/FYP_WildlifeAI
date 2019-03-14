@@ -21,6 +21,7 @@ BaseAgent* ChromosomeManager::GenerateNewAgent(BaseAgent* m1, BaseAgent* m2)
 		temp->SetPosition(m1->GetPosition());
 		Chromosome * tempChromo = new Chromosome();
 		tempChromo->SetGene(Crossover(m1->GetChromosome()->GetGene(), m2->GetChromosome()->GetGene()));
+		tempChromo->GetGene()->mID = rand() % MaxInt;
 		temp->SetChromosome(tempChromo);
 		temp->SetStats();
 		mAgent = (BaseAgent*)temp;
@@ -32,6 +33,7 @@ BaseAgent* ChromosomeManager::GenerateNewAgent(BaseAgent* m1, BaseAgent* m2)
 		temp->SetPosition(m1->GetPosition());
 		Chromosome * tempChromo = new Chromosome();
 		tempChromo->SetGene(Crossover(m1->GetChromosome()->GetGene(), m2->GetChromosome()->GetGene()));
+		tempChromo->GetGene()->mID = rand() % MaxInt;
 		temp->SetChromosome(tempChromo);
 		temp->SetStats();
 		mAgent = (BaseAgent*)temp;

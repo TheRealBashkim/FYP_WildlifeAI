@@ -116,6 +116,7 @@ void XMLHandler::StoreGenes(std::string path, std::vector<Chromosome*> genes)
 	for(int i = 0; i < genes.size(); i++)
 	{
 		TiXmlElement _Gene("Gene");
+		_Gene.SetAttribute("ID", genes[i]->GetGene()->mID);
 		_Gene.SetAttribute("Name", genes[i]->GetGene()->mName);
 		_Gene.SetAttribute("Health", genes[i]->GetGene()->health);
 		_Gene.SetAttribute("Age", genes[i]->GetGene()->maxAge);
@@ -146,6 +147,15 @@ std::vector<Chromosome*> XMLHandler::LoadChromosome(std::string path)
 		Gene * _TempGene = new Gene();
 
 		_TempGene->mName = _Gene->Attribute("Name");
+
+		std::istringstream ssID(_Gene->Attribute("ID"));
+		float ss1ID;
+		while (ssID >> ss1ID)
+		{
+			_TempGene->mID = ss1ID;
+		}
+
+
 		std::istringstream ss(_Gene->Attribute("Health"));
 		float ss1;
 		while(ss >> ss1)
@@ -184,6 +194,7 @@ void XMLHandler::AddGene(std::string path, Gene* gene)
 	TiXmlNode * Root  = mDoc.FirstChildElement("Genes");
 	
 		TiXmlElement _Gene("Gene");
+		_Gene.SetAttribute("ID", gene->mID);
 		_Gene.SetAttribute("Name", gene->mName);
 		_Gene.SetAttribute("Health", gene->health);
 		_Gene.SetAttribute("Age", gene->maxAge);

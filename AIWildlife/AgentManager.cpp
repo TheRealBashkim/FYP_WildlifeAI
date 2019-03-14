@@ -94,6 +94,16 @@ return VisibleAgents;
 
 void AgentManager::KillAgents(int index)
 {
+	//std::vector<Chromosome*> mChromosome = XMLHandler::LoadChromosome("Chromosome.xml");
+	//for(int i = 0; i < mChromosome.size();i++)
+	//{
+	//	if(mChromosome[i]->GetGene()->mID == mAgents->at(i)->GetChromosome()->GetGene()->mID)
+	//	{
+	//		mAgents->erase(mAgents->begin() + index);
+	//		mChromosome.erase(mChromosome.begin() + i);
+	//	}
+	//}
+	//XMLHandler::StoreGenes("Chromosome.xml", mChromosome);
 	mAgents->erase(mAgents->begin() + index);
 }
 

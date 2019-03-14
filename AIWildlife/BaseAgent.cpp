@@ -168,11 +168,12 @@ void BaseAgent::CheckForNewAgents()
 		if(mNexGenerationCounter >= mNexGenerationWait)
 		{
 			mGenerationMade = false;
+			mNexGenerationCounter = 0;
 		}
 		mNexGenerationCounter++;
 		return;
 	}
-	if(mAge < 20)
+	if(mAge < 30)
 	{
 		return;
 	}
@@ -180,7 +181,7 @@ void BaseAgent::CheckForNewAgents()
 	{
 		if(mAgentsICanSee[i]->GetName() == GetName())
 		{
-			if(mAgentsICanSee[i]->GetAge() > 20)
+			if(mAgentsICanSee[i]->GetAge() > 30)
 			{
 				
 				mPicked = mAgentsICanSee[i];
@@ -189,6 +190,7 @@ void BaseAgent::CheckForNewAgents()
 					return;
 				}
 				mAgentsICanSee[i]->mGenerationMade = true;
+				break;
 			}
 		}
 	}
@@ -226,5 +228,5 @@ void BaseAgent::DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, 
 
 void BaseAgent::IncrementAge(float dt)
 {
-	mAge = mAge + 0.035f;
+	mAge = mAge + 0.016f;
 }

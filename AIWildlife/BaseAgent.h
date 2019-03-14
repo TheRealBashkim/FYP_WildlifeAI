@@ -64,7 +64,7 @@ protected:
 
 	Chromosome * mChromosome;
 
-	float mNexGenerationWait = 2000;
+	float mNexGenerationWait = 500;
 	float mNexGenerationCounter = 0;
 
 
