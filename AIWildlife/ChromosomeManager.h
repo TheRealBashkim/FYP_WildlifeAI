@@ -4,16 +4,17 @@
 #include "Structures.h"
 #include "XMLHandler.h"
 #include <vector>
+#include "BaseAgent.h"
+
 class ChromosomeManager
 {
 public:
 	ChromosomeManager();
 	~ChromosomeManager();
-	void SetChromosomeList(std::vector<Chromosome*> mChromoList) { this->mChromosomes = mChromoList; }
-	void GenerateChromosome();
+	static BaseAgent * CreateNewAgent(BaseAgent* m1, BaseAgent* m2);
 
 private:
-	std::vector<Chromosome*> mChromosomes;
+	
 	
 };
 

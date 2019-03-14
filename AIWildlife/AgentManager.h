@@ -18,6 +18,8 @@ public:
 	std::vector<BaseAgent*> * GetAgents() { return mAgents; }
 	std::vector<BaseAgent*> GetVisibleAgents(BaseAgent * Looking);
 	void AddAgent(BaseAgent * Agent) { mAgents->push_back(Agent); }
+	
+
 
 private:
 	static AgentManager * mInstance;

@@ -135,6 +135,7 @@ void Source::GenerateBaseChromosome()
 			tempy = rand() % 875;
 			temp->GetChromosome()->GenerateGene();
 			temp->GetChromosome()->GetGene()->mName = temp->GetName();
+			temp->SetStats();
 			temp->SetPosition(Vector2D(tempx, tempy));
 			mChromo.push_back(temp->GetChromosome());
 			BaseAgent * newTemp = (BaseAgent*)temp;
@@ -150,6 +151,7 @@ void Source::GenerateBaseChromosome()
 			temp->SetPosition(Vector2D(tempx, tempy));
 			temp->GetChromosome()->GenerateGene();
 			temp->GetChromosome()->GetGene()->mName = temp->GetName();
+			temp->SetStats();
 			mChromo.push_back(temp->GetChromosome());
 			BaseAgent * newTemp = (BaseAgent*)temp;
 			mAgentManager->AddAgent(newTemp);
@@ -169,6 +171,7 @@ void Source::GenerateBaseChromosome()
 				tempy = rand() % 875;
 				temp->SetChromosome(mChromo.at(i));
 				temp->SetPosition(Vector2D(tempx, tempy));
+				temp->SetStats();
 				//mChromo.push_back(temp->GetChromosome());
 				BaseAgent * newTemp = (BaseAgent*)temp;
 				mAgentManager->AddAgent(newTemp);
@@ -182,6 +185,7 @@ void Source::GenerateBaseChromosome()
 				tempy = rand() % 875;
 				temp->SetPosition(Vector2D(tempx, tempy));
 				temp->SetChromosome(mChromo.at(i));
+				temp->SetStats();
 				//mChromo.push_back(temp->GetChromosome());
 				BaseAgent * newTemp = (BaseAgent*)temp;
 				mAgentManager->AddAgent(newTemp);

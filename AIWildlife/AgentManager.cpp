@@ -24,7 +24,7 @@ void AgentManager::Update(float dt)
 	for(int i = 0; i < mAgents->size();i++)
 	{
 		// kills agent relating to old age
-		if(mAgents->at(i)->GetAge() > 99)
+		if(mAgents->at(i)->GetAge() >= mAgents->at(i)->GetMaxAge())
 		{
 			KillAgents(i);
 		}
@@ -88,6 +88,7 @@ std::vector<BaseAgent*> AgentManager::GetVisibleAgents(BaseAgent* Looking)
 
 return VisibleAgents;
 }
+
 
 
 void AgentManager::KillAgents(int index)

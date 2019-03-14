@@ -1,4 +1,5 @@
 #include "BaseAgent.h"
+#include "ChromosomeManager.h"
 
 BaseAgent::BaseAgent(SDL_Renderer* Renderer)
 {
@@ -17,10 +18,7 @@ BaseAgent::~BaseAgent()
 
 void BaseAgent::Update(float dt)
 {
-	if(mAge >= mMaxAge)
-	{
-		return;
-	}
+	
 	mAgentsICanSee = AgentManager::Instance()->GetVisibleAgents(this);
 	IncrementAge(dt);
 	if (mStamina <= 0.0f)
@@ -31,6 +29,11 @@ void BaseAgent::Update(float dt)
 	{
 		mStamina = mStamina - 0.01f;
 	}
+
+	
+
+
+
 	const Vector2D acceleration = mForce / 1.0f;
 	mVelocity += acceleration * dt;
 	mVelocity.Truncate(mMaxSpeed);
@@ -155,6 +158,39 @@ void BaseAgent::SetStats()
 	mMaxAge = mChromosome->GetGene()->maxAge;
 	mMaxSpeed = mChromosome->GetGene()->maxSpeed;
 	mStamina = mChromosome->GetGene()->maxStamina;
+}
+
+void BaseAgent::CheckForNewAgents()
+{
+
+	BaseAgent * mPicked;
+
+	if(mGenerationMade == true)
+	{
+		if(mNexGenerationCounter >= mNexGenerationWait)
+		{
+			mGenerationMade = false;
+		}
+		mNexGenerationCounter++;
+		return;
+	}
+	if(mAge < 20)
+	{
+		return;
+	}
+	for(int i = 0; i < mAgentsICanSee.size();i++)
+	{
+		if(mAgentsICanSee[i]->GetName() == GetName())
+		{
+			if(mAgentsICanSee[i]->GetAge() > 20)
+			{
+				mPicked = mAgentsICanSee[i];
+			}
+		}
+	}
+		
+
+
 }
 
 void BaseAgent::DebugCircle(Vector2D centerPoint, double rad, int r, int g, int b)

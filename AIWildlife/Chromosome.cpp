@@ -20,6 +20,6 @@ void Chromosome::GenerateGene()
 	mGene->maxStamina = RandStamina;
 	float RandHealth = rand() % 120 + 50;
 	mGene->health = RandHealth;
-	float RandMaxSpeed = rand() % 300 + 100;
+	float RandMaxSpeed = rand() % 100 + 25;
 	mGene->maxSpeed = RandMaxSpeed;
 }

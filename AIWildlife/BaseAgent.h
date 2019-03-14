@@ -45,7 +45,7 @@ public:
 
 	void SetMaxAge(float age) { this->mMaxAge = age; }
 	float GetMaxAge() { return this->mMaxAge; }
-	void SetChromosome(Chromosome * Chromosome) { this->mChromosome = Chromosome; SetStats(); }
+	void SetChromosome(Chromosome * Chromosome) { this->mChromosome = Chromosome;}
 	Chromosome * GetChromosome() { return this->mChromosome;  }
 	void SetStats();
 
@@ -62,6 +62,14 @@ protected:
 	float mStamina = 1000.0f;
 
 	Chromosome * mChromosome;
+
+	float mNexGenerationWait = 2000;
+	float mNexGenerationCounter = 0;
+	bool mGenerationMade = false;
+
+
+	void CheckForNewAgents();
+
 
 
 
