@@ -41,6 +41,7 @@ private:
 	Messaging ^ mMessage;
 	static StatWindow ^ mStatWindow;
 	Thread^ StatThread;
+	static BaseAgent * mStatAgent = nullptr;
 
 };
 

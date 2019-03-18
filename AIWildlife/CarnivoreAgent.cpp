@@ -22,6 +22,7 @@ void CarnivoreAgent::Update(float dt)
 		counter = 0;
 	}
 	mForce += WallAvoidance();
+	
 	BaseAgent::Update(dt);
 }
 

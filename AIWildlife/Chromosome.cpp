@@ -22,4 +22,22 @@ void Chromosome::GenerateGene()
 	mGene->health = RandHealth;
 	float RandMaxSpeed = rand() % 100 + 25;
 	mGene->maxSpeed = RandMaxSpeed;
+	int GenderRand = rand() % 100;
+	if(GenderRand >= 50)
+	{
+		mGene->mGender = "Male";
+	}
+	else
+	{
+		mGene->mGender = "Female";
+	}
+	//switch (GenderRand)
+	//{
+	//case 0:
+	//	mGene->mGender = "Male";
+	//	break;
+	//case 1:
+	//	mGene->mGender = "Female";
+	//	break;
+	//}
 }

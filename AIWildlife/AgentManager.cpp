@@ -45,17 +45,17 @@ void AgentManager::Draw()
 	}
 }
 
-int AgentManager::CheckMousePolling(Vector2D mousepos)
+BaseAgent * AgentManager::CheckMousePolling(Vector2D mousepos)
 {
-	int id = 500;
+	//int id = MaxInt;
 	for (int i = 0; i < mAgents->size(); i++)
 	{
 		if (PointInBoxCollision(mousepos, mAgents->at(i)->GetPosition(), mAgents->at(i)->GetWidth(), mAgents->at(i)->GetHeight()))
 		{
-			id = i;
+			return mAgents->at(i);
 		}
 	}
-	return id;
+	return nullptr;
 
 }
 

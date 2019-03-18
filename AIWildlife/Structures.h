@@ -8,6 +8,8 @@ struct Gene
 	float maxAge;
 	float maxStamina;
 	float maxSpeed;
+	std::string mGender;
+	
 };
 
 

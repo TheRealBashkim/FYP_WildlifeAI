@@ -122,6 +122,7 @@ void XMLHandler::StoreGenes(std::string path, std::vector<Chromosome*> genes)
 		_Gene.SetAttribute("Age", genes[i]->GetGene()->maxAge);
 		_Gene.SetAttribute("Speed", genes[i]->GetGene()->maxSpeed);
 		_Gene.SetAttribute("Stamina", genes[i]->GetGene()->maxStamina);
+		_Gene.SetAttribute("Gender", genes[i]->GetGene()->mGender);
 		Root->InsertEndChild(_Gene);
 	}
 	mDoc.SaveFile(path);
@@ -180,6 +181,9 @@ std::vector<Chromosome*> XMLHandler::LoadChromosome(std::string path)
 		{
 			_TempGene->maxStamina = ss1Stamina;
 		}
+
+		_TempGene->mGender = _Gene->Attribute("Gender");
+
 		Chromosome * Temp = new Chromosome();
 		Temp->SetGene(_TempGene);
 		Chromosomes.push_back(Temp);
@@ -200,6 +204,7 @@ void XMLHandler::AddGene(std::string path, Gene* gene)
 		_Gene.SetAttribute("Age", gene->maxAge);
 		_Gene.SetAttribute("Speed", gene->maxSpeed);
 		_Gene.SetAttribute("Stamina", gene->maxStamina);
+		_Gene.SetAttribute("Gender", gene->mGender);
 		Root->InsertEndChild(_Gene);
 	mDoc.SaveFile(path);
 

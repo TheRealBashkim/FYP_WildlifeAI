@@ -14,7 +14,7 @@ public:
 	void SetRenderer(SDL_Renderer * Renderer);
 	void Update(float dt);
 	void Draw();
-	int CheckMousePolling(Vector2D mousepos);
+	BaseAgent * CheckMousePolling(Vector2D mousepos);
 	std::vector<BaseAgent*> * GetAgents() { return mAgents; }
 	std::vector<BaseAgent*> GetVisibleAgents(BaseAgent * Looking);
 	void AddAgent(BaseAgent * Agent) { mAgents->push_back(Agent); }

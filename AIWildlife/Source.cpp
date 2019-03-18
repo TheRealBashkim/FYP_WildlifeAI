@@ -93,7 +93,7 @@ void Source::SetupMessaging()
 
 void Source::UILoop()
 {
-	int id = 500;
+	
 	while(true)
 	{
 		SDL_Event e;
@@ -104,17 +104,14 @@ void Source::UILoop()
 				int x, y;
 				SDL_GetMouseState(&x, &y);
 				Vector2D Mouse(x, y);
-				id = mAgentManager->CheckMousePolling(Mouse);
+				mStatAgent = mAgentManager->CheckMousePolling(Mouse);
 			}
 		}
-		if(id > mAgentManager->GetAgents()->size())
+		if(mStatAgent != nullptr)
 		{
-		
-		}
-		else
-		{
-			mAgentManager->GetAgents()->at(id)->SetSelected(true);
-			mStatWindow->SetAgent(mAgentManager->GetAgents()->at(id));
+			//mAgentManager->GetAgents()->at(selectedID)->SetSelected(true);
+			mStatAgent->SetSelected(true);
+			mStatWindow->SetAgent(mStatAgent);
 		}
 	}
 }

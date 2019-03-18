@@ -21,6 +21,10 @@ public:
 
 	void LoadTexture(std::string path);
 
+	
+
+
+
 	Vector2D GetPosition() { return mPosition; }
 	float GetWidth() { return mTexture->GetWidth(); }
 	float GetHeight() { return mTexture->GetHeight(); }
