@@ -90,6 +90,33 @@ std::vector<BaseAgent*> AgentManager::GetVisibleAgents(BaseAgent* Looking)
 return VisibleAgents;
 }
 
+void AgentManager::CheckForChildGenerationCollision()
+{
+	for(int i = 0; i < mAgents->size();i++)
+	{
+		for(int j = 0; mAgents->size();i++)
+		{
+			if (mAgents->at(i)->GetChromosome()->GetGene()->mID == mAgents->at(j)->GetChromosome()->GetGene()->mID)
+			{
+				continue;
+			}
+			if(BoxToBox(mAgents->at(i)->GetPosition(), mAgents->at(i)->GetWidth(), mAgents->at(i)->GetHeight(),mAgents->at(j)->GetPosition(), mAgents->at(j)->GetWidth(), mAgents->at(i)->GetHeight()))
+			{
+				if(mAgents->at(i)->GetName() == mAgents->at(j)->GetName())
+				{
+					if(mAgents->at(i)->GetChromosome()->GetGene()->mGender == "Male" && mAgents->at(j)->GetChromosome()->GetGene()->mGender == "Female"
+					|| mAgents->at(i)->GetChromosome()->GetGene()->mGender == "Female" && mAgents->at(j)->GetChromosome()->GetGene()->mGender == "Male")
+					{
+						
+					}
+				}
+
+			}
+		}
+	}
+
+
+}
 
 
 void AgentManager::KillAgents(int index)
