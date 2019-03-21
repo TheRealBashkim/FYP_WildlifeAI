@@ -19,6 +19,7 @@ public:
 	std::vector<BaseAgent*> GetVisibleAgents(BaseAgent * Looking);
 	void AddAgent(BaseAgent * Agent) { mAgents->push_back(Agent); }
 	void CheckForChildGenerationCollision();
+	void SavePeriodically();
 	
 
 
@@ -29,6 +30,7 @@ private:
 	void KillAgents(int index);
 	AgentManager();
 	~AgentManager();
+	float mPeriodWait = 0;
 
 
 };

@@ -161,7 +161,7 @@ void Source::GenerateBaseChromosome()
 			BaseAgent * newTemp = (BaseAgent*)temp;
 			mAgentManager->AddAgent(newTemp);
 		}
-		XMLHandler::StoreGenes("Chromosome.xml",mChromo);
+		XMLHandler::StoreGenes(mChromo);
 	}
 	else
 	{

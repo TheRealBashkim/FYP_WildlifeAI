@@ -25,7 +25,7 @@ BaseAgent* ChromosomeManager::GenerateNewAgent(BaseAgent* m1, BaseAgent* m2)
 		temp->SetChromosome(tempChromo);
 		temp->SetStats();
 		mAgent = (BaseAgent*)temp;
-		XMLHandler::AddGene("Chromosome.xml", tempChromo->GetGene());
+		//XMLHandler::AddGene("Chromosome.xml", tempChromo->GetGene());
 		return mAgent;
 	}
 		CarnivoreAgent * temp = new CarnivoreAgent(m1->GetName(), m1->GetRenderer());
@@ -37,7 +37,7 @@ BaseAgent* ChromosomeManager::GenerateNewAgent(BaseAgent* m1, BaseAgent* m2)
 		temp->SetChromosome(tempChromo);
 		temp->SetStats();
 		mAgent = (BaseAgent*)temp;
-		XMLHandler::AddGene("Chromosome.xml", tempChromo->GetGene());
+		//XMLHandler::AddGene("Chromosome.xml", tempChromo->GetGene());
 		return mAgent;
 }
 

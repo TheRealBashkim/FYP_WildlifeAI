@@ -107,12 +107,11 @@ int** XMLHandler::LoadMapFromXML(std::string path)
 
 }
 
-void XMLHandler::StoreGenes(std::string path, std::vector<Chromosome*> genes)
+void XMLHandler::StoreGenes(std::vector<Chromosome*> genes)
 {
 	TiXmlDocument  mDoc;
 	TiXmlNode * Root(mDoc.InsertEndChild(TiXmlElement("Genes")));
-	
-	
+
 	for(int i = 0; i < genes.size(); i++)
 	{
 		TiXmlElement _Gene("Gene");
@@ -125,7 +124,14 @@ void XMLHandler::StoreGenes(std::string path, std::vector<Chromosome*> genes)
 		_Gene.SetAttribute("Gender", genes[i]->GetGene()->mGender);
 		Root->InsertEndChild(_Gene);
 	}
-	mDoc.SaveFile(path);
+	mDoc.SaveFile("TempChromosome.xml");
+	std::string FileName = "Chromosome.xml";
+	if (remove(FileName.c_str()) != 0)
+	{
+		
+	}
+	rename("TempChromosome.xml", FileName.c_str());  
+
 }
 
 std::vector<Chromosome*> XMLHandler::LoadChromosome(std::string path)

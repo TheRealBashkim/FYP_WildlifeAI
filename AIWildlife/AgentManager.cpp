@@ -22,10 +22,11 @@ void AgentManager::SetRenderer(SDL_Renderer* Renderer)
 void AgentManager::Update(float dt)
 {
 	
+	SavePeriodically();
 	for(int i = 0; i < mAgents->size();i++)
 	{
 		// kills agent relating to old age
-		if(mAgents->at(i)->GetAge() >= mAgents->at(i)->GetMaxAge())
+		if(mAgents->at(i)->GetAge() >= mAgents->at(i)->GetMaxAge() || mAgents->at(i)->GetStamina() <= 0)
 		{
 			KillAgents(i);
 		}
@@ -116,6 +117,22 @@ void AgentManager::CheckForChildGenerationCollision()
 	}
 
 
+}
+
+void AgentManager::SavePeriodically()
+{
+	if (mPeriodWait >= 2000)
+	{
+		std::vector<Chromosome*>* tempchromos = new std::vector<Chromosome*>();
+		for (int i = 0; i < mAgents->size();i++)
+		{
+			tempchromos->push_back(mAgents->at(i)->GetChromosome());
+		}
+		XMLHandler::StoreGenes(*tempchromos);
+		mPeriodWait = 0;
+		return;
+	}
+	mPeriodWait++;
 }
 
 

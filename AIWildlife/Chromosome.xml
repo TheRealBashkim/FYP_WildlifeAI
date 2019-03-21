@@ -1,59 +1,53 @@
 <Genes>
     <Gene ID="29358" Name="Herbivore" Health="139" Age="94" Speed="49" Stamina="500" Gender="Male" />
     <Gene ID="491" Name="Herbivore" Health="51" Age="115" Speed="52" Stamina="145" Gender="Male" />
-    <Gene ID="153" Name="Herbivore" Health="161" Age="17" Speed="29" Stamina="436" Gender="Female" />
-    <Gene ID="21726" Name="Herbivore" Health="88" Age="1" Speed="120" Stamina="716" Gender="Female" />
-    <Gene ID="9894" Name="Herbivore" Health="157" Age="49" Speed="124" Stamina="912" Gender="Female" />
     <Gene ID="7711" Name="Herbivore" Health="83" Age="122" Speed="89" Stamina="333" Gender="Female" />
     <Gene ID="12859" Name="Herbivore" Health="72" Age="67" Speed="82" Stamina="644" Gender="Female" />
     <Gene ID="1842" Name="Herbivore" Health="126" Age="99" Speed="60" Stamina="778" Gender="Male" />
     <Gene ID="23805" Name="Herbivore" Health="114" Age="70" Speed="73" Stamina="942" Gender="Female" />
-    <Gene ID="3548" Name="Herbivore" Health="56" Age="60" Speed="26" Stamina="350" Gender="Male" />
-    <Gene ID="7376" Name="Herbivore" Health="86" Age="34" Speed="65" Stamina="954" Gender="Male" />
-    <Gene ID="21538" Name="Herbivore" Health="76" Age="44" Speed="48" Stamina="439" Gender="Female" />
-    <Gene ID="29658" Name="Herbivore" Health="83" Age="49" Speed="40" Stamina="541" Gender="Female" />
     <Gene ID="28745" Name="Herbivore" Health="163" Age="67" Speed="111" Stamina="306" Gender="Female" />
-    <Gene ID="16512" Name="Herbivore" Health="67" Age="30" Speed="98" Stamina="829" Gender="Male" />
-    <Gene ID="15574" Name="Carnivore" Health="85" Age="61" Speed="92" Stamina="636" Gender="Male" />
-    <Gene ID="3430" Name="Carnivore" Health="71" Age="50" Speed="49" Stamina="150" Gender="Male" />
     <Gene ID="10383" Name="Carnivore" Health="147" Age="67" Speed="112" Stamina="337" Gender="Male" />
     <Gene ID="24946" Name="Carnivore" Health="151" Age="99" Speed="113" Stamina="758" Gender="Female" />
-    <Gene ID="1655" Name="Carnivore" Health="110" Age="33" Speed="116" Stamina="168" Gender="Male" />
     <Gene ID="4041" Name="Carnivore" Health="118" Age="64" Speed="108" Stamina="537" Gender="Male" />
-    <Gene ID="24021" Name="Carnivore" Health="64" Age="21" Speed="45" Stamina="836" Gender="Male" />
-    <Gene ID="1999" Name="Carnivore" Health="51" Age="38" Speed="59" Stamina="484" Gender="Male" />
-    <Gene ID="14893" Name="Carnivore" Health="57" Age="10" Speed="92" Stamina="788" Gender="Female" />
     <Gene ID="9514" Name="Carnivore" Health="80" Age="127" Speed="42" Stamina="421" Gender="Female" />
     <Gene ID="31556" Name="Carnivore" Health="130" Age="85" Speed="74" Stamina="451" Gender="Female" />
-    <Gene ID="32702" Name="Carnivore" Health="134" Age="114" Speed="34" Stamina="8" Gender="Male" />
     <Gene ID="9503" Name="Carnivore" Health="93" Age="103" Speed="112" Stamina="343" Gender="Female" />
     <Gene ID="15281" Name="Carnivore" Health="110" Age="68" Speed="121" Stamina="618" Gender="Male" />
-    <Gene ID="12292" Name="Carnivore" Health="122" Age="59" Speed="47" Stamina="157" Gender="Female" />
-    <Gene ID="20007" Name="Herbivore" Health="163" Age="67" Speed="73" Stamina="942" Gender="" />
-    <Gene ID="2479" Name="Carnivore" Health="130" Age="85" Speed="116" Stamina="168" Gender="" />
-    <Gene ID="6985" Name="Carnivore" Health="71" Age="114" Speed="34" Stamina="8" Gender="" />
-    <Gene ID="7272" Name="Carnivore" Health="85" Age="61" Speed="92" Stamina="758" Gender="" />
-    <Gene ID="10701" Name="Carnivore" Health="51" Age="38" Speed="42" Stamina="421" Gender="" />
-    <Gene ID="4233" Name="Herbivore" Health="83" Age="122" Speed="89" Stamina="350" Gender="" />
-    <Gene ID="15240" Name="Carnivore" Health="93" Age="103" Speed="112" Stamina="337" Gender="" />
-    <Gene ID="29215" Name="Herbivore" Health="72" Age="49" Speed="82" Stamina="541" Gender="" />
-    <Gene ID="29547" Name="Herbivore" Health="157" Age="44" Speed="48" Stamina="439" Gender="" />
-    <Gene ID="26601" Name="Carnivore" Health="71" Age="59" Speed="47" Stamina="157" Gender="" />
-    <Gene ID="22837" Name="Carnivore" Health="151" Age="127" Speed="42" Stamina="421" Gender="" />
-    <Gene ID="16334" Name="Herbivore" Health="163" Age="115" Speed="111" Stamina="145" Gender="" />
-    <Gene ID="14583" Name="Carnivore" Health="93" Age="103" Speed="112" Stamina="337" Gender="" />
-    <Gene ID="21111" Name="Carnivore" Health="118" Age="64" Speed="92" Stamina="636" Gender="" />
-    <Gene ID="31293" Name="Herbivore" Health="114" Age="60" Speed="73" Stamina="350" Gender="" />
-    <Gene ID="17018" Name="Herbivore" Health="157" Age="67" Speed="82" Stamina="644" Gender="" />
-    <Gene ID="20627" Name="Carnivore" Health="71" Age="59" Speed="49" Stamina="157" Gender="" />
-    <Gene ID="19633" Name="Herbivore" Health="83" Age="115" Speed="52" Stamina="145" Gender="" />
-    <Gene ID="17517" Name="Carnivore" Health="151" Age="61" Speed="92" Stamina="636" Gender="" />
-    <Gene ID="21540" Name="Carnivore" Health="118" Age="67" Speed="112" Stamina="337" Gender="" />
-    <Gene ID="14092" Name="Herbivore" Health="83" Age="115" Speed="52" Stamina="145" Gender="" />
-    <Gene ID="17492" Name="Herbivore" Health="163" Age="94" Speed="111" Stamina="500" Gender="" />
-    <Gene ID="16148" Name="Herbivore" Health="163" Age="67" Speed="73" Stamina="942" Gender="" />
-    <Gene ID="5368" Name="Carnivore" Health="85" Age="61" Speed="112" Stamina="343" Gender="" />
-    <Gene ID="12272" Name="Herbivore" Health="72" Age="122" Speed="89" Stamina="333" Gender="" />
-    <Gene ID="31337" Name="Carnivore" Health="118" Age="38" Speed="42" Stamina="421" Gender="" />
-    <Gene ID="31458" Name="Herbivore" Health="86" Age="115" Speed="65" Stamina="145" Gender="" />
+    <Gene ID="21812" Name="Herbivore" Health="139" Age="115" Speed="49" Stamina="145" Gender="" />
+    <Gene ID="25529" Name="Herbivore" Health="163" Age="67" Speed="111" Stamina="954" Gender="" />
+    <Gene ID="3359" Name="Herbivore" Health="67" Age="60" Speed="98" Stamina="350" Gender="" />
+    <Gene ID="10020" Name="Carnivore" Health="118" Age="67" Speed="112" Stamina="337" Gender="" />
+    <Gene ID="28003" Name="Carnivore" Health="122" Age="59" Speed="74" Stamina="451" Gender="" />
+    <Gene ID="31317" Name="Carnivore" Health="71" Age="127" Speed="42" Stamina="421" Gender="" />
+    <Gene ID="31788" Name="Carnivore" Health="110" Age="61" Speed="116" Stamina="636" Gender="" />
+    <Gene ID="8959" Name="Carnivore" Health="51" Age="38" Speed="113" Stamina="758" Gender="" />
+    <Gene ID="9084" Name="Herbivore" Health="83" Age="44" Speed="48" Stamina="439" Gender="" />
+    <Gene ID="7300" Name="Carnivore" Health="93" Age="68" Speed="112" Stamina="618" Gender="" />
+    <Gene ID="22324" Name="Herbivore" Health="72" Age="67" Speed="82" Stamina="942" Gender="" />
+    <Gene ID="5934" Name="Herbivore" Health="83" Age="99" Speed="89" Stamina="778" Gender="" />
+    <Gene ID="8320" Name="Carnivore" Health="130" Age="127" Speed="74" Stamina="421" Gender="" />
+    <Gene ID="27576" Name="Carnivore" Health="122" Age="61" Speed="92" Stamina="636" Gender="" />
+    <Gene ID="19032" Name="Herbivore" Health="56" Age="115" Speed="52" Stamina="145" Gender="" />
+    <Gene ID="10035" Name="Herbivore" Health="83" Age="49" Speed="40" Stamina="439" Gender="" />
+    <Gene ID="9037" Name="Carnivore" Health="151" Age="103" Speed="113" Stamina="343" Gender="" />
+    <Gene ID="15156" Name="Carnivore" Health="71" Age="50" Speed="49" Stamina="337" Gender="" />
+    <Gene ID="22893" Name="Herbivore" Health="157" Age="122" Speed="124" Stamina="333" Gender="" />
+    <Gene ID="17396" Name="Herbivore" Health="139" Age="99" Speed="49" Stamina="778" Gender="" />
+    <Gene ID="17140" Name="Herbivore" Health="114" Age="70" Speed="111" Stamina="306" Gender="" />
+    <Gene ID="19348" Name="Carnivore" Health="80" Age="85" Speed="42" Stamina="451" Gender="" />
+    <Gene ID="4056" Name="Herbivore" Health="51" Age="67" Speed="82" Stamina="644" Gender="" />
+    <Gene ID="12291" Name="Herbivore" Health="56" Age="60" Speed="26" Stamina="541" Gender="" />
+    <Gene ID="10512" Name="Herbivore" Health="126" Age="94" Speed="60" Stamina="500" Gender="" />
+    <Gene ID="5314" Name="Carnivore" Health="93" Age="67" Speed="112" Stamina="337" Gender="" />
+    <Gene ID="20423" Name="Carnivore" Health="151" Age="99" Speed="108" Stamina="537" Gender="" />
+    <Gene ID="10929" Name="Carnivore" Health="122" Age="68" Speed="121" Stamina="618" Gender="" />
+    <Gene ID="24109" Name="Herbivore" Health="83" Age="122" Speed="26" Stamina="350" Gender="" />
+    <Gene ID="28035" Name="Herbivore" Health="114" Age="67" Speed="82" Stamina="644" Gender="" />
+    <Gene ID="9657" Name="Herbivore" Health="51" Age="115" Speed="111" Stamina="306" Gender="" />
+    <Gene ID="15537" Name="Carnivore" Health="130" Age="59" Speed="74" Stamina="451" Gender="" />
+    <Gene ID="221" Name="Herbivore" Health="139" Age="115" Speed="49" Stamina="145" Gender="" />
+    <Gene ID="8731" Name="Carnivore" Health="71" Age="127" Speed="42" Stamina="337" Gender="" />
+    <Gene ID="28236" Name="Herbivore" Health="67" Age="60" Speed="98" Stamina="778" Gender="" />
+    <Gene ID="1782" Name="Carnivore" Health="93" Age="61" Speed="116" Stamina="636" Gender="" />
+    <Gene ID="30416" Name="Carnivore" Health="80" Age="127" Speed="113" Stamina="758" Gender="" />
 </Genes>
