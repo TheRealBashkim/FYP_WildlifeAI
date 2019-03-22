@@ -14,9 +14,10 @@ public:
 	static BaseAgent * GenerateNewAgent(BaseAgent * m1, BaseAgent * m2);
 	static Gene * Crossover(Gene* parent1, Gene*parent2);
 	
+	
 
 private:
-
+	static Gene * Mutation(Gene * tempCrossoverGene);
 	
 };
 

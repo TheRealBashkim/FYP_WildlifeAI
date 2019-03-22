@@ -45,41 +45,86 @@ Gene* ChromosomeManager::Crossover(Gene* parent1, Gene* parent2)
 {
 	Gene * temp = new Gene();
 	temp->mName = parent1->mName;
-	int splitamount = rand() % 5 + 1;
-	switch (splitamount)
+	/**
+	Health*/
+	int randHealth = rand() % 100;
+	if (randHealth >= 50)
 	{
-	case 1:
-		temp->health = parent1->health;
-		temp->maxAge = parent1->maxAge;
-		temp->maxSpeed = parent1->maxSpeed;
-		temp->maxStamina = parent2->maxStamina;
-		break;
-	case 2:
-		temp->health = parent1->health;
-		temp->maxAge = parent1->maxAge;
-		temp->maxSpeed = parent2->maxSpeed;
-		temp->maxStamina = parent2->maxStamina;
-		break;
-
-	case 3:
-		temp->health = parent1->health;
-		temp->maxAge = parent2->maxAge;
-		temp->maxSpeed = parent2->maxSpeed;
-		temp->maxStamina = parent2->maxStamina;
-		break;
-
-	case 4:
-		temp->health = parent1->health;
-		temp->maxAge = parent2->maxAge;
-		temp->maxSpeed = parent1->maxSpeed;
-		temp->maxStamina = parent2->maxStamina;
-		break;
-	case 5:
 		temp->health = parent2->health;
-		temp->maxAge = parent1->maxAge;
-		temp->maxSpeed = parent2->maxSpeed;
-		temp->maxStamina = parent1->maxStamina;
-		break;
 	}
-	return temp;
+	else
+	{
+		temp->health = parent1->health;
+	}
+	/**
+	Age*/
+	int randAge = rand() % 100;
+	if (randAge >= 50)
+	{
+		temp->maxAge = parent2->maxAge;
+	}
+	else
+	{
+		temp->maxAge = parent1->maxAge;
+	}
+	/**
+	Stamina*/
+	int randStamina = rand() % 100;
+	if (randStamina >= 50)
+	{
+		temp->maxStamina = parent2->maxStamina;
+	}
+	else
+	{
+		temp->maxStamina = parent1->maxStamina;
+	}
+	/**
+	Speed*/
+	int randSpeed = rand() % 100;
+	if (randSpeed >= 50)
+	{
+		temp->maxSpeed = parent2->maxSpeed;
+	}
+	else
+	{
+		temp->maxSpeed = parent1->maxSpeed;
+	}
+	/**Gender
+	*/
+	int randGender = rand() % 100;
+	if (randGender >= 50)
+	{
+		temp->mGender = parent2->mGender;
+	}
+	else
+	{
+		temp->mGender = parent1->mGender;
+	}
+
+	return Mutation(temp);
+
+	//return temp;
+}
+
+Gene * ChromosomeManager::Mutation(Gene * tempCrossoverGene)
+{
+	// need to look up the rate of mutation to back up the rate of mutation
+
+	if (rand() % 100 > 85)
+	{
+		tempCrossoverGene->health = rand() % 100 + 50;
+	}
+	if (rand() % 100 > 85)
+	{
+		tempCrossoverGene->maxAge = rand() % 130;
+	}
+	if (rand() % 100 > 85)
+	{
+		tempCrossoverGene->maxSpeed = rand() % 100 + 25;
+	}
+	if (rand() % 100 > 85)
+	{
+		tempCrossoverGene->maxStamina = rand() % 1000;
+	}
+	return tempCrossoverGene;
 }

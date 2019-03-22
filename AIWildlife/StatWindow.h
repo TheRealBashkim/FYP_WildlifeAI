@@ -11,7 +11,7 @@ public ref class StatWindow
 public:
 	static StatWindow  ^ Initialize();
 	void SetAgent(BaseAgent * Agent);
-	void SetButtons(Label ^ Name, Label ^ X, Label ^ Y,Label ^ Stamina,Label ^ mHealth, Label ^ Age);
+	void SetButtons(Label ^ Name, Label ^ X, Label ^ Y,Label ^ Stamina,Label ^ mHealth, Label ^ Age,Label ^ Gender);
 	
 
 private:
@@ -24,6 +24,7 @@ private:
 	Label ^ mStamina;
 	Label ^ mHealth;
 	Label ^ mAge;
+	Label ^ mGender;
 
 	
 

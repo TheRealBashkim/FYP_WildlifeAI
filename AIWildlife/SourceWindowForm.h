@@ -55,6 +55,8 @@ namespace AIWildlife {
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  ageBox;
 	private: System::Windows::Forms::Label^  Age;
+	private: System::Windows::Forms::Label^  GenderBox;
+	private: System::Windows::Forms::Label^  Gender;
 
 
 	protected:
@@ -76,6 +78,10 @@ namespace AIWildlife {
 			this->ConsoleWindow = (gcnew System::Windows::Forms::RichTextBox());
 			this->Console = (gcnew System::Windows::Forms::Label());
 			this->StatBox = (gcnew System::Windows::Forms::GroupBox());
+			this->GenderBox = (gcnew System::Windows::Forms::Label());
+			this->Gender = (gcnew System::Windows::Forms::Label());
+			this->ageBox = (gcnew System::Windows::Forms::Label());
+			this->Age = (gcnew System::Windows::Forms::Label());
 			this->healthSize = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->staminaSize = (gcnew System::Windows::Forms::Label());
@@ -86,8 +92,6 @@ namespace AIWildlife {
 			this->x = (gcnew System::Windows::Forms::Label());
 			this->NameL = (gcnew System::Windows::Forms::Label());
 			this->groupLabel = (gcnew System::Windows::Forms::Label());
-			this->ageBox = (gcnew System::Windows::Forms::Label());
-			this->Age = (gcnew System::Windows::Forms::Label());
 			this->StatBox->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -122,6 +126,8 @@ namespace AIWildlife {
 			// 
 			// StatBox
 			// 
+			this->StatBox->Controls->Add(this->GenderBox);
+			this->StatBox->Controls->Add(this->Gender);
 			this->StatBox->Controls->Add(this->ageBox);
 			this->StatBox->Controls->Add(this->Age);
 			this->StatBox->Controls->Add(this->healthSize);
@@ -140,6 +146,40 @@ namespace AIWildlife {
 			this->StatBox->TabIndex = 3;
 			this->StatBox->TabStop = false;
 			this->StatBox->Enter += gcnew System::EventHandler(this, &SourceWindowForm::StatBox_Enter);
+			// 
+			// GenderBox
+			// 
+			this->GenderBox->AutoSize = true;
+			this->GenderBox->Location = System::Drawing::Point(68, 208);
+			this->GenderBox->Name = L"GenderBox";
+			this->GenderBox->Size = System::Drawing::Size(0, 13);
+			this->GenderBox->TabIndex = 13;
+			// 
+			// Gender
+			// 
+			this->Gender->AutoSize = true;
+			this->Gender->Location = System::Drawing::Point(10, 208);
+			this->Gender->Name = L"Gender";
+			this->Gender->Size = System::Drawing::Size(42, 13);
+			this->Gender->TabIndex = 12;
+			this->Gender->Text = L"Gender";
+			// 
+			// ageBox
+			// 
+			this->ageBox->AutoSize = true;
+			this->ageBox->Location = System::Drawing::Point(68, 179);
+			this->ageBox->Name = L"ageBox";
+			this->ageBox->Size = System::Drawing::Size(0, 13);
+			this->ageBox->TabIndex = 11;
+			// 
+			// Age
+			// 
+			this->Age->AutoSize = true;
+			this->Age->Location = System::Drawing::Point(10, 179);
+			this->Age->Name = L"Age";
+			this->Age->Size = System::Drawing::Size(26, 13);
+			this->Age->TabIndex = 10;
+			this->Age->Text = L"Age";
 			// 
 			// healthSize
 			// 
@@ -226,23 +266,6 @@ namespace AIWildlife {
 			this->groupLabel->TabIndex = 0;
 			this->groupLabel->Text = L"Name";
 			// 
-			// ageBox
-			// 
-			this->ageBox->AutoSize = true;
-			this->ageBox->Location = System::Drawing::Point(68, 179);
-			this->ageBox->Name = L"ageBox";
-			this->ageBox->Size = System::Drawing::Size(0, 13);
-			this->ageBox->TabIndex = 11;
-			// 
-			// Age
-			// 
-			this->Age->AutoSize = true;
-			this->Age->Location = System::Drawing::Point(10, 179);
-			this->Age->Name = L"Age";
-			this->Age->Size = System::Drawing::Size(26, 13);
-			this->Age->TabIndex = 10;
-			this->Age->Text = L"Age";
-			// 
 			// SourceWindowForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -270,7 +293,7 @@ namespace AIWildlife {
 		mMessaging = Messaging::Initialize();
 		mStatWindow = StatWindow::Initialize();
 		mMessaging->SetMessageBox(ConsoleWindow);
-		mStatWindow->SetButtons(NameL, xSize, ySize,staminaSize,healthSize,ageBox);
+		mStatWindow->SetButtons(NameL, xSize, ySize,staminaSize,healthSize,ageBox,GenderBox);
 
 		int handler = (int)SDLWindow->Handle.ToPointer();
 		Source ^ _Source = gcnew Source(handler);

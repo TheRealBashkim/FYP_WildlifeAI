@@ -93,19 +93,19 @@ Vector2D CarnivoreAgent::WallAvoidance()
 {
 	Vector2D mHeadingPoint = mPosition;
 	Vector2D OppositeForce;
-	if (mHeadingPoint.x < 0)
+	if (mHeadingPoint.x < mWidth)
 	{
 		OppositeForce.x = mForce.GetReverse().x + 300;
 	}
-	else if (mHeadingPoint.x > 840)
+	else if (mHeadingPoint.x > 840 - mWidth)
 	{
 		OppositeForce.x = mForce.GetReverse().x - 300;
 	}
-	if (mHeadingPoint.y < 0)
+	if (mHeadingPoint.y < mWidth)
 	{
 		OppositeForce.y = mForce.GetReverse().y + 300;
 	}
-	else if (mHeadingPoint.y > 840)
+	else if (mHeadingPoint.y > 840 - mHeight)
 	{
 		OppositeForce.y = mForce.GetReverse().y - 300;
 	}
