@@ -53,13 +53,14 @@ public:
 	Chromosome * GetChromosome() { return this->mChromosome;  }
 	void SetStats();
 	bool mGenerationMade = false;
-
+	std::vector<BaseAgent*> GetAgentsICanSee() { return mAgentsICanSee; }
 
 
 
 
 protected:
 
+	std::vector<BaseAgent*> mAgentsICanSee;
 	/**
 	 * Character Attributes
 	 */
@@ -70,12 +71,6 @@ protected:
 
 	float mNexGenerationWait = 500;
 	float mNexGenerationCounter = 0;
-
-
-	void CheckForNewAgents();
-
-
-
 
 	void DebugCircle(Vector2D centerPoint, double rad, int r, int g, int b);
 	void DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, int b);
@@ -103,7 +98,6 @@ protected:
 	float mMaxAge = 100;
 
 	float mFOVLength = 250;
-	std::vector<BaseAgent*> mAgentsICanSee;
 
 private:
 	void IncrementAge(float dt);

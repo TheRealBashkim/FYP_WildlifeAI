@@ -31,7 +31,7 @@ void BaseAgent::Update(float dt)
 	{
 		mStamina = mStamina - 0.01f;
 	}
-	CheckForNewAgents();
+	//CheckForNewAgents();
 	const Vector2D acceleration = mForce / 1.0f;
 	mVelocity += acceleration * dt;
 	mVelocity.Truncate(mMaxSpeed);
@@ -158,51 +158,9 @@ void BaseAgent::SetStats()
 	mStamina = mChromosome->GetGene()->maxStamina;
 }
 
-void BaseAgent::CheckForNewAgents()
-{
 
-	BaseAgent * mPicked = nullptr;
-
-	if(mGenerationMade == true)
-	{
-		if(mNexGenerationCounter >= mNexGenerationWait)
-		{
-			mGenerationMade = false;
-			mNexGenerationCounter = 0;
-		}
-		mNexGenerationCounter++;
-		return;
-	}
-	if(mAge < 30)
-	{
-		return;
-	}
-	for(int i = 0; i < mAgentsICanSee.size();i++)
-	{
-		if(mAgentsICanSee[i]->GetName() == GetName())
-		{
-			if(mAgentsICanSee[i]->GetAge() > 30)
-			{
-				
-				mPicked = mAgentsICanSee[i];
-				if(mPicked->mGenerationMade == true)
-				{
-					return;
-				}
-				mAgentsICanSee[i]->mGenerationMade = true;
-				break;
-			}
-		}
-	}
-	if(mPicked == nullptr)
-	{
-		return;
-	}
-	mGenerationMade = true;
-	BaseAgent * newAgent = ChromosomeManager::GenerateNewAgent(this, mPicked);
-	AgentManager::Instance()->AddAgent(newAgent);
 	//Messaging::Initialize()->SendMessage("New Agent: " + newAgent->GetName());
-}
+
 
 void BaseAgent::DebugCircle(Vector2D centerPoint, double rad, int r, int g, int b)
 {

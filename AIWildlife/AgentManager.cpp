@@ -33,6 +33,7 @@ void AgentManager::Update(float dt)
 		else
 		{
 			mAgents->at(i)->Update(dt);
+			CheckForChildGenerationCollision(mAgents->at(i));
 		}
 		
 	}
@@ -91,32 +92,28 @@ std::vector<BaseAgent*> AgentManager::GetVisibleAgents(BaseAgent* Looking)
 return VisibleAgents;
 }
 
-void AgentManager::CheckForChildGenerationCollision()
+void AgentManager::CheckForChildGenerationCollision(BaseAgent * mAgent)
 {
-	for(int i = 0; i < mAgents->size();i++)
+	std::vector<BaseAgent*> visibleAgents = mAgent->GetAgentsICanSee();
+	for (int i = 0; i < visibleAgents.size(); i++)
 	{
-		for(int j = 0; mAgents->size();i++)
+		if (BoxToBox(mAgent->GetPosition(), mAgent->GetWidth(), mAgent->GetHeight(), visibleAgents.at(i)->GetPosition(), visibleAgents.at(i)->GetWidth(), visibleAgents.at(i)->GetHeight()))
 		{
-			if (mAgents->at(i)->GetChromosome()->GetGene()->mID == mAgents->at(j)->GetChromosome()->GetGene()->mID)
+			if (visibleAgents.at(i)->GetName() == mAgent->GetName())
 			{
-				continue;
-			}
-			if(BoxToBox(mAgents->at(i)->GetPosition(), mAgents->at(i)->GetWidth(), mAgents->at(i)->GetHeight(),mAgents->at(j)->GetPosition(), mAgents->at(j)->GetWidth(), mAgents->at(i)->GetHeight()))
-			{
-				if(mAgents->at(i)->GetName() == mAgents->at(j)->GetName())
+				if (mAgent->GetChromosome()->GetGene()->mGender == "Male" && visibleAgents.at(i)->GetChromosome()->GetGene()->mGender == "Female"
+					|| mAgent->GetChromosome()->GetGene()->mGender == "Female" && visibleAgents.at(i)->GetChromosome()->GetGene()->mGender == "Male")
 				{
-					if(mAgents->at(i)->GetChromosome()->GetGene()->mGender == "Male" && mAgents->at(j)->GetChromosome()->GetGene()->mGender == "Female"
-					|| mAgents->at(i)->GetChromosome()->GetGene()->mGender == "Female" && mAgents->at(j)->GetChromosome()->GetGene()->mGender == "Male")
+					if (mAgent->GetChromosome()->GetGene()->mGender == "Female" || visibleAgents.at(i)->GetChromosome()->GetGene()->mGender == "Female")
 					{
-						
+							BaseAgent * TempAgent = ChromosomeManager::GenerateNewAgent(mAgent,visibleAgents.at(i));
+							mAgents->push_back(TempAgent);
 					}
 				}
-
 			}
+
 		}
 	}
-
-
 }
 
 void AgentManager::SavePeriodically()

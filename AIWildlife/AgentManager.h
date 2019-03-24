@@ -3,9 +3,11 @@
 #include "BaseAgent.h"
 #include <vector>
 #include "Commons.h"
+#include "ChromosomeManager.h"
 #include <SDL.h>
 
 class BaseAgent;
+class ChromosomeManager;
 
 class AgentManager
 {
@@ -18,7 +20,7 @@ public:
 	std::vector<BaseAgent*> * GetAgents() { return mAgents; }
 	std::vector<BaseAgent*> GetVisibleAgents(BaseAgent * Looking);
 	void AddAgent(BaseAgent * Agent) { mAgents->push_back(Agent); }
-	void CheckForChildGenerationCollision();
+	void CheckForChildGenerationCollision(BaseAgent * mAgent);
 	void SavePeriodically();
 	
 
