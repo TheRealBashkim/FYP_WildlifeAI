@@ -37,9 +37,6 @@
     <Filter Include="Chromosome">
       <UniqueIdentifier>{20a9517b-fa8f-4eb5-adbe-3627267b0786}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AI Agents\States">
-      <UniqueIdentifier>{051571ec-e4ee-4313-a887-6d54185db72b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceWindowForm.h">

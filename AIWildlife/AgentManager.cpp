@@ -26,14 +26,13 @@ void AgentManager::Update(float dt)
 	for(int i = 0; i < mAgents->size();i++)
 	{
 		// kills agent relating to old age
-		if(mAgents->at(i)->GetAge() >= mAgents->at(i)->GetMaxAge() || mAgents->at(i)->GetStamina() <= 0)
+		if(mAgents->at(i)->GetChromosome()->GetGene()->mCurrentAge >= mAgents->at(i)->GetMaxAge() || mAgents->at(i)->GetChromosome()->GetGene()->mCurrentStamina <= 0)
 		{
 			KillAgents(i);
 		}
 		else
 		{
 			mAgents->at(i)->Update(dt);
-			CheckForChildGenerationCollision(mAgents->at(i));
 		}
 		
 	}
@@ -92,29 +91,6 @@ std::vector<BaseAgent*> AgentManager::GetVisibleAgents(BaseAgent* Looking)
 return VisibleAgents;
 }
 
-void AgentManager::CheckForChildGenerationCollision(BaseAgent * mAgent)
-{
-	std::vector<BaseAgent*> visibleAgents = mAgent->GetAgentsICanSee();
-	for (int i = 0; i < visibleAgents.size(); i++)
-	{
-		if (BoxToBox(mAgent->GetPosition(), mAgent->GetWidth(), mAgent->GetHeight(), visibleAgents.at(i)->GetPosition(), visibleAgents.at(i)->GetWidth(), visibleAgents.at(i)->GetHeight()))
-		{
-			if (visibleAgents.at(i)->GetName() == mAgent->GetName())
-			{
-				if (mAgent->GetChromosome()->GetGene()->mGender == "Male" && visibleAgents.at(i)->GetChromosome()->GetGene()->mGender == "Female"
-					|| mAgent->GetChromosome()->GetGene()->mGender == "Female" && visibleAgents.at(i)->GetChromosome()->GetGene()->mGender == "Male")
-				{
-					if (mAgent->GetChromosome()->GetGene()->mGender == "Female" || visibleAgents.at(i)->GetChromosome()->GetGene()->mGender == "Female")
-					{
-							BaseAgent * TempAgent = ChromosomeManager::GenerateNewAgent(mAgent,visibleAgents.at(i));
-							mAgents->push_back(TempAgent);
-					}
-				}
-			}
-
-		}
-	}
-}
 
 void AgentManager::SavePeriodically()
 {

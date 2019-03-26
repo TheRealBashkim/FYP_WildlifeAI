@@ -54,6 +54,7 @@ public:
 	void SetStats();
 	bool mGenerationMade = false;
 	std::vector<BaseAgent*> GetAgentsICanSee() { return mAgentsICanSee; }
+	void CheckForNewAgents();
 
 
 

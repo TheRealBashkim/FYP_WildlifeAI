@@ -10,7 +10,6 @@ public:
 	~Chromosome();
 	Gene* GetGene() { return mGene; }
 	void SetGene(Gene* gene) { this->mGene = gene; }
-	void GenerateGene();
 
 private:
 	Gene * mGene;

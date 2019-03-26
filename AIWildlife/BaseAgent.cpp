@@ -23,15 +23,20 @@ void BaseAgent::Update(float dt)
 	
 	mAgentsICanSee = AgentManager::Instance()->GetVisibleAgents(this);
 	IncrementAge(dt);
+	//mChromosome->GetGene()->mCurrentAge = mAge;
 	if (mStamina <= 0.0f)
 	{
 		return;
 	}
 	if (!mForce.isZero())
 	{
-		mStamina = mStamina - 0.01f;
+		//mStamina = mStamina - 0.01f;
+		mChromosome->GetGene()->mCurrentStamina -= 0.01f;
 	}
-	//CheckForNewAgents();
+	if (mChromosome->GetGene()->mGender == "Female")
+	{
+		CheckForNewAgents();
+	}
 	const Vector2D acceleration = mForce / 1.0f;
 	mVelocity += acceleration * dt;
 	mVelocity.Truncate(mMaxSpeed);
@@ -155,7 +160,50 @@ void BaseAgent::SetStats()
 	mHealth = mChromosome->GetGene()->health;
 	mMaxAge = mChromosome->GetGene()->maxAge;
 	mMaxSpeed = mChromosome->GetGene()->maxSpeed;
-	mStamina = mChromosome->GetGene()->maxStamina;
+	mChromosome->GetGene()->mCurrentStamina = mChromosome->GetGene()->maxStamina;
+}
+
+void BaseAgent::CheckForNewAgents()
+{
+	BaseAgent * mPicked = nullptr;
+
+	if (mGenerationMade == true)
+	{
+		if (mNexGenerationCounter >= mNexGenerationWait)
+		{
+			mGenerationMade = false;
+			mNexGenerationCounter = 0;
+		}
+		mNexGenerationCounter++;
+		return;
+	}
+	//Need to back up average age of mating in research.
+	if (mChromosome->GetGene()->mCurrentAge < 30)
+	{
+		return;
+	}
+	for (int i = 0; i < mAgentsICanSee.size(); i++)
+	{
+		if (mAgentsICanSee[i]->GetName() == GetName())
+		{
+			if (mAgentsICanSee[i]->GetAge() > 30)
+			{
+				if (mAgentsICanSee.at(i)->GetChromosome()->GetGene()->mGender == "Male")
+				{
+					mPicked = mAgentsICanSee[i];
+				}
+				break;
+			}
+		}
+	}
+	if (mPicked == nullptr)
+	{
+		return;
+	}
+	mGenerationMade = true;
+	BaseAgent * newAgent = ChromosomeManager::GenerateNewAgent(this, mPicked);
+	AgentManager::Instance()->AddAgent(newAgent);
+	//Messaging::Initialize()->SendMessage("New Agent: " + newAgent->GetName());
 }
 
 
@@ -186,5 +234,6 @@ void BaseAgent::DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, 
 
 void BaseAgent::IncrementAge(float dt)
 {
-	mAge = mAge + 0.016f;
+	mChromosome->GetGene()->mCurrentAge += 0.016f;
+	//mAge = mAge + 0.016f;
 }

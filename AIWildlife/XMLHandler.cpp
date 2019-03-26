@@ -118,9 +118,11 @@ void XMLHandler::StoreGenes(std::vector<Chromosome*> genes)
 		_Gene.SetAttribute("ID", genes[i]->GetGene()->mID);
 		_Gene.SetAttribute("Name", genes[i]->GetGene()->mName);
 		_Gene.SetAttribute("Health", genes[i]->GetGene()->health);
-		_Gene.SetAttribute("Age", genes[i]->GetGene()->maxAge);
+		_Gene.SetAttribute("MaxAge", genes[i]->GetGene()->maxAge);
+		_Gene.SetAttribute("CurrentAge", genes[i]->GetGene()->mCurrentAge);
 		_Gene.SetAttribute("Speed", genes[i]->GetGene()->maxSpeed);
-		_Gene.SetAttribute("Stamina", genes[i]->GetGene()->maxStamina);
+		_Gene.SetAttribute("MaxStamina", genes[i]->GetGene()->maxStamina);
+		_Gene.SetAttribute("CurrentStamina", genes[i]->GetGene()->mCurrentStamina);
 		_Gene.SetAttribute("Gender", genes[i]->GetGene()->mGender);
 		Root->InsertEndChild(_Gene);
 	}
@@ -169,11 +171,17 @@ std::vector<Chromosome*> XMLHandler::LoadChromosome(std::string path)
 		{
 			_TempGene->health = ss1;
 		}
-		std::istringstream ssAge(_Gene->Attribute("Age"));
+		std::istringstream ssAge(_Gene->Attribute("MaxAge"));
 		float ss1Age;
 		while(ssAge >> ss1Age)
 		{
 			_TempGene->maxAge = ss1Age;
+		}
+		std::istringstream ssAgeCurrent(_Gene->Attribute("CurrentAge"));
+		float ss1AgeCurrent;
+		while (ssAgeCurrent >> ss1AgeCurrent)
+		{
+			_TempGene->mCurrentAge = ss1AgeCurrent;
 		}
 		std::istringstream ssSpeed(_Gene->Attribute("Speed"));
 		float ss1Speed;
@@ -181,11 +189,17 @@ std::vector<Chromosome*> XMLHandler::LoadChromosome(std::string path)
 		{
 			_TempGene->maxSpeed = ss1Speed;
 		}
-		std::istringstream ssStamina(_Gene->Attribute("Stamina"));
+		std::istringstream ssStamina(_Gene->Attribute("MaxStamina"));
 		float ss1Stamina;
 		while (ssStamina >> ss1Stamina)
 		{
 			_TempGene->maxStamina = ss1Stamina;
+		}
+		std::istringstream ssStaminaCurrent(_Gene->Attribute("CurrentStamina"));
+		float ss1StaminaCurrent;
+		while (ssStaminaCurrent >> ss1StaminaCurrent)
+		{
+			_TempGene->mCurrentStamina = ss1StaminaCurrent;
 		}
 
 		_TempGene->mGender = _Gene->Attribute("Gender");
@@ -207,9 +221,11 @@ void XMLHandler::AddGene(std::string path, Gene* gene)
 		_Gene.SetAttribute("ID", gene->mID);
 		_Gene.SetAttribute("Name", gene->mName);
 		_Gene.SetAttribute("Health", gene->health);
-		_Gene.SetAttribute("Age", gene->maxAge);
+		_Gene.SetAttribute("MaxAge", gene->maxAge);
+		_Gene.SetAttribute("CurrentAge", gene->mCurrentAge);
 		_Gene.SetAttribute("Speed", gene->maxSpeed);
-		_Gene.SetAttribute("Stamina", gene->maxStamina);
+		_Gene.SetAttribute("MaxStamina", gene->maxStamina);
+		_Gene.SetAttribute("CurrentStamina", gene->mCurrentStamina);
 		_Gene.SetAttribute("Gender", gene->mGender);
 		Root->InsertEndChild(_Gene);
 	mDoc.SaveFile(path);

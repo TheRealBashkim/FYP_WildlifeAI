@@ -20,7 +20,6 @@ public:
 	std::vector<BaseAgent*> * GetAgents() { return mAgents; }
 	std::vector<BaseAgent*> GetVisibleAgents(BaseAgent * Looking);
 	void AddAgent(BaseAgent * Agent) { mAgents->push_back(Agent); }
-	void CheckForChildGenerationCollision(BaseAgent * mAgent);
 	void SavePeriodically();
 	
 

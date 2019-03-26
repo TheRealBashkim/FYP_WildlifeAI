@@ -14,6 +14,8 @@ public:
 	ChromosomeManager();
 	~ChromosomeManager();
 	static BaseAgent * GenerateNewAgent(BaseAgent * m1, BaseAgent * m2);
+	static Gene * GenerateGene();
+
 private:
 	static Gene * Crossover(Gene* parent1, Gene*parent2);
 	static Gene * Mutation(Gene * tempCrossoverGene);

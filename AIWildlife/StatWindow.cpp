@@ -18,9 +18,9 @@ void StatWindow::SetAgent(BaseAgent * mAgent)
 	mName->Text = msclr::interop::marshal_as<String^>(mAgent->GetName());
 	mX->Text = mAgent->GetPosition().x.ToString("N",set);
 	mY->Text = mAgent->GetPosition().y.ToString("N",set);
-	mStamina->Text = mAgent->GetStamina().ToString("N",set);
+	mStamina->Text = mAgent->GetChromosome()->GetGene()->mCurrentStamina.ToString("N",set);
 	mHealth->Text = mAgent->GetHealth().ToString("N",set);
-	mAge->Text = mAgent->GetAge().ToString("N",set);
+	mAge->Text = mAgent->GetChromosome()->GetGene()->mCurrentAge.ToString("N",set);
 	mGender->Text = msclr::interop::marshal_as<String^>(mAgent->GetChromosome()->GetGene()->mGender);
 }
 
