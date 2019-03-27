@@ -64,6 +64,19 @@ Gene * ChromosomeManager::GenerateGene()
 	return mGene;
 }
 
+float ChromosomeManager::GenerateFitnessOfChromosome(Gene * gene)
+{
+	float maxValue = 0;
+	maxValue += gene->health;
+	maxValue += gene->maxSpeed;
+	maxValue += gene->maxStamina;
+	maxValue += gene->mCurrentAge;
+	maxValue += gene->mCurrentStamina;
+	maxValue += gene->maxAge;
+	maxValue = maxValue / 100;
+	return maxValue;
+}
+
 Gene* ChromosomeManager::Crossover(Gene* parent1, Gene* parent2)
 {
 	Gene * temp = new Gene();

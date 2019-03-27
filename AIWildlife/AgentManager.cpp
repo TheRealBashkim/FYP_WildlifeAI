@@ -121,6 +121,7 @@ void AgentManager::KillAgents(int index)
 	//	}
 	//}
 	//XMLHandler::StoreGenes("Chromosome.xml", mChromosome);
+	XMLHandler::SaveFitness(mAgents->at(index)->GetChromosome()->GetGene());
 	mAgents->erase(mAgents->begin() + index);
 }
 

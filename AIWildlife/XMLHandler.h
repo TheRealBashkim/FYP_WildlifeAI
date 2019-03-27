@@ -7,6 +7,7 @@
 #include "TinyXML/tinyxml.h"
 #include "Structures.h"
 #include "Chromosome.h"
+#include "ChromosomeManager.h"
 class XMLHandler
 {
 public:
@@ -16,6 +17,8 @@ public:
 	static void StoreGenes(std::vector<Chromosome*> genes);
 	static std::vector<Chromosome*> LoadChromosome(std::string path);
 	static void AddGene(std::string path, Gene * gene);
+
+	static void SaveFitness(Gene * gene);
 
 
 

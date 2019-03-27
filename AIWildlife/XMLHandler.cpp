@@ -232,3 +232,21 @@ void XMLHandler::AddGene(std::string path, Gene* gene)
 
 
 }
+
+void XMLHandler::SaveFitness(Gene * gene)
+{
+	TiXmlDocument mDoc;
+	mDoc.LoadFile("Fitness.xml");
+	TiXmlNode * Root = mDoc.FirstChildElement("Fitness");
+	TiXmlElement _Gene("Gene");
+	_Gene.SetAttribute("ID", gene->mID);
+	_Gene.SetAttribute("Name", gene->mName);
+	_Gene.SetAttribute("Health", gene->health);
+	_Gene.SetAttribute("Age Of Death", gene->mCurrentAge);
+	_Gene.SetAttribute("Max Speed", gene->maxSpeed);
+	_Gene.SetAttribute("Max Stamina", gene->mCurrentStamina);
+	_Gene.SetAttribute("Gender", gene->mGender);
+	std::string temp = std::to_string(ChromosomeManager::GenerateFitnessOfChromosome(gene)) + " / 100";
+	_Gene.SetAttribute("Fitness of Gene", temp);
+	mDoc.SaveFile("Fitness.xml");
+}
