@@ -127,7 +127,7 @@ void XMLHandler::StoreGenes(std::vector<Chromosome*> genes)
 		Root->InsertEndChild(_Gene);
 	}
 	mDoc.SaveFile("TempChromosome.xml");
-	std::string FileName = "Chromosome.xml";
+	std::string FileName = "XML/Chromosome.xml";
 	if (remove(FileName.c_str()) != 0)
 	{
 		
@@ -211,58 +211,39 @@ std::vector<Chromosome*> XMLHandler::LoadChromosome(std::string path)
 	return Chromosomes;
 }
 
-void XMLHandler::AddGene(std::string path, Gene* gene)
-{
-	TiXmlDocument  mDoc;
-	//mDoc.LoadFile(path);
-	if(!mDoc.LoadFile("Fitness.xml"))
-	{
-		TiXmlNode * Root(mDoc.InsertEndChild(TiXmlElement("Genes")));
-		TiXmlElement _Gene("Gene");
-		_Gene.SetAttribute("ID", gene->mID);
-		_Gene.SetAttribute("Name", gene->mName);
-		_Gene.SetAttribute("Health", gene->health);
-		_Gene.SetAttribute("MaxAge", gene->maxAge);
-		_Gene.SetAttribute("CurrentAge", gene->mCurrentAge);
-		_Gene.SetAttribute("Speed", gene->maxSpeed);
-		_Gene.SetAttribute("MaxStamina", gene->maxStamina);
-		_Gene.SetAttribute("CurrentStamina", gene->mCurrentStamina);
-		_Gene.SetAttribute("Gender", gene->mGender);
-		Root->InsertEndChild(_Gene);
-		mDoc.SaveFile(path);
-		return;
-	}
-	TiXmlNode * Root  = mDoc.FirstChildElement("Genes");
-	TiXmlElement _Gene("Gene");
-	_Gene.SetAttribute("ID", gene->mID);
-	_Gene.SetAttribute("Name", gene->mName);
-	_Gene.SetAttribute("Health", gene->health);
-	_Gene.SetAttribute("MaxAge", gene->maxAge);
-	_Gene.SetAttribute("CurrentAge", gene->mCurrentAge);
-	_Gene.SetAttribute("Speed", gene->maxSpeed);
-	_Gene.SetAttribute("MaxStamina", gene->maxStamina);
-	_Gene.SetAttribute("CurrentStamina", gene->mCurrentStamina);
-	_Gene.SetAttribute("Gender", gene->mGender);
-	Root->InsertEndChild(_Gene);
-	mDoc.SaveFile(path);
-
-}
-
 void XMLHandler::SaveFitness(Gene * gene)
 {
-	TiXmlDocument mDoc;
-		mDoc.LoadFile("Fitness.xml");
-		TiXmlNode * Root(mDoc.InsertEndChild(TiXmlElement("Fitness")));
-		TiXmlElement _Gene("Gene");
-		_Gene.SetAttribute("ID", gene->mID);
-		_Gene.SetAttribute("Name", gene->mName);
-		_Gene.SetAttribute("Health", gene->health);
-		_Gene.SetAttribute("Age Of Death", gene->mCurrentAge);
-		_Gene.SetAttribute("Max Speed", gene->maxSpeed);
-		_Gene.SetAttribute("Max Stamina", gene->mCurrentStamina);
-		_Gene.SetAttribute("Gender", gene->mGender);
-		std::string temp = std::to_string(ChromosomeManager::GenerateFitnessOfChromosome(gene)) + " / 100";
-		_Gene.SetAttribute("Fitness of Gene", temp);
-		Root->InsertEndChild(_Gene);
-		mDoc.SaveFile("Fitness.xml");
+		TiXmlDocument mDoc;
+		if (mDoc.LoadFile("XML/Fitness.xml"))
+		{
+			TiXmlNode * Root = mDoc.FirstChildElement();
+			TiXmlElement _Gene("Gene");
+			_Gene.SetAttribute("ID", gene->mID);
+			_Gene.SetAttribute("Name", gene->mName);
+			_Gene.SetAttribute("Health", gene->health);
+			_Gene.SetAttribute("MaxAge", gene->maxAge);
+			_Gene.SetAttribute("MaxSpeed", gene->maxSpeed);
+			_Gene.SetAttribute("MaxStamina", gene->maxStamina);
+			_Gene.SetAttribute("Gender", gene->mGender);
+			std::string temp = std::to_string(ChromosomeManager::GenerateFitnessOfChromosome(gene)) + " / 1425";
+			_Gene.SetAttribute("FitnessofGene", temp);
+			Root->InsertEndChild(_Gene);
+		}
+		else
+		{
+			TiXmlNode * Root(mDoc.InsertEndChild(TiXmlElement("Fitness")));
+			TiXmlElement _Gene("Gene");
+			_Gene.SetAttribute("ID", gene->mID);
+			_Gene.SetAttribute("Name", gene->mName);
+			_Gene.SetAttribute("Health", gene->health);
+			_Gene.SetAttribute("MaxAge", gene->maxAge);
+			_Gene.SetAttribute("MaxSpeed", gene->maxSpeed);
+			_Gene.SetAttribute("MaxStamina", gene->maxStamina);
+			_Gene.SetAttribute("Gender", gene->mGender);
+			std::string temp = std::to_string((int)ChromosomeManager::GenerateFitnessOfChromosome(gene)) + " / 1425";
+			_Gene.SetAttribute("FitnessofGene", temp);
+			Root->InsertEndChild(_Gene);
+
+		}
+		mDoc.SaveFile("XML/Fitness.xml");
 }

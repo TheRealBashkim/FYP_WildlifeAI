@@ -4,6 +4,11 @@
 #include "Structures.h"
 #include "XMLHandler.h"
 #include <vector>
+#include <iostream>
+#include <random>
+#include <chrono>
+#include <memory>
+#include <functional>
 #include "BaseAgent.h"
 
 class BaseAgent;

@@ -126,7 +126,7 @@ void Source::LoadMapTiles()
 
 void Source::GenerateBaseChromosome()
 {
-	std::vector<Chromosome*> mChromo = XMLHandler::LoadChromosome("Chromosome.xml");
+	std::vector<Chromosome*> mChromo = XMLHandler::LoadChromosome("XML/Chromosome.xml");
 	if(mChromo.empty())
 	{
 		for(int i = 0; i < 15; i++)
