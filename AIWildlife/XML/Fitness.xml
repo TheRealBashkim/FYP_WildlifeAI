@@ -1,3 +1,32 @@
 <Fitness>
-    <Gene ID="23805" Name="Herbivore" Health="114" MaxAge="70" MaxSpeed="73" MaxStamina="942" Gender="Female" FitnessofGene="1199 / 1425" />
+    <Gene ID="14893" Name="Carnivore" Health="57" MaxAge="0" MaxSpeed="92" MaxStamina="788" Gender="Female" FitnessofGene="37 / 100" />
+    <Gene ID="32702" Name="Carnivore" Health="134" MaxAge="24" MaxSpeed="34" MaxStamina="8" Gender="Male" FitnessofGene="8.000000 / 100" />
+    <Gene ID="491" Name="Herbivore" Health="51" MaxAge="5" MaxSpeed="52" MaxStamina="145" Gender="Male" FitnessofGene="10.120000 / 100" />
+    <Gene ID="10383" Name="Carnivore" Health="147" MaxAge="7" MaxSpeed="112" MaxStamina="337" Gender="Male" FitnessofGene="24.120001 / 100" />
+    <Gene ID="9514" Name="Carnivore" Health="80" MaxAge="7" MaxSpeed="42" MaxStamina="421" Gender="Female" FitnessofGene="22.000000 / 100" />
+    <Gene ID="12292" Name="Carnivore" Health="122" MaxAge="9" MaxSpeed="47" MaxStamina="157" Gender="Female" FitnessofGene="13.400000 / 100" />
+    <Gene ID="24946" Name="Carnivore" Health="151" MaxAge="9" MaxSpeed="113" MaxStamina="758" Gender="Female" FitnessofGene="41.240002 / 100" />
+    <Gene ID="1655" Name="Carnivore" Health="110" MaxAge="13" MaxSpeed="116" MaxStamina="168" Gender="Male" FitnessofGene="16.280001 / 100" />
+    <Gene ID="21726" Name="Herbivore" Health="88" MaxAge="21" MaxSpeed="120" MaxStamina="716" Gender="Female" FitnessofGene="37.799999 / 100" />
+    <Gene ID="7711" Name="Herbivore" Health="83" MaxAge="22" MaxSpeed="89" MaxStamina="333" Gender="Female" FitnessofGene="21.080000 / 100" />
+    <Gene ID="4041" Name="Carnivore" Health="118" MaxAge="24" MaxSpeed="108" MaxStamina="537" Gender="Male" FitnessofGene="31.480000 / 100" />
+    <Gene ID="3430" Name="Carnivore" Health="71" MaxAge="50" MaxSpeed="49" MaxStamina="150" Gender="Male" FitnessofGene="12.799999 / 100" />
+    <Gene ID="153" Name="Herbivore" Health="161" MaxAge="27" MaxSpeed="29" MaxStamina="436" Gender="Female" FitnessofGene="26.119999 / 100" />
+    <Gene ID="1842" Name="Herbivore" Health="126" MaxAge="29" MaxSpeed="60" MaxStamina="778" Gender="Male" FitnessofGene="39.720001 / 100" />
+    <Gene ID="29658" Name="Herbivore" Health="83" MaxAge="29" MaxSpeed="40" MaxStamina="541" Gender="Female" FitnessofGene="27.719999 / 100" />
+    <Gene ID="29358" Name="Herbivore" Health="139" MaxAge="34" MaxSpeed="49" MaxStamina="500" Gender="Male" FitnessofGene="28.880001 / 100" />
+    <Gene ID="31556" Name="Carnivore" Health="130" MaxAge="35" MaxSpeed="74" MaxStamina="451" Gender="Female" FitnessofGene="27.600000 / 100" />
+    <Gene ID="23805" Name="Herbivore" Health="114" MaxAge="40" MaxSpeed="73" MaxStamina="942" Gender="Female" FitnessofGene="46.759998 / 100" />
+    <Gene ID="21538" Name="Herbivore" Health="76" MaxAge="44" MaxSpeed="48" MaxStamina="439" Gender="Female" FitnessofGene="24.280001 / 100" />
+    <Gene ID="12859" Name="Herbivore" Health="72" MaxAge="47" MaxSpeed="82" MaxStamina="644" Gender="Female" FitnessofGene="33.799999 / 100" />
+    <Gene ID="28745" Name="Herbivore" Health="163" MaxAge="77" MaxSpeed="111" MaxStamina="306" Gender="Female" FitnessofGene="26.280001 / 100" />
+    <Gene ID="9503" Name="Carnivore" Health="93" MaxAge="93" MaxSpeed="112" MaxStamina="343" Gender="Female" FitnessofGene="25.639999 / 100" />
+    <Gene ID="3548" Name="Herbivore" Health="56" MaxAge="70" MaxSpeed="26" MaxStamina="350" Gender="Male" FitnessofGene="20.080000 / 100" />
+    <Gene ID="15281" Name="Carnivore" Health="110" MaxAge="58" MaxSpeed="121" MaxStamina="618" Gender="Male" FitnessofGene="36.279999 / 100" />
+    <Gene ID="15574" Name="Carnivore" Health="85" MaxAge="61" MaxSpeed="92" MaxStamina="636" Gender="Male" FitnessofGene="34.959999 / 100" />
+    <Gene ID="1999" Name="Carnivore" Health="51" MaxAge="68" MaxSpeed="59" MaxStamina="484" Gender="Male" FitnessofGene="26.480000 / 100" />
+    <Gene ID="9894" Name="Herbivore" Health="157" MaxAge="69" MaxSpeed="124" MaxStamina="912" Gender="Female" FitnessofGene="50.480000 / 100" />
+    <Gene ID="16512" Name="Herbivore" Health="67" MaxAge="70" MaxSpeed="98" MaxStamina="829" Gender="Male" FitnessofGene="42.559998 / 100" />
+    <Gene ID="7376" Name="Herbivore" Health="86" MaxAge="84" MaxSpeed="65" MaxStamina="954" Gender="Male" FitnessofGene="47.560001 / 100" />
+    <Gene ID="24021" Name="Carnivore" Health="64" MaxAge="91" MaxSpeed="45" MaxStamina="836" Gender="Male" FitnessofGene="41.439999 / 100" />
 </Fitness>

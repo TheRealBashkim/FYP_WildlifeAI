@@ -234,6 +234,6 @@ void BaseAgent::DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, 
 
 void BaseAgent::IncrementAge(float dt)
 {
-	mChromosome->GetGene()->mCurrentAge += 0.016f;
+	mChromosome->GetGene()->mCurrentAge += 0.0016f;
 	//mAge = mAge + 0.016f;
 }

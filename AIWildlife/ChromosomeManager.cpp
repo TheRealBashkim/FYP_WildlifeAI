@@ -43,12 +43,8 @@ BaseAgent* ChromosomeManager::GenerateNewAgent(BaseAgent* m1, BaseAgent* m2)
 
 Gene * ChromosomeManager::GenerateGene()
 {
-
-	auto seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
-	
-
 	Gene * mGene = new Gene();
-	int RandMaxAge = std::bind(std::uniform_int_distribution<int>(1, 100),std::mt19937(seed));
+	int RandMaxAge = rand() % 100;
 	mGene->maxAge = RandMaxAge;
 	float RandStamina = rand() % 1000;
 	mGene->maxStamina = RandStamina;
@@ -71,11 +67,11 @@ Gene * ChromosomeManager::GenerateGene()
 float ChromosomeManager::GenerateFitnessOfChromosome(Gene * gene)
 {
 	float maxValue = 0;
-	maxValue += gene->health;
-	maxValue += gene->maxSpeed;
-	maxValue += gene->maxStamina;
+	maxValue += (gene->health / 25);
+	maxValue += (gene->maxSpeed / 25);
+	maxValue += (gene->maxStamina / 25);
 	//maxValue += gene->mCurrentAge;
-	maxValue += gene->maxAge;
+	maxValue += (gene->maxAge / 25);
 	return maxValue;
 }
 

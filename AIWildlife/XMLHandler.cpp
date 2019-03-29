@@ -225,7 +225,7 @@ void XMLHandler::SaveFitness(Gene * gene)
 			_Gene.SetAttribute("MaxSpeed", gene->maxSpeed);
 			_Gene.SetAttribute("MaxStamina", gene->maxStamina);
 			_Gene.SetAttribute("Gender", gene->mGender);
-			std::string temp = std::to_string(ChromosomeManager::GenerateFitnessOfChromosome(gene)) + " / 1425";
+			std::string temp = std::to_string(ChromosomeManager::GenerateFitnessOfChromosome(gene)) + " / 100";
 			_Gene.SetAttribute("FitnessofGene", temp);
 			Root->InsertEndChild(_Gene);
 		}
@@ -240,7 +240,7 @@ void XMLHandler::SaveFitness(Gene * gene)
 			_Gene.SetAttribute("MaxSpeed", gene->maxSpeed);
 			_Gene.SetAttribute("MaxStamina", gene->maxStamina);
 			_Gene.SetAttribute("Gender", gene->mGender);
-			std::string temp = std::to_string((int)ChromosomeManager::GenerateFitnessOfChromosome(gene)) + " / 1425";
+			std::string temp = std::to_string((int)ChromosomeManager::GenerateFitnessOfChromosome(gene)) + " / 100";
 			_Gene.SetAttribute("FitnessofGene", temp);
 			Root->InsertEndChild(_Gene);
 
