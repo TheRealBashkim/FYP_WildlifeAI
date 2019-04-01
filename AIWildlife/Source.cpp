@@ -129,7 +129,7 @@ void Source::GenerateBaseChromosome()
 	std::vector<Chromosome*> mChromo = XMLHandler::LoadChromosome("XML/Chromosome.xml");
 	if(mChromo.empty())
 	{
-		for(int i = 0; i < 15; i++)
+		for(int i = 0; i < 20; i++)
 		{
 			HerbivoreAgent * temp = new HerbivoreAgent("Herbivore", mRenderer);
 			temp->LoadTexture("Characters/Herbivore.bmp");
@@ -145,7 +145,7 @@ void Source::GenerateBaseChromosome()
 			BaseAgent * newTemp = (BaseAgent*)temp;
 			mAgentManager->AddAgent(newTemp);
 		}
-		for (int i = 0; i < 15; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			CarnivoreAgent * temp = new CarnivoreAgent("Carnivore", mRenderer);
 			temp->LoadTexture("Characters/Character.bmp");

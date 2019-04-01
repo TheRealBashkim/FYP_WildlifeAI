@@ -178,7 +178,7 @@ void BaseAgent::CheckForNewAgents()
 		return;
 	}
 	//Need to back up average age of mating in research.
-	if (mChromosome->GetGene()->mCurrentAge < 30)
+	if (mChromosome->GetGene()->mCurrentAge < 18)
 	{
 		return;
 	}
@@ -186,7 +186,7 @@ void BaseAgent::CheckForNewAgents()
 	{
 		if (mAgentsICanSee[i]->GetName() == GetName())
 		{
-			if (mAgentsICanSee[i]->GetAge() > 30)
+			if (mAgentsICanSee[i]->GetChromosome()->GetGene()->mCurrentAge > 18)
 			{
 				if (mAgentsICanSee.at(i)->GetChromosome()->GetGene()->mGender == "Male")
 				{
@@ -234,6 +234,6 @@ void BaseAgent::DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, 
 
 void BaseAgent::IncrementAge(float dt)
 {
-	mChromosome->GetGene()->mCurrentAge += 0.0016f;
+	mChromosome->GetGene()->mCurrentAge += 0.0088f;
 	//mAge = mAge + 0.016f;
 }

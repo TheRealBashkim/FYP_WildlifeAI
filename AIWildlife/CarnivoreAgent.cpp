@@ -16,6 +16,11 @@ CarnivoreAgent::~CarnivoreAgent()
 void CarnivoreAgent::Update(float dt)
 {
 	counter++;
+	if (mChromosome->GetGene()->mCurrentStamina < 30)
+	{
+		TargetEnemy(dt);
+	}
+
 	if (counter > 4)
 	{
 		mForce += Wander(dt);
@@ -38,6 +43,14 @@ void CarnivoreAgent::LoadTexture(std::string path)
 }
 void CarnivoreAgent::TargetEnemy(float dt)
 {
+	Vector2D * tempPos;
+	for (int i = 0; i < mAgentsICanSee.size(); i++)
+	{
+		if (mAgentsICanSee.at(i)->GetName() != GetName())
+		{
+			Seek(mAgentsICanSee.at(i)->GetPosition());
+		}
+	}
 
 }
 Vector2D CarnivoreAgent::GetPosition()
