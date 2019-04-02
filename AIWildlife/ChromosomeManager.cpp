@@ -46,7 +46,7 @@ Gene * ChromosomeManager::GenerateGene()
 	Gene * mGene = new Gene();
 	int RandMaxAge = rand() % 100;
 	mGene->maxAge = RandMaxAge;
-	float RandStamina = rand() % 1000;
+	float RandStamina = rand() % 250;
 	mGene->maxStamina = RandStamina;
 	float RandHealth = rand() % 120 + 50;
 	mGene->health = RandHealth;
@@ -158,7 +158,7 @@ Gene * ChromosomeManager::Mutation(Gene * tempCrossoverGene)
 	}
 	if (rand() % 100 > 85)
 	{
-		tempCrossoverGene->maxStamina = rand() % 1000;
+		tempCrossoverGene->maxStamina = rand() % 250;
 	}
 	return tempCrossoverGene;
 }

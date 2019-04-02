@@ -70,7 +70,7 @@ protected:
 
 	Chromosome * mChromosome;
 
-	float mNexGenerationWait = 1000;
+	float mNexGenerationWait = 2700;
 	float mNexGenerationCounter = 0;
 
 	void DebugCircle(Vector2D centerPoint, double rad, int r, int g, int b);

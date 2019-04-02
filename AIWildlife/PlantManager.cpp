@@ -5,7 +5,7 @@
 PlantManager::PlantManager(SDL_Renderer * Renderer)
 {
 	mRenderer = Renderer;
-	for(int i = 0; i < 10;i++)
+	for(int i = 0; i < 20;i++)
 	{
 		Plant tempPlant = Plant(mRenderer);
 		tempPlant.LoadTexture("Tiles/FoodTile.bmp");
@@ -32,9 +32,9 @@ void PlantManager::Update(std::vector<BaseAgent*>* agents)
 			if(BoxToBox(*mPlantList->at(i).GetPosition(),mPlantList->at(i).GetWidth(),mPlantList->at(i).GetHeight(),
 				agents->at(j)->GetPosition(),agents->at(j)->GetWidth(),agents->at(j)->GetHeight()))
 			{
-				if(agents->at(j)->GetName() == "Herbivore")
+				if(agents->at(j)->GetName() == "Herbivore" && agents->at(j)->GetChromosome()->GetGene()->mCurrentStamina < 30)
 				{
-					agents->at(j)->SetStamina(agents->at(j)->GetStamina() + mPlantList->at(i).GetStatIncrease());
+					agents->at(j)->GetChromosome()->GetGene()->mCurrentStamina += mPlantList->at(i).GetStatIncrease();
 					//mPlantList->erase(mPlantList->begin() + i);
 					mPlantList->at(i).GeneratePosition();
 				}

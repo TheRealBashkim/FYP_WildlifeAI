@@ -42,6 +42,7 @@ private:
 	static StatWindow ^ mStatWindow;
 	Thread^ StatThread;
 	static BaseAgent * mStatAgent = nullptr;
+	static bool freeze = false;
 
 };
 

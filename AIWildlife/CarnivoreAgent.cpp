@@ -15,16 +15,18 @@ CarnivoreAgent::~CarnivoreAgent()
 
 void CarnivoreAgent::Update(float dt)
 {
-	counter++;
-	if (mChromosome->GetGene()->mCurrentStamina < 30)
-	{
-		TargetEnemy(dt);
-	}
-
 	if (counter > 4)
 	{
 		mForce += Wander(dt);
 		counter = 0;
+	}
+	if (mChromosome->GetGene()->mCurrentStamina < 30)
+	{
+		TargetEnemy(dt);
+	}
+	else
+	{
+		counter++;
 	}
 	mForce += WallAvoidance();
 	
@@ -50,8 +52,12 @@ void CarnivoreAgent::TargetEnemy(float dt)
 		{
 			Seek(mAgentsICanSee.at(i)->GetPosition());
 		}
+		if (BoxToBox(mPosition, mWidth, mHeight, mAgentsICanSee.at(i)->GetPosition(), mAgentsICanSee.at(i)->GetWidth(), mAgentsICanSee.at(i)->GetHeight()))
+		{
+			mAgentsICanSee.at(i)->GetChromosome()->GetGene()->health -= 40;
+			mChromosome->GetGene()->mCurrentStamina += 40;
+		}
 	}
-
 }
 Vector2D CarnivoreAgent::GetPosition()
 {
