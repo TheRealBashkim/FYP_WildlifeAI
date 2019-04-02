@@ -17,6 +17,7 @@ public:
 	Vector2D * GetPosition() { return mPosition; }
 	float GetWidth() { return mTexture->GetWidth(); }
 	float GetHeight() { return mTexture->GetHeight(); }
+	Vector2D  GetCenter();
 
 private:
 	SDL_Renderer * mRenderer;

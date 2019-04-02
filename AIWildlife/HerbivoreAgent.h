@@ -3,6 +3,7 @@
 #include "BaseAgent.h"
 #include <SDL.h>
 #include <algorithm>
+#include "PlantManager.h"
 class HerbivoreAgent : public BaseAgent
 {
 public:
@@ -12,6 +13,7 @@ public:
 	void Render() override;
 	void LoadTexture(std::string path);
 	void SetPosition(Vector2D position) { BaseAgent::SetPosition(position); }
+	void GetVisiblePlants(std::vector<Plant*> mPlant);
 	Vector2D GetPosition();
 	Vector2D Seek(Vector2D TargetPosition);
 	Vector2D Flee(Vector2D TargetPosition);
@@ -19,7 +21,9 @@ public:
 	Vector2D Wander(float dt);
 	Vector2D WallAvoidance();
 
+
 private:
+	std::vector<Plant*> mPlantsIcanSee;
 };
 #endif
 

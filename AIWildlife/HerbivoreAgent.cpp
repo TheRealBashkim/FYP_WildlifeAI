@@ -20,6 +20,7 @@ void HerbivoreAgent::Update(float dt)
 		counter = 0;
 	}
 	mForce += WallAvoidance();
+	
 	BaseAgent::Update(dt);
 }
 
@@ -32,6 +33,27 @@ void HerbivoreAgent::Render()
 void HerbivoreAgent::LoadTexture(std::string path)
 {
 	BaseAgent::LoadTexture(path);
+}
+void HerbivoreAgent::GetVisiblePlants(std::vector<Plant*> mPlants)
+{
+	std::vector<Plant*> visiblePlants;
+	for (size_t i = 0; i < mPlants.size(); i++)
+	{
+		Vector2D heading = GetHeading();
+		heading.Normalize();
+		Vector2D totarget = GetCenter() - mPlants.at(i)->GetCenter();
+		double totargetlength = totarget.Length();
+		if (totargetlength < GetFOVLength())
+		{
+			totarget.Normalize();
+			double dotproduct = heading.Dot(totarget);
+			if (dotproduct > 0.85)
+			{
+				visiblePlants.push_back(mPlants.at(i));
+			}
+		}
+	}
+	mPlantsIcanSee = visiblePlants;
 }
 Vector2D HerbivoreAgent::GetPosition()
 {

@@ -35,3 +35,9 @@ void Plant::Draw()
 {
 	mTexture->Render(*mPosition);
 }
+
+Vector2D Plant::GetCenter()
+{
+	Vector2D temp = Vector2D(mPosition->x + (mTexture->GetWidth()*0.5), mPosition->y + (mTexture->GetHeight())*0.5);
+	return temp;
+}

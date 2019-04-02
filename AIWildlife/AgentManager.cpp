@@ -75,13 +75,9 @@ std::vector<BaseAgent*> AgentManager::GetVisibleAgents(BaseAgent* Looking)
 			if (totargetlength < mAgents->at(i)->GetFOVLength())
 			{
 				vectotarget.Normalize();
-				//cout << "Heading x = " << heading.x << " y = " << heading.y << endl;
 				double dotProduct = heading.Dot(vectotarget);
-				//cout << "dot = " << dotProduct << endl;
 				if (dotProduct > 0.85)
 				{
-					
-					//Tank is within fov, but is there a building in the way?
 					VisibleAgents.push_back(mAgents->at(i));
 				}
 			}
@@ -90,8 +86,6 @@ std::vector<BaseAgent*> AgentManager::GetVisibleAgents(BaseAgent* Looking)
 
 return VisibleAgents;
 }
-
-
 void AgentManager::SavePeriodically()
 {
 	if (mPeriodWait >= 2000)
