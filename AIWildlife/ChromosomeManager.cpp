@@ -43,6 +43,7 @@ BaseAgent* ChromosomeManager::GenerateNewAgent(BaseAgent* m1, BaseAgent* m2)
 
 Gene * ChromosomeManager::GenerateGene()
 {
+	
 	Gene * mGene = new Gene();
 	int RandMaxAge = rand() % 100;
 	mGene->maxAge = RandMaxAge;

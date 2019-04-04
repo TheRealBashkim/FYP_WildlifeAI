@@ -79,21 +79,7 @@ void Source::GameLoop()
 {
 	while (true)
 	{
-		if (InputHandler::IsKeyDown(_Keys::F))
-		{
-			if (freeze)
-			{
-				freeze = false;
-			}
-			else
-			{
-				freeze = true;
-			}
-		}
-		if (!freeze)
-		{
-			UpdateGame();
-		}
+		UpdateGame();
 		RenderGame();
 	}
 
@@ -141,8 +127,25 @@ void Source::LoadMapTiles()
 void Source::GenerateBaseChromosome()
 {
 	std::vector<Chromosome*> mChromo = XMLHandler::LoadChromosome("XML/Chromosome.xml");
+	srand(time(NULL));
 	if(mChromo.empty())
 	{
+		for(int i = 0; i < 20; i++)
+		{
+			HerbivoreAgent * temp = new HerbivoreAgent("Herbivore", mRenderer);
+			temp->LoadTexture("Characters/Herbivore.bmp");
+			float tempx, tempy;
+			tempx = rand() % 875;
+			tempy = rand() % 875;
+			temp->GetChromosome()->SetGene(ChromosomeManager::GenerateGene());
+			temp->GetChromosome()->GetGene()->mName = temp->GetName();
+			temp->GetChromosome()->GetGene()->mID = rand() % MaxInt;
+			temp->SetStats();
+			temp->SetPosition(Vector2D(tempx, tempy));
+			mChromo.push_back(temp->GetChromosome());
+			BaseAgent * newTemp = (BaseAgent*)temp;
+			mAgentManager->AddAgent(newTemp);
+		}
 		for (int i = 0; i < 20; i++)
 		{
 			CarnivoreAgent * temp = new CarnivoreAgent("Carnivore", mRenderer);
@@ -156,22 +159,6 @@ void Source::GenerateBaseChromosome()
 			temp->GetChromosome()->GetGene()->mName = temp->GetName();
 			temp->GetChromosome()->GetGene()->mID = rand() % MaxInt;
 			temp->SetStats();
-			mChromo.push_back(temp->GetChromosome());
-			BaseAgent * newTemp = (BaseAgent*)temp;
-			mAgentManager->AddAgent(newTemp);
-		}
-		for(int i = 0; i < 20; i++)
-		{
-			HerbivoreAgent * temp = new HerbivoreAgent("Herbivore", mRenderer);
-			temp->LoadTexture("Characters/Herbivore.bmp");
-			float tempx, tempy;
-			tempx = rand() % 875;
-			tempy = rand() % 875;
-			temp->GetChromosome()->SetGene(ChromosomeManager::GenerateGene());
-			temp->GetChromosome()->GetGene()->mName = temp->GetName();
-			temp->GetChromosome()->GetGene()->mID = rand() % MaxInt;
-			temp->SetStats();
-			temp->SetPosition(Vector2D(tempx, tempy));
 			mChromo.push_back(temp->GetChromosome());
 			BaseAgent * newTemp = (BaseAgent*)temp;
 			mAgentManager->AddAgent(newTemp);

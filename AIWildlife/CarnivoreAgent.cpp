@@ -15,14 +15,14 @@ CarnivoreAgent::~CarnivoreAgent()
 
 void CarnivoreAgent::Update(float dt)
 {
-	if (counter > 4)
+	if (mChromosome->GetGene()->mCurrentStamina < 100 && !mAgentsICanSee.empty())
+	{
+		TargetEnemy(dt);
+	}
+	else if (counter > 4)
 	{
 		mForce += Wander(dt);
 		counter = 0;
-	}
-	if (mChromosome->GetGene()->mCurrentStamina < 30)
-	{
-		TargetEnemy(dt);
 	}
 	else
 	{

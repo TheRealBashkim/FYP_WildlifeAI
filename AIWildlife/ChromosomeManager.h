@@ -10,7 +10,8 @@
 #include <memory>
 #include <functional>
 #include "BaseAgent.h"
-
+#include <stdlib.h>
+#include <time.h>
 class BaseAgent;
 
 class ChromosomeManager
