@@ -37,6 +37,9 @@
     <Filter Include="Chromosome">
       <UniqueIdentifier>{20a9517b-fa8f-4eb5-adbe-3627267b0786}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Neural Networks">
+      <UniqueIdentifier>{692f1514-b754-46ab-9a73-27261d75fa8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceWindowForm.h">
@@ -105,6 +108,15 @@
     <ClInclude Include="ChromosomeManager.h">
       <Filter>Chromosome</Filter>
     </ClInclude>
+    <ClInclude Include="Network.h">
+      <Filter>Neural Networks</Filter>
+    </ClInclude>
+    <ClInclude Include="Perceptron.h">
+      <Filter>Neural Networks</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Neural Networks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceWindowForm.cpp">
@@ -169,6 +181,15 @@
     </ClCompile>
     <ClCompile Include="ChromosomeManager.cpp">
       <Filter>Chromosome</Filter>
+    </ClCompile>
+    <ClCompile Include="Network.cpp">
+      <Filter>Neural Networks</Filter>
+    </ClCompile>
+    <ClCompile Include="Perceptron.cpp">
+      <Filter>Neural Networks</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Neural Networks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
