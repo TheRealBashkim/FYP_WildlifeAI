@@ -6,6 +6,7 @@
 #include "C2DMatrix.h"
 #include "AgentManager.h"
 #include <iostream>
+#include "NeuralNetwork.h"
 #include "Chromosome.h"
 
 
@@ -97,6 +98,8 @@ protected:
 	bool mSelected = false;
 	float mAge = 0;
 	float mMaxAge = 100;
+	
+	NeuralNetwork * mNetwork;
 
 	float mFOVLength = 250;
 

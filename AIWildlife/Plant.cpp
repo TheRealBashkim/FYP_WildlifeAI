@@ -4,8 +4,8 @@
 
 Plant::Plant(SDL_Renderer * renderer)
 {
-	this->mRenderer = renderer;
-	mTexture = new Texture2D(mRenderer);
+	//this->mRenderer = renderer;
+	mTexture = new Texture2D(renderer);
 }
 
 Plant::~Plant()

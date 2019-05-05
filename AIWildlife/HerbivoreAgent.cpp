@@ -27,7 +27,7 @@ void HerbivoreAgent::Update(float dt)
 void HerbivoreAgent::Render()
 {
 	BaseAgent::Render();
-	DrawFeelers();
+	//DrawFeelers();
 }
 
 void HerbivoreAgent::LoadTexture(std::string path)
@@ -54,6 +54,9 @@ void HerbivoreAgent::GetVisiblePlants(std::vector<Plant*> mPlants)
 		}
 	}
 	mPlantsIcanSee = visiblePlants;
+}
+void HerbivoreAgent::NeuralInput()
+{
 }
 Vector2D HerbivoreAgent::GetPosition()
 {

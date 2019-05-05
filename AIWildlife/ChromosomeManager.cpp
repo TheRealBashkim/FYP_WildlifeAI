@@ -68,11 +68,12 @@ Gene * ChromosomeManager::GenerateGene()
 float ChromosomeManager::GenerateFitnessOfChromosome(Gene * gene)
 {
 	float maxValue = 0;
-	maxValue += (gene->health / 25);
-	maxValue += (gene->maxSpeed / 25);
-	maxValue += (gene->maxStamina / 25);
+	maxValue += (gene->health / 170);
+	maxValue += (gene->maxSpeed / 125);
+	maxValue += (gene->maxStamina / 250);
 	//maxValue += gene->mCurrentAge;
-	maxValue += (gene->maxAge / 25);
+	maxValue += (gene->maxAge / 100);
+	maxValue /= 100;
 	return maxValue;
 }
 

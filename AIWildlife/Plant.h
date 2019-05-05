@@ -20,7 +20,6 @@ public:
 	Vector2D  GetCenter();
 
 private:
-	SDL_Renderer * mRenderer;
 	Texture2D * mTexture;
 	float mStamIncrease = 0.0f;
 	Vector2D * mPosition = new Vector2D(0, 0);

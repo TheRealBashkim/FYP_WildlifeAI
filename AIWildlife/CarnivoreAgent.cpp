@@ -15,6 +15,9 @@ CarnivoreAgent::~CarnivoreAgent()
 
 void CarnivoreAgent::Update(float dt)
 {
+
+
+
 	if (mChromosome->GetGene()->mCurrentStamina < 100 && !mAgentsICanSee.empty())
 	{
 		TargetEnemy(dt);
@@ -36,7 +39,7 @@ void CarnivoreAgent::Update(float dt)
 void CarnivoreAgent::Render()
 {
 	BaseAgent::Render();
-	DrawFeelers();
+	//DrawFeelers();
 }
 
 void CarnivoreAgent::LoadTexture(std::string path)
@@ -58,6 +61,31 @@ void CarnivoreAgent::TargetEnemy(float dt)
 			mChromosome->GetGene()->mCurrentStamina += 40;
 		}
 	}
+}
+void CarnivoreAgent::NeuralInput()
+{
+	std::vector<float> mInputs;
+	float mStaminaStat = 0;
+	float mEnemyStat = 0;
+
+	if (mStamina < 30)
+	{
+		mStaminaStat += 0.75f;
+	}
+	else if (mStamina > 30 && mStamina < 70)
+	{
+		mStaminaStat += 0.50f;
+	}
+	else if (mStamina > 71)
+	{
+		mStaminaStat += 0.25f;
+	}
+	mEnemyStat += mAgentsICanSee.size() * 0.5;
+	mInputs.push_back(mStaminaStat);
+	mInputs.push_back(mEnemyStat);
+	mNetwork->Input(mInputs);
+	
+
 }
 Vector2D CarnivoreAgent::GetPosition()
 {

@@ -1,6 +1,7 @@
 #ifndef LAYER_H
 #define LAYER_H
-#include "Perceptron.h"
+#include "Neuron.h"
+#include "Commons.h"
 #include <vector>
 
 class Layer
@@ -8,12 +9,10 @@ class Layer
 public:
 	Layer();
 	~Layer();
-	void SetPerceptronAmount(int ammount);
-
-
+	void Input(std::vector<float> Input);
+	std::vector<float> Output();
 private:
-	std::vector<Perceptron*> * mPerceptronAmmount = new std::vector<Perceptron*>();
-
+	std::vector<Neuron*> mNeuron = std::vector<Neuron*>();
 
 
 };

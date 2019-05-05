@@ -140,8 +140,8 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Messaging.h" />
-    <ClInclude Include="Network.h" />
-    <ClInclude Include="Perceptron.h" />
+    <ClInclude Include="NeuralNetwork.h" />
+    <ClInclude Include="Neuron.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantManager.h" />
     <ClInclude Include="Source.h" />
@@ -167,8 +167,8 @@
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Messaging.cpp" />
-    <ClCompile Include="Network.cpp" />
-    <ClCompile Include="Perceptron.cpp" />
+    <ClCompile Include="NeuralNetwork.cpp" />
+    <ClCompile Include="Neuron.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="PlantManager.cpp" />
     <ClCompile Include="Source.cpp" />

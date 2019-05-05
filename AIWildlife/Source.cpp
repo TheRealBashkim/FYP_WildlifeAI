@@ -34,10 +34,12 @@ Source::Source(int handler)
 	{
 		return;
 	}
-	LoadMapTiles();
+	//LoadMapTiles();
 	mAgentManager = AgentManager::Instance();
 	mAgentManager->SetRenderer(mRenderer);
 	GenerateBaseChromosome();
+	BackgroundTex = new Texture2D(mRenderer);
+	BackgroundTex->LoadFromFile("Tiles/Grass.bmp");
 
 
 	mPlantManger = new PlantManager(mRenderer);
@@ -69,9 +71,14 @@ void Source::UpdateGame()
 void Source::RenderGame()
 {
 	SDL_RenderClear(mRenderer);
-	mMap->DrawMap();
-	mPlantManger->Draw();
+
+	//mMap->DrawMap();
+	BackgroundTex->Render(0,0);
+	//mPlantManger->Draw();
 	mAgentManager->Draw();
+
+
+	//renders background image.
 	SDL_RenderPresent(mRenderer);
 }
 

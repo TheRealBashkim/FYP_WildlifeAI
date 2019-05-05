@@ -108,13 +108,13 @@
     <ClInclude Include="ChromosomeManager.h">
       <Filter>Chromosome</Filter>
     </ClInclude>
-    <ClInclude Include="Network.h">
-      <Filter>Neural Networks</Filter>
-    </ClInclude>
-    <ClInclude Include="Perceptron.h">
-      <Filter>Neural Networks</Filter>
-    </ClInclude>
     <ClInclude Include="Layer.h">
+      <Filter>Neural Networks</Filter>
+    </ClInclude>
+    <ClInclude Include="Neuron.h">
+      <Filter>Neural Networks</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuralNetwork.h">
       <Filter>Neural Networks</Filter>
     </ClInclude>
   </ItemGroup>
@@ -182,13 +182,13 @@
     <ClCompile Include="ChromosomeManager.cpp">
       <Filter>Chromosome</Filter>
     </ClCompile>
-    <ClCompile Include="Network.cpp">
-      <Filter>Neural Networks</Filter>
-    </ClCompile>
-    <ClCompile Include="Perceptron.cpp">
-      <Filter>Neural Networks</Filter>
-    </ClCompile>
     <ClCompile Include="Layer.cpp">
+      <Filter>Neural Networks</Filter>
+    </ClCompile>
+    <ClCompile Include="Neuron.cpp">
+      <Filter>Neural Networks</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuralNetwork.cpp">
       <Filter>Neural Networks</Filter>
     </ClCompile>
   </ItemGroup>

@@ -14,6 +14,7 @@ public:
 	void LoadTexture(std::string path);
 	void SetPosition(Vector2D position) { BaseAgent::SetPosition(position); }
 	void GetVisiblePlants(std::vector<Plant*> mPlant);
+	void NeuralInput();
 	Vector2D GetPosition();
 	Vector2D Seek(Vector2D TargetPosition);
 	Vector2D Flee(Vector2D TargetPosition);

@@ -43,6 +43,7 @@ private:
 	Thread^ StatThread;
 	static BaseAgent * mStatAgent = nullptr;
 	static bool freeze = false;
+	static Texture2D * BackgroundTex;
 
 };
 

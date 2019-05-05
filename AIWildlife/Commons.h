@@ -22,6 +22,14 @@ const double   QuarterPi = Pi / 4;
 inline double DegsToRads(double degrees) { return TwoPi * (degrees / 360.0f); }
 inline double RadsToDegs(double radians) { return radians * (180.0f / Pi); }
 
+inline float RandomFloat(int min, int max)
+{
+	float random = ((float)rand()) / (float)RAND_MAX;
+	float range = max - min;
+	return (random*range) + min;
+}
+
+
 inline bool isEqual(float a, float b)
 {
 	if (fabs(a - b) < 1E-12)

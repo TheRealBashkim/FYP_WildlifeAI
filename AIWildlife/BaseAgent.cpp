@@ -10,6 +10,7 @@ BaseAgent::BaseAgent(SDL_Renderer* Renderer)
 	mChromosome = new Chromosome();
 	mMaxSpeed = 100.0f;
 	mMaxForce = 10.0f;
+	mNetwork = new NeuralNetwork();
 	mHeading = Vector2D(0.0f, -1.0f);
 	mSide = Vector2D(1.0f, 0.0f);
 }
