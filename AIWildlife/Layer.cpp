@@ -43,7 +43,7 @@ std::vector<float> Layer::Output()
 		float value;
 		for (int j = 0; j < mNeuron.size(); j++)
 		{
-			value += mNeuron[i]->Output * mNeuron[i]->GetBias();
+			value += mNeuron[i]->Output() * mNeuron[i]->GetBias();
 		}
 		mValues.push_back(value);
 	}
