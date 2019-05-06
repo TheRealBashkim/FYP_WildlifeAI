@@ -185,7 +185,7 @@ void BaseAgent::CheckForNewAgents()
 	}
 	for (int i = 0; i < mAlliesICanSee.size(); i++)
 	{
-		if (mAlliesICanSee[i]->GetChromosome()->GetGene()->mCurrentAge > 25)
+		if (mAlliesICanSee[i]->GetChromosome()->GetGene()->mCurrentAge >= 18)
 		{
 			if (mAlliesICanSee.at(i)->GetChromosome()->GetGene()->mGender == "Male")
 			{
@@ -245,7 +245,6 @@ void BaseAgent::DebugCircle(Vector2D centerPoint, double rad, int r, int g, int 
 		SDL_RenderDrawPoint(mRenderer, (int)tempb.x, (int)tempb.y);
 		Vec.x += stepSize;
 	}
-	
 }
 
 void BaseAgent::DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, int b)
@@ -256,6 +255,6 @@ void BaseAgent::DebugLine(Vector2D startPoint, Vector2D endPoint, int r, int g, 
 
 void BaseAgent::IncrementAge(float dt)
 {
-	mChromosome->GetGene()->mCurrentAge += 0.0088f;
+	mChromosome->GetGene()->mCurrentAge += 0.008f;
 	//mAge = mAge + 0.016f;
 }

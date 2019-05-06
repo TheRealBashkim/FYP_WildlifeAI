@@ -34,6 +34,8 @@ private:
 	AgentManager();
 	~AgentManager();
 	float mPeriodWait = 0;
+	float mTimer = 0;
+	float mTotalTime = 0;
 
 
 };

@@ -24,6 +24,7 @@ void Plant::GeneratePosition()
 	y = std::rand() % 700;
 	mPosition->x = x;
 	mPosition->y = y;
+	mSpawnTime = RandomFloat(0.2f, 0.5f);
 }
 
 void Plant::SetPosition(Vector2D* setPosition)
@@ -33,7 +34,23 @@ void Plant::SetPosition(Vector2D* setPosition)
 
 void Plant::Draw()
 {
-	mTexture->Render(*mPosition);
+	if (mSpawned == true)
+	{
+		mTexture->Render(*mPosition);
+	}
+}
+
+void Plant::Update(float dt)
+{
+	if (mTimer >= mSpawnTime)
+	{
+		mSpawned = true;
+		mTimer = 0;
+	}
+	else
+	{
+		mTimer += dt;
+	}
 }
 
 Vector2D Plant::GetCenter()

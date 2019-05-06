@@ -64,7 +64,7 @@ void Source::UpdateGame()
 	{
 	}
 	mAgentManager->Update(dt);
-	mPlantManger->Update(mAgentManager->GetAgents());
+	mPlantManger->Update(mAgentManager->GetAgents(),dt);
 	mOldTime = newTime;
 }
 
@@ -137,7 +137,9 @@ void Source::GenerateBaseChromosome()
 	srand(time(NULL));
 	if(mChromo.empty())
 	{
-		for(int i = 0; i < 20; i++)
+		int carnivore = 0;
+		int herbivore = 0;
+		for(int i = 0; i < 24; i++)
 		{
 			HerbivoreAgent * temp = new HerbivoreAgent("Herbivore", mRenderer);
 			temp->LoadTexture("Characters/Herbivore.bmp");
@@ -152,6 +154,7 @@ void Source::GenerateBaseChromosome()
 			mChromo.push_back(temp->GetChromosome());
 			BaseAgent * newTemp = (BaseAgent*)temp;
 			mAgentManager->AddAgent(newTemp);
+			herbivore++;
 		}
 		for (int i = 0; i < 12; i++)
 		{
@@ -169,11 +172,15 @@ void Source::GenerateBaseChromosome()
 			mChromo.push_back(temp->GetChromosome());
 			BaseAgent * newTemp = (BaseAgent*)temp;
 			mAgentManager->AddAgent(newTemp);
+			carnivore++;
 		}
+		XMLHandler::SaveList(0, mAgentManager->GetAgents()->size(), carnivore, herbivore);
 		//XMLHandler::StoreGenes(mChromo);
 	}
 	else
 	{
+		int herb = 0;
+		int carn = 0;
 		for(int i = 0; i < mChromo.size();i++)
 		{
 			if(mChromo[i]->GetGene()->mName == "Herbivore")
@@ -189,6 +196,7 @@ void Source::GenerateBaseChromosome()
 				//mChromo.push_back(temp->GetChromosome());
 				BaseAgent * newTemp = (BaseAgent*)temp;
 				mAgentManager->AddAgent(newTemp);
+				herb++;
 			}
 			else if(mChromo[i]->GetGene()->mName == "Carnivore")
 			{
@@ -203,8 +211,10 @@ void Source::GenerateBaseChromosome()
 				//mChromo.push_back(temp->GetChromosome());
 				BaseAgent * newTemp = (BaseAgent*)temp;
 				mAgentManager->AddAgent(newTemp);
+				carn++;
 			}
 		}
+			XMLHandler::SaveList(0, mAgentManager->GetAgents()->size(), carn, herb);
 	}
 }
 

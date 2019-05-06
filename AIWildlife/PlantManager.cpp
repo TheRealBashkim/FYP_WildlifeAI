@@ -19,14 +19,16 @@ PlantManager::~PlantManager()
 {
 }
 
-void PlantManager::Update(std::vector<BaseAgent*>* agents)
+void PlantManager::Update(std::vector<BaseAgent*>* agents,float dt)
 {
 	/**
 	 * Checks for collision with agents and plants.
 	 */
-
+	
+	
 	for(int i = 0; i < mPlantList->size(); i++)
 	{
+		mPlantList->at(i).Update(dt);
 		for(int j = 0; j <agents->size();j++)
 		{
 			if(BoxToBox(*mPlantList->at(i).GetPosition(),mPlantList->at(i).GetWidth(),mPlantList->at(i).GetHeight(),
@@ -37,6 +39,7 @@ void PlantManager::Update(std::vector<BaseAgent*>* agents)
 					agents->at(j)->GetChromosome()->GetGene()->mCurrentStamina += mPlantList->at(i).GetStatIncrease();
 					//mPlantList->erase(mPlantList->begin() + i);
 					mPlantList->at(i).GeneratePosition();
+					mPlantList->at(i).SetSpawned(false);
 				}
 			}
 		}

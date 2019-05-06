@@ -21,8 +21,28 @@ void AgentManager::SetRenderer(SDL_Renderer* Renderer)
 
 void AgentManager::Update(float dt)
 {
-	
-	SavePeriodically();
+	mTimer += dt;
+	if (mTimer >= 60)
+	{
+		mTotalTime += mTimer;
+		int total = mAgents->size();
+		int carnivores = 0;
+		int herbivores = 0;
+		for (int i = 0; i < mAgents->size(); i++)
+		{
+			if (mAgents->at(i)->GetName() == "Herbivore")
+			{
+				herbivores++;
+			}
+			else
+			{
+				carnivores++;
+			}
+		}
+		XMLHandler::SaveList(mTotalTime, total, carnivores, herbivores);
+		SavePeriodically();
+		mTimer = 0;
+	}
 	for(int i = 0; i < mAgents->size();i++)
 	{
 		// kills agent relating to old age
@@ -143,18 +163,12 @@ std::vector<BaseAgent*> AgentManager::GetVisibleEnemies(BaseAgent * Looking)
 }
 void AgentManager::SavePeriodically()
 {
-	if (mPeriodWait >= 2000)
+	std::vector<Chromosome*>* tempchromos = new std::vector<Chromosome*>();
+	for (int i = 0; i < mAgents->size();i++)
 	{
-		std::vector<Chromosome*>* tempchromos = new std::vector<Chromosome*>();
-		for (int i = 0; i < mAgents->size();i++)
-		{
-			tempchromos->push_back(mAgents->at(i)->GetChromosome());
-		}
-		XMLHandler::StoreGenes(*tempchromos);
-		mPeriodWait = 0;
-		return;
+		tempchromos->push_back(mAgents->at(i)->GetChromosome());
 	}
-	mPeriodWait++;
+	XMLHandler::StoreGenes(*tempchromos);
 }
 
 

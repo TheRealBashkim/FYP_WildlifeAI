@@ -211,6 +211,33 @@ std::vector<Chromosome*> XMLHandler::LoadChromosome(std::string path)
 	return Chromosomes;
 }
 
+void XMLHandler::SaveList(int TimeinMins,int Total, int Carn, int Herb)
+{
+	TiXmlDocument mDoc;
+	if (mDoc.LoadFile("XML/TotalOverTime.xml"))
+	{
+		TiXmlNode * Root = mDoc.FirstChildElement();
+		TiXmlElement _Time("Saved");
+		_Time.SetAttribute("TimeInMins", TimeinMins);
+		_Time.SetAttribute("Total", Total);
+		_Time.SetAttribute("Carnivores", Carn);
+		_Time.SetAttribute("Herbivores", Herb);
+		Root->InsertEndChild(_Time);
+	}
+	else
+	{
+		TiXmlNode * Root(mDoc.InsertEndChild(TiXmlElement("TotalOverTime")));
+		TiXmlElement _Time("Saved");
+		_Time.SetAttribute("TimeInMins", TimeinMins);
+		_Time.SetAttribute("Total", Total);
+		_Time.SetAttribute("Carnivores", Carn);
+		_Time.SetAttribute("Herbivores", Herb);
+		Root->InsertEndChild(_Time);
+
+	}
+	mDoc.SaveFile("XML/TotalOverTime.xml");
+}
+
 void XMLHandler::SaveFitness(Gene * gene)
 {
 		TiXmlDocument mDoc;

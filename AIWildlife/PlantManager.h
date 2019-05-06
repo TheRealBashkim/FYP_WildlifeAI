@@ -9,7 +9,7 @@ class PlantManager
 public:
 	PlantManager(SDL_Renderer * _Renderer);
 	~PlantManager();
-	void Update(std::vector<BaseAgent*>* Agents);
+	void Update(std::vector<BaseAgent*>* Agents,float dt);
 	void Draw();
 	void SpawnNewItem();
 

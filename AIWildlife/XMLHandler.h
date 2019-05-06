@@ -16,7 +16,7 @@ public:
 	//Genetic Algorithms 
 	static void StoreGenes(std::vector<Chromosome*> genes);
 	static std::vector<Chromosome*> LoadChromosome(std::string path);
-
+	static void SaveList(int Time,int Total, int Carn, int Herb);
 	static void SaveFitness(Gene * gene);
 
 
