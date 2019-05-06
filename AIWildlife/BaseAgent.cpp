@@ -179,22 +179,19 @@ void BaseAgent::CheckForNewAgents()
 		return;
 	}
 	//Need to back up average age of mating in research.
-	if (mChromosome->GetGene()->mCurrentAge < 25)
+	if (mChromosome->GetGene()->mCurrentAge < 18)
 	{
 		return;
 	}
-	for (int i = 0; i < mAgentsICanSee.size(); i++)
+	for (int i = 0; i < mAlliesICanSee.size(); i++)
 	{
-		if (mAgentsICanSee[i]->GetName() == GetName())
+		if (mAlliesICanSee[i]->GetChromosome()->GetGene()->mCurrentAge > 25)
 		{
-			if (mAgentsICanSee[i]->GetChromosome()->GetGene()->mCurrentAge > 25)
+			if (mAlliesICanSee.at(i)->GetChromosome()->GetGene()->mGender == "Male")
 			{
-				if (mAgentsICanSee.at(i)->GetChromosome()->GetGene()->mGender == "Male")
-				{
-					mPicked = mAgentsICanSee[i];
-				}
-				break;
+				mPicked = mAlliesICanSee[i];
 			}
+			break;
 		}
 	}
 	if (mPicked == nullptr)
@@ -205,6 +202,26 @@ void BaseAgent::CheckForNewAgents()
 	BaseAgent * newAgent = ChromosomeManager::GenerateNewAgent(this, mPicked);
 	AgentManager::Instance()->AddAgent(newAgent);
 	//Messaging::Initialize()->SendMessage("New Agent: " + newAgent->GetName());
+}
+
+std::string BaseAgent::GetNameOfSelectedAction()
+{
+	if (mSelectedOption->Option == WANDER)
+	{
+		return std::string("Wander");
+	}
+	else if (mSelectedOption->Option == FEED)
+	{
+		return std::string("Feed");
+	}
+	else if (mSelectedOption->Option == EVOLVE)
+	{
+		return std::string("Evolve");
+	}
+	else if (mSelectedOption->Option == HIDE)
+	{
+		return std::string("Hide");
+	}
 }
 
 void BaseAgent::PickOption(float dt)

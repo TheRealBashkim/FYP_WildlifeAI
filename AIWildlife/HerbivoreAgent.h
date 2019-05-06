@@ -11,7 +11,7 @@ public:
 	~HerbivoreAgent();
 	void Update(float dt) override;
 	void Render() override;
-	void PickOption(float dt) override;
+	void PickOption(float dt)  override;
 	void LoadTexture(std::string path);
 	void SetPosition(Vector2D position) { BaseAgent::SetPosition(position); }
 	void GetVisiblePlants(std::vector<Plant*> mPlant);
@@ -26,7 +26,6 @@ public:
 
 private:
 	std::vector<Plant*> mPlantsIcanSee;
-	AgentNetworkOptions * mSelectedOption;
 };
 #endif
 

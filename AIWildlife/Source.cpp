@@ -74,7 +74,7 @@ void Source::RenderGame()
 
 	//mMap->DrawMap();
 	BackgroundTex->Render(0,0);
-	//mPlantManger->Draw();
+	mPlantManger->Draw();
 	mAgentManager->Draw();
 
 
@@ -153,7 +153,7 @@ void Source::GenerateBaseChromosome()
 			BaseAgent * newTemp = (BaseAgent*)temp;
 			mAgentManager->AddAgent(newTemp);
 		}
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < 12; i++)
 		{
 			CarnivoreAgent * temp = new CarnivoreAgent("Carnivore", mRenderer);
 			temp->LoadTexture("Characters/Character.bmp");

@@ -13,13 +13,18 @@ HerbivoreAgent::~HerbivoreAgent()
 }
 void HerbivoreAgent::Update(float dt)
 {
-	NeuralInput();
-	counter++;
-	if (counter > 4)
+	//counter++;
+	if (counter > 20)
 	{
-		mForce += Wander(dt);
+		/*mForce += Wander(dt);*/
+		NeuralInput();
 		counter = 0;
 	}
+	else
+	{
+		counter++;
+	}
+	PickOption(dt);
 	mForce += WallAvoidance();
 	
 	BaseAgent::Update(dt);
@@ -33,6 +38,40 @@ void HerbivoreAgent::Render()
 
 void HerbivoreAgent::PickOption(float dt)
 {
+	if (mSelectedOption == nullptr)
+	{
+		mSelectedOption = new AgentNetworkOptions();
+		mSelectedOption->Option = WANDER;
+	}
+	if (mSelectedOption->Option == WANDER)
+	{
+		mForce += Wander(dt);
+	}
+	else if (mSelectedOption->Option == FEED)
+	{
+		if (mPlantsIcanSee.size() > 0)
+		{
+			mForce += Seek(*mPlantsIcanSee.at(0)->GetPosition());
+		}
+	}
+	else if (mSelectedOption->Option == EVOLVE)
+	{
+		if (mChromosome->GetGene()->mGender == "Female")
+		{
+			if (mAlliesICanSee.size() > 0)
+			{
+				mForce += Seek(mAlliesICanSee.at(0)->GetPosition());
+			}
+			CheckForNewAgents();
+		}
+	}
+	else if (mSelectedOption->Option == HIDE)
+	{
+		if (mEnemiesICanSee.size() > 0)
+		{
+			mForce += Flee(mEnemiesICanSee.at(0)->GetPosition());
+		}
+	}
 }
 
 void HerbivoreAgent::LoadTexture(std::string path)
@@ -63,28 +102,25 @@ void HerbivoreAgent::GetVisiblePlants(std::vector<Plant*> mPlants)
 void HerbivoreAgent::NeuralInput()
 {
 	std::vector<float> mInputs;
-	float mWanderStat = 1.0f;
+	float mWanderStat = 0.0f;
 	float mStaminaStat = 0.0f;
 	float mEvolveStat = 0.0f;
-	float mHideStat = 1.0f;
+	float mHideStat = 0.0f;
 
 	if (mChromosome->GetGene()->mCurrentStamina < 30)
 	{
 		mStaminaStat += 0.75f;
 	}
-	else if (mChromosome->GetGene()->mCurrentStamina > 30 && mChromosome->GetGene()->mCurrentStamina < 70)
-	{
-		mStaminaStat += 0.50f;
-	}
-	else if (mChromosome->GetGene()->mCurrentStamina > 71)
-	{
-		mStaminaStat += 0.25f;
-	}
 	//mEnemyStat += mAgentsICanSee.size() * 0.5;
 	if (mChromosome->GetGene()->mCurrentAge > 18 && mAlliesICanSee.size() > 0 && mGenerationMade == false)
 	{
-		mEvolveStat += mAlliesICanSee.size() * 0.50f;
+		mEvolveStat += mAlliesICanSee.size() * 0.75f;
 	}
+	if (mEnemiesICanSee.size() > 0)
+	{
+		mHideStat += mEnemiesICanSee.size() * 0.50f;
+	}
+
 	//Wander
 	mInputs.push_back(mWanderStat);
 	//Feed

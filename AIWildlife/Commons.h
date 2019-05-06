@@ -25,7 +25,7 @@ inline double RadsToDegs(double radians) { return radians * (180.0f / Pi); }
 
 inline float RandomFloat(int min, int max)
 {
-	srand(time(NULL));
+	//srand(time(NULL));
 	float random = ((float)rand()) / (float)RAND_MAX;
 	float range = max - min;
 	return (random*range) + min;

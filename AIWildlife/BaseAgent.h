@@ -59,6 +59,7 @@ public:
 	std::vector<BaseAgent*> GetAlliesICanSee() { return mAlliesICanSee; }
 	std::vector<BaseAgent*> GetEnemiesICanSee() { return mEnemiesICanSee; }
 	void CheckForNewAgents();
+	std::string GetNameOfSelectedAction();
 	virtual void PickOption(float dt);
 
 

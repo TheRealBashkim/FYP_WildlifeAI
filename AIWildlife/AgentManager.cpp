@@ -26,7 +26,7 @@ void AgentManager::Update(float dt)
 	for(int i = 0; i < mAgents->size();i++)
 	{
 		// kills agent relating to old age
-		if(mAgents->at(i)->GetChromosome()->GetGene()->mCurrentAge >= mAgents->at(i)->GetMaxAge() || mAgents->at(i)->GetChromosome()->GetGene()->mCurrentStamina <= 0)
+		if(mAgents->at(i)->GetChromosome()->GetGene()->mCurrentAge >= mAgents->at(i)->GetMaxAge() || mAgents->at(i)->GetChromosome()->GetGene()->mCurrentStamina <= 0 || mAgents->at(i)->GetChromosome()->GetGene()->health <= 0)
 		{
 			KillAgents(i);
 		}
@@ -160,16 +160,6 @@ void AgentManager::SavePeriodically()
 
 void AgentManager::KillAgents(int index)
 {
-	//std::vector<Chromosome*> mChromosome = XMLHandler::LoadChromosome("Chromosome.xml");
-	//for(int i = 0; i < mChromosome.size();i++)
-	//{
-	//	if(mChromosome[i]->GetGene()->mID == mAgents->at(i)->GetChromosome()->GetGene()->mID)
-	//	{
-	//		mAgents->erase(mAgents->begin() + index);
-	//		mChromosome.erase(mChromosome.begin() + i);
-	//	}
-	//}
-	//XMLHandler::StoreGenes("Chromosome.xml", mChromosome);
 	XMLHandler::SaveFitness(mAgents->at(index)->GetChromosome()->GetGene());
 	mAgents->erase(mAgents->begin() + index);
 }

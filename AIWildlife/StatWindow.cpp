@@ -22,9 +22,10 @@ void StatWindow::SetAgent(BaseAgent * mAgent)
 	mHealth->Text = mAgent->GetHealth().ToString("N",set);
 	mAge->Text = mAgent->GetChromosome()->GetGene()->mCurrentAge.ToString("N",set);
 	mGender->Text = msclr::interop::marshal_as<String^>(mAgent->GetChromosome()->GetGene()->mGender);
+	mAction->Text = msclr::interop::marshal_as<String^>(mAgent->GetNameOfSelectedAction());
 }
 
-void StatWindow::SetButtons(Label^ Name, Label^ X, Label^ Y,Label ^ Stamina, Label ^ Health, Label ^ Age, Label ^ Gender)
+void StatWindow::SetButtons(Label^ Name, Label^ X, Label^ Y,Label ^ Stamina, Label ^ Health, Label ^ Age, Label ^ Gender, Label ^ Action)
 {
 	mName = Name;
 	mX = X;
@@ -33,6 +34,7 @@ void StatWindow::SetButtons(Label^ Name, Label^ X, Label^ Y,Label ^ Stamina, Lab
 	mHealth = Health;
 	mAge = Age;
 	mGender = Gender;
+	mAction = Action;
 	
 }
 

@@ -20,7 +20,7 @@ void CarnivoreAgent::Update(float dt)
 	//{
 	//	TargetEnemy(dt);
 	//}
-	 if (counter > 4)
+	 if (counter > 20)
 	{
 		//mForce += Wander(dt);
 		 NeuralInput();
@@ -44,15 +44,28 @@ void CarnivoreAgent::Render()
 
 void CarnivoreAgent::PickOption(float dt)
 {
+	if (mSelectedOption == nullptr)
+	{
+		mSelectedOption = new AgentNetworkOptions();
+		mSelectedOption->Option = WANDER;
+	}
 	if (mSelectedOption->Option == WANDER)
 	{
 		mForce += Wander(dt);
 	}
 	else if (mSelectedOption->Option == FEED)
 	{
-		for (int i = 0; i < mEnemiesICanSee.size(); i++)
+		if (mChromosome->GetGene()->mCurrentStamina < 30)
 		{
-			mForce += Seek(mEnemiesICanSee.at(i)->GetPosition());
+			if (mEnemiesICanSee.size() > 0)
+			{
+				mForce += Seek(mEnemiesICanSee.at(0)->GetPosition());
+				if (BoxToBox(mPosition, mWidth, mHeight, mEnemiesICanSee.at(0)->GetPosition(), mEnemiesICanSee.at(0)->GetWidth(), mEnemiesICanSee.at(0)->GetHeight()))
+				{
+					mEnemiesICanSee.at(0)->GetChromosome()->GetGene()->health = 0;
+					mChromosome->GetGene()->mCurrentStamina += 50;
+				}
+			}
 		}
 	}
 	else if (mSelectedOption->Option == EVOLVE)
@@ -76,48 +89,24 @@ void CarnivoreAgent::LoadTexture(std::string path)
 {
 	BaseAgent::LoadTexture(path);
 }
-void CarnivoreAgent::TargetEnemy(float dt)
-{
-	Vector2D * tempPos;
-	for (int i = 0; i < mAgentsICanSee.size(); i++)
-	{
-		if (mAgentsICanSee.at(i)->GetName() != GetName())
-		{
-			Seek(mAgentsICanSee.at(i)->GetPosition());
-		}
-		if (BoxToBox(mPosition, mWidth, mHeight, mAgentsICanSee.at(i)->GetPosition(), mAgentsICanSee.at(i)->GetWidth(), mAgentsICanSee.at(i)->GetHeight()))
-		{
-			mAgentsICanSee.at(i)->GetChromosome()->GetGene()->health -= 40;
-			mChromosome->GetGene()->mCurrentStamina += 40;
-		}
-	}
-}
 void CarnivoreAgent::NeuralInput()
 {
 	std::vector<float> mInputs;
-	float mWanderStat = 1.00f;
-	float mStaminaStat = 0;
-	float mEnemyStat = 0;
-	float mEvolveStat = 0;
+	float mWanderStat = 0.50f;
+	float mStaminaStat = 0.0f;
+	float mEnemyStat = 0.0f;
+	float mEvolveStat = 0.0f;
 
 	if (mChromosome->GetGene()->mCurrentStamina < 30)
 	{
 		mStaminaStat += 0.75f;
-	}
-	else if (mChromosome->GetGene()->mCurrentStamina > 30 && mChromosome->GetGene()->mCurrentStamina < 70)
-	{
-		mStaminaStat += 0.50f;
-	}
-	else if (mChromosome->GetGene()->mCurrentStamina > 71)
-	{
-		mStaminaStat += 0.25f;
 	}
 	//mEnemyStat += mAgentsICanSee.size() * 0.5;
 	if (mChromosome->GetGene()->mCurrentAge > 18 && mAlliesICanSee.size() > 0 && mGenerationMade == false)
 	{
 		mEvolveStat += mAlliesICanSee.size() * 0.50f;
 	}
-	//Wander
+	////Wander
 	mInputs.push_back(mWanderStat);
 	//Feed
 	mInputs.push_back(mStaminaStat);

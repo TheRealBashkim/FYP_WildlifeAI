@@ -14,6 +14,7 @@ public:
 	void SetBias(float bias) { _Bias = bias; }
 	float GetBias() { return _Bias; }
 	float AdjustWeight(float value);
+	void ClearValue() { _Value = 0; }
 private:
 	float _Value;
 	float _Weight = 0;

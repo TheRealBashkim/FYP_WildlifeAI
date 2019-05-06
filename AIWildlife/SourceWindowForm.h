@@ -57,6 +57,8 @@ namespace AIWildlife {
 	private: System::Windows::Forms::Label^  Age;
 	private: System::Windows::Forms::Label^  GenderBox;
 	private: System::Windows::Forms::Label^  Gender;
+	private: System::Windows::Forms::Label^  ActionLabel;
+	private: System::Windows::Forms::Label^  Action;
 
 
 	protected:
@@ -92,6 +94,8 @@ namespace AIWildlife {
 			this->x = (gcnew System::Windows::Forms::Label());
 			this->NameL = (gcnew System::Windows::Forms::Label());
 			this->groupLabel = (gcnew System::Windows::Forms::Label());
+			this->ActionLabel = (gcnew System::Windows::Forms::Label());
+			this->Action = (gcnew System::Windows::Forms::Label());
 			this->StatBox->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -126,6 +130,8 @@ namespace AIWildlife {
 			// 
 			// StatBox
 			// 
+			this->StatBox->Controls->Add(this->ActionLabel);
+			this->StatBox->Controls->Add(this->Action);
 			this->StatBox->Controls->Add(this->GenderBox);
 			this->StatBox->Controls->Add(this->Gender);
 			this->StatBox->Controls->Add(this->ageBox);
@@ -266,6 +272,23 @@ namespace AIWildlife {
 			this->groupLabel->TabIndex = 0;
 			this->groupLabel->Text = L"Name";
 			// 
+			// ActionLabel
+			// 
+			this->ActionLabel->AutoSize = true;
+			this->ActionLabel->Location = System::Drawing::Point(68, 240);
+			this->ActionLabel->Name = L"ActionLabel";
+			this->ActionLabel->Size = System::Drawing::Size(0, 13);
+			this->ActionLabel->TabIndex = 15;
+			// 
+			// Action
+			// 
+			this->Action->AutoSize = true;
+			this->Action->Location = System::Drawing::Point(10, 240);
+			this->Action->Name = L"Action";
+			this->Action->Size = System::Drawing::Size(37, 13);
+			this->Action->TabIndex = 14;
+			this->Action->Text = L"Action";
+			// 
 			// SourceWindowForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -293,7 +316,7 @@ namespace AIWildlife {
 		mMessaging = Messaging::Initialize();
 		mStatWindow = StatWindow::Initialize();
 		mMessaging->SetMessageBox(ConsoleWindow);
-		mStatWindow->SetButtons(NameL, xSize, ySize,staminaSize,healthSize,ageBox,GenderBox);
+		mStatWindow->SetButtons(NameL, xSize, ySize,staminaSize,healthSize,ageBox,GenderBox,ActionLabel);
 
 		int handler = (int)SDLWindow->Handle.ToPointer();
 		Source ^ _Source = gcnew Source(handler);

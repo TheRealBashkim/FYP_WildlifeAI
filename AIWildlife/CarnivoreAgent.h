@@ -14,7 +14,6 @@ public:
 	void PickOption(float dt) override;
 	void LoadTexture(std::string path);
 	void SetPosition(Vector2D position) { BaseAgent::SetPosition(position); }
-	void TargetEnemy(float dt);
 	void NeuralInput();
 	Vector2D GetPosition();
 	Vector2D Seek(Vector2D TargetPosition);
