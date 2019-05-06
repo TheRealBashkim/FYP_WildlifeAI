@@ -15,22 +15,22 @@ CarnivoreAgent::~CarnivoreAgent()
 
 void CarnivoreAgent::Update(float dt)
 {
-
-
-
-	if (mChromosome->GetGene()->mCurrentStamina < 100 && !mAgentsICanSee.empty())
+	//NeuralInput();
+	//if (mChromosome->GetGene()->mCurrentStamina < 100 && !mAgentsICanSee.empty())
+	//{
+	//	TargetEnemy(dt);
+	//}
+	 if (counter > 4)
 	{
-		TargetEnemy(dt);
-	}
-	else if (counter > 4)
-	{
-		mForce += Wander(dt);
+		//mForce += Wander(dt);
+		 NeuralInput();
 		counter = 0;
 	}
 	else
 	{
 		counter++;
 	}
+	 PickOption(dt);
 	mForce += WallAvoidance();
 	
 	BaseAgent::Update(dt);
@@ -40,6 +40,36 @@ void CarnivoreAgent::Render()
 {
 	BaseAgent::Render();
 	//DrawFeelers();
+}
+
+void CarnivoreAgent::PickOption(float dt)
+{
+	if (mSelectedOption->Option == WANDER)
+	{
+		mForce += Wander(dt);
+	}
+	else if (mSelectedOption->Option == FEED)
+	{
+		for (int i = 0; i < mEnemiesICanSee.size(); i++)
+		{
+			mForce += Seek(mEnemiesICanSee.at(i)->GetPosition());
+		}
+	}
+	else if (mSelectedOption->Option == EVOLVE)
+	{
+		if (mChromosome->GetGene()->mGender == "Female")
+		{
+			if(mAlliesICanSee.size() > 0)
+			{
+				mForce += Seek(mAlliesICanSee.at(0)->GetPosition());
+			}
+			CheckForNewAgents();
+		}
+	}
+	else if (mSelectedOption->Option == HIDE)
+	{
+		mForce += Wander(dt);
+	}
 }
 
 void CarnivoreAgent::LoadTexture(std::string path)
@@ -65,27 +95,38 @@ void CarnivoreAgent::TargetEnemy(float dt)
 void CarnivoreAgent::NeuralInput()
 {
 	std::vector<float> mInputs;
+	float mWanderStat = 1.00f;
 	float mStaminaStat = 0;
 	float mEnemyStat = 0;
+	float mEvolveStat = 0;
 
-	if (mStamina < 30)
+	if (mChromosome->GetGene()->mCurrentStamina < 30)
 	{
 		mStaminaStat += 0.75f;
 	}
-	else if (mStamina > 30 && mStamina < 70)
+	else if (mChromosome->GetGene()->mCurrentStamina > 30 && mChromosome->GetGene()->mCurrentStamina < 70)
 	{
 		mStaminaStat += 0.50f;
 	}
-	else if (mStamina > 71)
+	else if (mChromosome->GetGene()->mCurrentStamina > 71)
 	{
 		mStaminaStat += 0.25f;
 	}
-	mEnemyStat += mAgentsICanSee.size() * 0.5;
+	//mEnemyStat += mAgentsICanSee.size() * 0.5;
+	if (mChromosome->GetGene()->mCurrentAge > 18 && mAlliesICanSee.size() > 0 && mGenerationMade == false)
+	{
+		mEvolveStat += mAlliesICanSee.size() * 0.50f;
+	}
+	//Wander
+	mInputs.push_back(mWanderStat);
+	//Feed
 	mInputs.push_back(mStaminaStat);
-	mInputs.push_back(mEnemyStat);
+	//Evolve
+	mInputs.push_back(mEvolveStat);
+	//Hide
+	mInputs.push_back(0.0f);
 	mNetwork->Input(mInputs);
-	
-
+	mSelectedOption = mNetwork->Output();
 }
 Vector2D CarnivoreAgent::GetPosition()
 {

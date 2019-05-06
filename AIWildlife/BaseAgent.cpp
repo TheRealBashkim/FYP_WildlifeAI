@@ -11,6 +11,8 @@ BaseAgent::BaseAgent(SDL_Renderer* Renderer)
 	mMaxSpeed = 100.0f;
 	mMaxForce = 10.0f;
 	mNetwork = new NeuralNetwork();
+	mSelectedOption = new AgentNetworkOptions();
+	mSelectedOption->Option = WANDER;
 	mHeading = Vector2D(0.0f, -1.0f);
 	mSide = Vector2D(1.0f, 0.0f);
 }
@@ -23,6 +25,8 @@ void BaseAgent::Update(float dt)
 {
 	
 	mAgentsICanSee = AgentManager::Instance()->GetVisibleAgents(this);
+	mAlliesICanSee = AgentManager::Instance()->GetVisibleAllies(this);
+	mEnemiesICanSee = AgentManager::Instance()->GetVisibleEnemies(this);
 	IncrementAge(dt);
 	//mChromosome->GetGene()->mCurrentAge = mAge;
 	if (mStamina <= 0.0f)
@@ -33,10 +37,6 @@ void BaseAgent::Update(float dt)
 	{
 		//mStamina = mStamina - 0.01f;
 		mChromosome->GetGene()->mCurrentStamina -= 0.01f;
-	}
-	if (mChromosome->GetGene()->mGender == "Female")
-	{
-		CheckForNewAgents();
 	}
 	const Vector2D acceleration = mForce / 1.0f;
 	mVelocity += acceleration * dt;
@@ -205,6 +205,10 @@ void BaseAgent::CheckForNewAgents()
 	BaseAgent * newAgent = ChromosomeManager::GenerateNewAgent(this, mPicked);
 	AgentManager::Instance()->AddAgent(newAgent);
 	//Messaging::Initialize()->SendMessage("New Agent: " + newAgent->GetName());
+}
+
+void BaseAgent::PickOption(float dt)
+{
 }
 
 

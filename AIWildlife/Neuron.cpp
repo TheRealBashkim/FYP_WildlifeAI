@@ -28,19 +28,12 @@ float Neuron::Output()
 
 float Neuron::AdjustWeight(float value)
 {
+	//srand(time(NULL));
 	//Mutation 
 	int mutationchance = rand() % 100;
 	if (mutationchance >= 50)
 	{
-		int incrementchance = rand() % 100;
-		if (incrementchance >= 50)
-		{
-			value += 0.1f;
-		}
-		else
-		{
-			value -= 0.1f;
-		}
+		value = RandomFloat(0.0f, 1.0f);
 	}
 	return value;
 }

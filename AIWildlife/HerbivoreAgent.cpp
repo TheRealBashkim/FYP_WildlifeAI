@@ -13,6 +13,7 @@ HerbivoreAgent::~HerbivoreAgent()
 }
 void HerbivoreAgent::Update(float dt)
 {
+	NeuralInput();
 	counter++;
 	if (counter > 4)
 	{
@@ -28,6 +29,10 @@ void HerbivoreAgent::Render()
 {
 	BaseAgent::Render();
 	//DrawFeelers();
+}
+
+void HerbivoreAgent::PickOption(float dt)
+{
 }
 
 void HerbivoreAgent::LoadTexture(std::string path)
@@ -57,6 +62,40 @@ void HerbivoreAgent::GetVisiblePlants(std::vector<Plant*> mPlants)
 }
 void HerbivoreAgent::NeuralInput()
 {
+	std::vector<float> mInputs;
+	float mWanderStat = 1.0f;
+	float mStaminaStat = 0.0f;
+	float mEvolveStat = 0.0f;
+	float mHideStat = 1.0f;
+
+	if (mChromosome->GetGene()->mCurrentStamina < 30)
+	{
+		mStaminaStat += 0.75f;
+	}
+	else if (mChromosome->GetGene()->mCurrentStamina > 30 && mChromosome->GetGene()->mCurrentStamina < 70)
+	{
+		mStaminaStat += 0.50f;
+	}
+	else if (mChromosome->GetGene()->mCurrentStamina > 71)
+	{
+		mStaminaStat += 0.25f;
+	}
+	//mEnemyStat += mAgentsICanSee.size() * 0.5;
+	if (mChromosome->GetGene()->mCurrentAge > 18 && mAlliesICanSee.size() > 0 && mGenerationMade == false)
+	{
+		mEvolveStat += mAlliesICanSee.size() * 0.50f;
+	}
+	//Wander
+	mInputs.push_back(mWanderStat);
+	//Feed
+	mInputs.push_back(mStaminaStat);
+	//Evolve
+	mInputs.push_back(mEvolveStat);
+	//Hide
+	mInputs.push_back(mHideStat);
+	mNetwork->Input(mInputs);
+	mSelectedOption = mNetwork->Output();
+
 }
 Vector2D HerbivoreAgent::GetPosition()
 {

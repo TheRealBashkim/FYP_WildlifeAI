@@ -19,6 +19,8 @@ public:
 	BaseAgent * CheckMousePolling(Vector2D mousepos);
 	std::vector<BaseAgent*> * GetAgents() { return mAgents; }
 	std::vector<BaseAgent*> GetVisibleAgents(BaseAgent * Looking);
+	std::vector<BaseAgent*> GetVisibleAllies(BaseAgent * Looking);
+	std::vector<BaseAgent*> GetVisibleEnemies(BaseAgent*Looking);
 	void AddAgent(BaseAgent * Agent) { mAgents->push_back(Agent); }
 	void SavePeriodically();
 	

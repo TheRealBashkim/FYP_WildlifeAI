@@ -2,13 +2,14 @@
 #define NEURALNETWORK_H
 #include "Layer.h"
 #include <vector>
+#include "Structures.h"
 class NeuralNetwork
 {
 public:
 	NeuralNetwork();
 	~NeuralNetwork();
 	void Input(std::vector<float> Inputs);
-	std::vector<float> Output();
+	AgentNetworkOptions * Output();
 
 private:
 	Layer * mLayer;

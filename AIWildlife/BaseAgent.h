@@ -8,6 +8,7 @@
 #include <iostream>
 #include "NeuralNetwork.h"
 #include "Chromosome.h"
+#include "Structures.h"
 
 
 class BaseAgent
@@ -55,7 +56,10 @@ public:
 	void SetStats();
 	bool mGenerationMade = false;
 	std::vector<BaseAgent*> GetAgentsICanSee() { return mAgentsICanSee; }
+	std::vector<BaseAgent*> GetAlliesICanSee() { return mAlliesICanSee; }
+	std::vector<BaseAgent*> GetEnemiesICanSee() { return mEnemiesICanSee; }
 	void CheckForNewAgents();
+	virtual void PickOption(float dt);
 
 
 
@@ -63,6 +67,8 @@ public:
 protected:
 
 	std::vector<BaseAgent*> mAgentsICanSee;
+	std::vector<BaseAgent*> mAlliesICanSee;
+	std::vector<BaseAgent*> mEnemiesICanSee;
 	/**
 	 * Character Attributes
 	 */
@@ -100,7 +106,7 @@ protected:
 	float mMaxAge = 100;
 	
 	NeuralNetwork * mNetwork;
-
+	AgentNetworkOptions * mSelectedOption;
 	float mFOVLength = 250;
 
 private:

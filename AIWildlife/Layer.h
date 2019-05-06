@@ -12,7 +12,7 @@ public:
 	void Input(std::vector<float> Input);
 	std::vector<float> Output();
 private:
-	std::vector<Neuron*> mNeuron = std::vector<Neuron*>();
+	std::vector<Neuron*> * mNeuron;
 
 
 };

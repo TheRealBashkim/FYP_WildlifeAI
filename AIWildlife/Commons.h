@@ -1,6 +1,7 @@
 #ifndef COMMONS_H
 #define COMMONS_H
 #include <iostream>
+#include <time.h>
 //  Vector2D Mat Buckland
 
 const int MapRow = 25;
@@ -24,6 +25,7 @@ inline double RadsToDegs(double radians) { return radians * (180.0f / Pi); }
 
 inline float RandomFloat(int min, int max)
 {
+	srand(time(NULL));
 	float random = ((float)rand()) / (float)RAND_MAX;
 	float range = max - min;
 	return (random*range) + min;

@@ -1,6 +1,7 @@
 #ifndef NEURON
 #define NEURON
 #include <vector>
+#include "Commons.h"
 class Neuron
 {
 public:

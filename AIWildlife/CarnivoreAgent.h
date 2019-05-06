@@ -11,6 +11,7 @@ public:
 	~CarnivoreAgent();
 	void Update(float dt) override;
 	void Render() override;
+	void PickOption(float dt) override;
 	void LoadTexture(std::string path);
 	void SetPosition(Vector2D position) { BaseAgent::SetPosition(position); }
 	void TargetEnemy(float dt);
@@ -23,6 +24,7 @@ public:
 	Vector2D WallAvoidance();
 
 private:
+	
 	
 };
 #endif

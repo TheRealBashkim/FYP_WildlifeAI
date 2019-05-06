@@ -83,8 +83,63 @@ std::vector<BaseAgent*> AgentManager::GetVisibleAgents(BaseAgent* Looking)
 			}
 		}
 	}
-
 return VisibleAgents;
+}
+std::vector<BaseAgent*> AgentManager::GetVisibleAllies(BaseAgent * Looking)
+{
+	std::vector<BaseAgent*> VisibleAgents;
+
+	for (size_t i = 0; i < mAgents->size(); i++)
+	{
+		if (mAgents->at(i) != Looking)
+		{
+			Vector2D heading = Looking->GetHeading();
+			heading.Normalize();
+			Vector2D vectotarget = mAgents->at(i)->GetCenter() - Looking->GetCenter();
+			double totargetlength = vectotarget.Length();
+			if (totargetlength < mAgents->at(i)->GetFOVLength())
+			{
+				vectotarget.Normalize();
+				double dotProduct = heading.Dot(vectotarget);
+				if (dotProduct > 0.85)
+				{
+					if (mAgents->at(i)->GetName() == Looking->GetName())
+					{
+						VisibleAgents.push_back(mAgents->at(i));
+					}
+				}
+			}
+		}
+	}
+	return VisibleAgents;
+}
+std::vector<BaseAgent*> AgentManager::GetVisibleEnemies(BaseAgent * Looking)
+{
+	std::vector<BaseAgent*> VisibleAgents;
+
+	for (size_t i = 0; i < mAgents->size(); i++)
+	{
+		if (mAgents->at(i) != Looking)
+		{
+			Vector2D heading = Looking->GetHeading();
+			heading.Normalize();
+			Vector2D vectotarget = mAgents->at(i)->GetCenter() - Looking->GetCenter();
+			double totargetlength = vectotarget.Length();
+			if (totargetlength < mAgents->at(i)->GetFOVLength())
+			{
+				vectotarget.Normalize();
+				double dotProduct = heading.Dot(vectotarget);
+				if (dotProduct > 0.85)
+				{
+					if (mAgents->at(i)->GetName() != Looking->GetName())
+					{
+						VisibleAgents.push_back(mAgents->at(i));
+					}
+				}
+			}
+		}
+	}
+	return VisibleAgents;
 }
 void AgentManager::SavePeriodically()
 {
