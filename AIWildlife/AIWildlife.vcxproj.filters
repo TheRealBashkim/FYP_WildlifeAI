@@ -34,6 +34,12 @@
     <Filter Include="Items">
       <UniqueIdentifier>{0c1522c1-4245-48e5-bf54-ecbd6286f2c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Chromosome">
+      <UniqueIdentifier>{20a9517b-fa8f-4eb5-adbe-3627267b0786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Neural Networks">
+      <UniqueIdentifier>{692f1514-b754-46ab-9a73-27261d75fa8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceWindowForm.h">
@@ -69,9 +75,6 @@
     <ClInclude Include="BaseAgent.h">
       <Filter>AI Agents</Filter>
     </ClInclude>
-    <ClInclude Include="Agents.h">
-      <Filter>AI Agents</Filter>
-    </ClInclude>
     <ClInclude Include="StatWindow.h">
       <Filter>UI</Filter>
     </ClInclude>
@@ -80,6 +83,39 @@
     </ClInclude>
     <ClInclude Include="Plant.h">
       <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantManager.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="AgentManager.h">
+      <Filter>AI Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="HerbivoreAgent.h">
+      <Filter>AI Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="CarnivoreAgent.h">
+      <Filter>AI Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="C2DMatrix.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="Chromosome.h">
+      <Filter>Chromosome</Filter>
+    </ClInclude>
+    <ClInclude Include="ChromosomeManager.h">
+      <Filter>Chromosome</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Neural Networks</Filter>
+    </ClInclude>
+    <ClInclude Include="Neuron.h">
+      <Filter>Neural Networks</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuralNetwork.h">
+      <Filter>Neural Networks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,9 +155,6 @@
     <ClCompile Include="BaseAgent.cpp">
       <Filter>AI Agents</Filter>
     </ClCompile>
-    <ClCompile Include="Agents.cpp">
-      <Filter>AI Agents</Filter>
-    </ClCompile>
     <ClCompile Include="StatWindow.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -130,6 +163,33 @@
     </ClCompile>
     <ClCompile Include="Plant.cpp">
       <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantManager.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="AgentManager.cpp">
+      <Filter>AI Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="HerbivoreAgent.cpp">
+      <Filter>AI Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="CarnivoreAgent.cpp">
+      <Filter>AI Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="Chromosome.cpp">
+      <Filter>Chromosome</Filter>
+    </ClCompile>
+    <ClCompile Include="ChromosomeManager.cpp">
+      <Filter>Chromosome</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Neural Networks</Filter>
+    </ClCompile>
+    <ClCompile Include="Neuron.cpp">
+      <Filter>Neural Networks</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuralNetwork.cpp">
+      <Filter>Neural Networks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

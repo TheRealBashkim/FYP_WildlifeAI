@@ -1,12 +1,12 @@
 #ifndef COMMONS_H
 #define COMMONS_H
 #include <iostream>
+#include <time.h>
 //  Vector2D Mat Buckland
 
 const int MapRow = 25;
 const int MapColumn = 25;
 const int TileSize = 35;
-
 
 const int     MaxInt = (std::numeric_limits<int>::max)();
 const double  MaxDouble = (std::numeric_limits<double>::max)();
@@ -22,6 +22,15 @@ const double   QuarterPi = Pi / 4;
 
 inline double DegsToRads(double degrees) { return TwoPi * (degrees / 360.0f); }
 inline double RadsToDegs(double radians) { return radians * (180.0f / Pi); }
+
+inline float RandomFloat(int min, int max)
+{
+	//srand(time(NULL));
+	float random = ((float)rand()) / (float)RAND_MAX;
+	float range = max - min;
+	return (random*range) + min;
+}
+
 
 inline bool isEqual(float a, float b)
 {
@@ -91,6 +100,9 @@ struct Vector2D
 
 	//returns the vector that is the reverse of this vector
 	inline Vector2D  GetReverse()const;
+
+
+	inline Vector2D Cross(const Vector2D& v2)const;
 
 	//we need some overloaded operators
 	const Vector2D& operator+=(const Vector2D &rhs)
@@ -295,6 +307,15 @@ inline void Vector2D::Normalize()
 	}
 }
 
+inline Vector2D Vector2D::Cross(const Vector2D& v2) const
+{
+	Vector2D temp = Vector2D();
+	temp.x = this->x * v2.y;
+	temp.y = -y * v2.x;
+	return temp;
+}
+
+
 
 //------------------------------------------------------------------------non member functions
 
@@ -448,6 +469,20 @@ inline bool PointInBoxCollision(Vector2D point, Vector2D charpos, float width, f
 		return true;
 	}
 	return false;
+}
+
+inline bool BoxToBox(Vector2D Pos1,float width1,float height1,Vector2D Pos2,float width2,float height2)
+{
+	if (Pos1.x > (Pos2.x + width2))
+		return false;
+	else if ((Pos1.x + width1) < Pos2.x)
+		return false;
+	else if (Pos1.y > (Pos2.y + height2))
+		return false;
+	else if ((Pos1.y + height1) < Pos2.y)
+		return false;
+
+	return true;
 }
 
 

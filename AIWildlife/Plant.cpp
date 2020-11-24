@@ -4,8 +4,12 @@
 
 Plant::Plant(SDL_Renderer * renderer)
 {
-	this->mRenderer = renderer;
-	mTexture = new Texture2D(mRenderer);
+	//this->mRenderer = renderer;
+	mTexture = new Texture2D(renderer);
+}
+
+Plant::~Plant()
+{
 }
 
 void Plant::LoadTexture(std::string path)
@@ -20,6 +24,7 @@ void Plant::GeneratePosition()
 	y = std::rand() % 700;
 	mPosition->x = x;
 	mPosition->y = y;
+	mSpawnTime = RandomFloat(0.2f, 0.5f);
 }
 
 void Plant::SetPosition(Vector2D* setPosition)
@@ -29,5 +34,27 @@ void Plant::SetPosition(Vector2D* setPosition)
 
 void Plant::Draw()
 {
-	mTexture->Render(*mPosition);
+	if (mSpawned == true)
+	{
+		mTexture->Render(*mPosition);
+	}
+}
+
+void Plant::Update(float dt)
+{
+	if (mTimer >= mSpawnTime)
+	{
+		mSpawned = true;
+		mTimer = 0;
+	}
+	else
+	{
+		mTimer += dt;
+	}
+}
+
+Vector2D Plant::GetCenter()
+{
+	Vector2D temp = Vector2D(mPosition->x + (mTexture->GetWidth()*0.5), mPosition->y + (mTexture->GetHeight())*0.5);
+	return temp;
 }

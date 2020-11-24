@@ -1,6 +1,8 @@
 #include "Source.h"
 #include "SourceWindowForm.h"
 #include "XMLHandler.h"
+#include "HerbivoreAgent.h"
+#include "CarnivoreAgent.h"
 using namespace System;
 using namespace System::Windows::Forms;
 
@@ -25,55 +27,28 @@ int Main(array<String^>^ args)
 
 Source::Source(int handler)
 {	
-	mMessage = Messaging::Initialize();
 	mStatWindow = StatWindow::Initialize();
+	mMessage = Messaging::Initialize();
 	Initialize();
 	if(!InitWindow(handler))
 	{
 		return;
 	}
-	LoadMapTiles();
-	for (int i = 0; i < 15; i++)
-	{
-		Agents * temp = new Agents("Herbivore",mRenderer);
-		temp->LoadTexture("Characters/Herbivore.bmp");
-		
-		float tempx, tempy;
-	tempx = rand() % 875;
-	tempy = rand() % 875;
-	temp->SetPosition(Vector2D(tempx,tempy));
-	mAgent->push_back(temp);
-	}
-	for (int i = 0; i < 15; i++)
-	{
-		Agents * temp = new Agents("Carnivore",mRenderer);
-		temp->LoadTexture("Characters/Character.bmp");
-		float tempx, tempy;
-		tempx = rand() % 875;
-		tempy = rand() % 875;
-		temp->SetPosition(Vector2D(tempx, tempy));
-		mAgent->push_back(temp);
-	}
-	for(int i = 0; i < 10;i++)
-	{
-		Plant * mPlant = new Plant(mRenderer);
-		mPlant->LoadTexture("Tiles/FoodTile.bmp");
-		mPlant->GeneratePosition();
-		mPlant->SetStatIncrease(10.0f);
-		mPlants->push_back(mPlant);
-	}
-	
-	
+	//LoadMapTiles();
+	mAgentManager = AgentManager::Instance();
+	mAgentManager->SetRenderer(mRenderer);
+	GenerateBaseChromosome();
+	BackgroundTex = new Texture2D(mRenderer);
+	BackgroundTex->LoadFromFile("Tiles/Grass.bmp");
+
+
+	mPlantManger = new PlantManager(mRenderer);
 	mOldTime = SDL_GetTicks();
 	ThreadStart ^ operation = gcnew ThreadStart(GameLoop);
 	Thread^ GameplayThread = gcnew Thread(operation);
 
 	GameplayThread->Start();
 	UILoop();
-
-
-
-	//GameplayThread = gcnew Thread(gcnew ThreadStart());
 }
 
 Source::~Source()
@@ -88,29 +63,22 @@ void Source::UpdateGame()
 	while (SDL_PollEvent(&e) != 0)
 	{
 	}
-	Flock(dt);
-	for (int i = 0; i < mAgent->size(); i++)
-	{
-		if(mAgent->at(i)->GetName() == "Carnivore")
-		{
-			mAgent->at(i)->Update(dt, e);
-		}
-	}
+	mAgentManager->Update(dt);
+	mPlantManger->Update(mAgentManager->GetAgents(),dt);
 	mOldTime = newTime;
 }
 
 void Source::RenderGame()
 {
 	SDL_RenderClear(mRenderer);
-	mMap->DrawMap();
-	for(int i = 0; i < mPlants->size(); i++)
-	{
-		mPlants->at(i)->Draw();
-	}
-	for (int i = 0; i < mAgent->size(); i++)
-	{
-		mAgent->at(i)->Render();
-	}
+
+	//mMap->DrawMap();
+	BackgroundTex->Render(0,0);
+	mPlantManger->Draw();
+	mAgentManager->Draw();
+
+
+	//renders background image.
 	SDL_RenderPresent(mRenderer);
 }
 
@@ -124,9 +92,15 @@ void Source::GameLoop()
 
 }
 
+void Source::SetupMessaging()
+{
+	Messaging::Initialize();
+	
+}
+
 void Source::UILoop()
 {
-	int id = 500;
+	
 	while(true)
 	{
 		SDL_Event e;
@@ -134,38 +108,17 @@ void Source::UILoop()
 		{
 			if(SDL_GetMouseState(NULL,NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
 			{
-				id = CheckMousePolling();
+				int x, y;
+				SDL_GetMouseState(&x, &y);
+				Vector2D Mouse(x, y);
+				mStatAgent = mAgentManager->CheckMousePolling(Mouse);
 			}
 		}
-		if(id > mAgent->size())
+		if(mStatAgent != nullptr)
 		{
-		
-		}
-		else
-		{
-			mAgent->at(id)->SetSelected(true);
-			mStatWindow->SetAgent(mAgent->at(id));
-		}
-	}
-}
-
-void Source::Flock(float dt)
-{
-	Vector2D Average;
-	for(int i = 0; i < mAgent->size(); i++)
-	{
-		if(mAgent->at(i)->GetName() == "Herbivore")
-		{
-			Average += mAgent->at(i)->Wander(dt);
-		}
-	}
-	Average = Average / mAgent->size();
-	for (int j = 0; j < mAgent->size(); j++)
-	{
-		if(mAgent->at(j)->GetName() == "Herbivore")
-		{
-			mAgent->at(j)->GetForce() += mAgent->at(j)->Seek(Average);
-			mAgent->at(j)->Update(dt);
+			//mAgentManager->GetAgents()->at(selectedID)->SetSelected(true);
+			mStatAgent->SetSelected(true);
+			mStatWindow->SetAgent(mStatAgent);
 		}
 	}
 }
@@ -174,28 +127,95 @@ void Source::LoadMapTiles()
 {
 	mMap = new Map(mRenderer);
 	mMap->AddTile("Tiles/GrassTile.bmp", 0);
-//	mMap->AddTile("Tiles/FoodTile.bmp", 1);
 	mMap->SetMap(XMLHandler::LoadMapFromXML("Map1.xml"));
 
 }
 
-int Source::CheckMousePolling()
+void Source::GenerateBaseChromosome()
 {
-	int id = 500;
-	if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
+	std::vector<Chromosome*> mChromo = XMLHandler::LoadChromosome("XML/Chromosome.xml");
+	srand(time(NULL));
+	if(mChromo.empty())
 	{
-		int x, y;
-		SDL_GetMouseState(&x, &y);
-		Vector2D mouse(x, y);
-		for(int i = 0; i < mAgent->size();i++)
+		int carnivore = 0;
+		int herbivore = 0;
+		for(int i = 0; i < 24; i++)
 		{
-			if(PointInBoxCollision(mouse,mAgent->at(i)->GetPosition(),mAgent->at(i)->GetWidth(),mAgent->at(i)->GetHeight()))
+			HerbivoreAgent * temp = new HerbivoreAgent("Herbivore", mRenderer);
+			temp->LoadTexture("Characters/Herbivore.bmp");
+			float tempx, tempy;
+			tempx = rand() % 875;
+			tempy = rand() % 875;
+			temp->GetChromosome()->SetGene(ChromosomeManager::GenerateGene());
+			temp->GetChromosome()->GetGene()->mName = temp->GetName();
+			temp->GetChromosome()->GetGene()->mID = rand() % MaxInt;
+			temp->SetStats();
+			temp->SetPosition(Vector2D(tempx, tempy));
+			mChromo.push_back(temp->GetChromosome());
+			BaseAgent * newTemp = (BaseAgent*)temp;
+			mAgentManager->AddAgent(newTemp);
+			herbivore++;
+		}
+		for (int i = 0; i < 12; i++)
+		{
+			CarnivoreAgent * temp = new CarnivoreAgent("Carnivore", mRenderer);
+			temp->LoadTexture("Characters/Character.bmp");
+			float tempx, tempy;
+			tempx = rand() % 875;
+			tempy = rand() % 875;
+			temp->SetPosition(Vector2D(tempx, tempy));
+			//temp->GetChromosome()->GenerateGene();
+			temp->GetChromosome()->SetGene(ChromosomeManager::GenerateGene());
+			temp->GetChromosome()->GetGene()->mName = temp->GetName();
+			temp->GetChromosome()->GetGene()->mID = rand() % MaxInt;
+			temp->SetStats();
+			mChromo.push_back(temp->GetChromosome());
+			BaseAgent * newTemp = (BaseAgent*)temp;
+			mAgentManager->AddAgent(newTemp);
+			carnivore++;
+		}
+		XMLHandler::SaveList(0, mAgentManager->GetAgents()->size(), carnivore, herbivore);
+		//XMLHandler::StoreGenes(mChromo);
+	}
+	else
+	{
+		int herb = 0;
+		int carn = 0;
+		for(int i = 0; i < mChromo.size();i++)
+		{
+			if(mChromo[i]->GetGene()->mName == "Herbivore")
 			{
-				id = i;
+				HerbivoreAgent * temp = new HerbivoreAgent("Herbivore", mRenderer);
+				temp->LoadTexture("Characters/Herbivore.bmp");
+				float tempx, tempy;
+				tempx = rand() % 875;
+				tempy = rand() % 875;
+				temp->SetChromosome(mChromo.at(i));
+				temp->SetPosition(Vector2D(tempx, tempy));
+				temp->SetStats();
+				//mChromo.push_back(temp->GetChromosome());
+				BaseAgent * newTemp = (BaseAgent*)temp;
+				mAgentManager->AddAgent(newTemp);
+				herb++;
+			}
+			else if(mChromo[i]->GetGene()->mName == "Carnivore")
+			{
+				CarnivoreAgent * temp = new CarnivoreAgent("Carnivore", mRenderer);
+				temp->LoadTexture("Characters/Character.bmp");
+				float tempx, tempy;
+				tempx = rand() % 875;
+				tempy = rand() % 875;
+				temp->SetPosition(Vector2D(tempx, tempy));
+				temp->SetChromosome(mChromo.at(i));
+				temp->SetStats();
+				//mChromo.push_back(temp->GetChromosome());
+				BaseAgent * newTemp = (BaseAgent*)temp;
+				mAgentManager->AddAgent(newTemp);
+				carn++;
 			}
 		}
+			XMLHandler::SaveList(0, mAgentManager->GetAgents()->size(), carn, herb);
 	}
-	return id;
 }
 
 bool Source::Initialize()

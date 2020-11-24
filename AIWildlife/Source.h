@@ -6,11 +6,11 @@
 #include "InputHandler.h"
 #include "Map.h"
 #include "BaseAgent.h"
-#include "Agents.h"
 #include "Messaging.h"
 #include <vector>
 #include "StatWindow.h"
-#include "Plant.h"
+#include "PlantManager.h"
+#include "AgentManager.h"
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace System::Threading;
@@ -22,22 +22,28 @@ public:
 	static void UpdateGame();
 	static void RenderGame();
 	static void GameLoop();
+	static void SetupMessaging();
 	static void UILoop();
-	static void Flock(float dt);
 	static void LoadMapTiles();
+	static void GenerateBaseChromosome();
+
+
+
 private:
-	static int CheckMousePolling();
 	SDL_Window * mWindow;
 	static SDL_Renderer * mRenderer;
 	static Map * mMap;
 	bool Initialize();
 	bool InitWindow(int handler);
-	static std::vector<Agents*> * mAgent = new std::vector<Agents*>();
-	static std::vector<Plant*>* mPlants = new std::vector<Plant*>();
+	static AgentManager * mAgentManager;
+	static PlantManager * mPlantManger;
 	static Uint32 mOldTime;
 	Messaging ^ mMessage;
 	static StatWindow ^ mStatWindow;
 	Thread^ StatThread;
+	static BaseAgent * mStatAgent = nullptr;
+	static bool freeze = false;
+	static Texture2D * BackgroundTex;
 
 };
 
